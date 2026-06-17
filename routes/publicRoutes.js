@@ -11,6 +11,28 @@ import {
 
 export const publicRoutes = express.Router();
 
+function parseEventDate(value) {
+  if (!value) return null;
+
+  const trimmed = String(value).trim();
+
+  // Format: 2026-08-24
+  if (/^\d{4}-\d{2}-\d{2}$/.test(trimmed)) {
+    return new Date(`${trimmed}T12:00:00`);
+  }
+
+  // Format: 24.08.2026
+  const germanMatch = trimmed.match(/^(\d{1,2})\.(\d{1,2})\.(\d{4})$/);
+  if (germanMatch) {
+    const day = germanMatch[1].padStart(2, "0");
+    const month = germanMatch[2].padStart(2, "0");
+    const year = germanMatch[3];
+    return new Date(`${year}-${month}-${day}T12:00:00`);
+  }
+
+  return null;
+}
+
 publicRoutes.get("/", async (req, res) => {
   const products = await prisma.product.findMany({
     where: { isActive: true },
@@ -50,27 +72,45 @@ publicRoutes.get("/anfrage", async (req, res) => {
     orderBy: { name: "asc" }
   });
 
-  res.send(renderInquiryPage({ products }));
+  res.send(renderInquiryPage({
+    products,
+    success: req.query.success === "1"
+  }));
 });
 
 publicRoutes.post("/anfrage", async (req, res) => {
   const {
     name,
+    companyName,
     email,
     phone,
     eventDate,
     location,
+    product,
+    guestCount,
+    serviceType,
+    deliveryNeeded,
     message
   } = req.body;
 
+  const selectedDetails = [
+    product ? `Wunschartikel / Leistung: ${product}` : null,
+    serviceType ? `Art der Anfrage: ${serviceType}` : null,
+    guestCount ? `Personenanzahl: ${guestCount}` : null,
+    deliveryNeeded ? `Lieferung gewünscht: ${deliveryNeeded}` : null,
+    message ? `Nachricht: ${message}` : null
+  ].filter(Boolean).join("\n\n");
+
   await prisma.inquiry.create({
     data: {
-      name,
+      customerName: name,
+      companyName: companyName || null,
       email,
-      phone,
-      eventDate,
-      location,
-      message
+      phone: phone || null,
+      eventDate: parseEventDate(eventDate),
+      deliveryAddress: location || null,
+      message: selectedDetails || null,
+      status: "NEW"
     }
   });
 
@@ -96,9 +136,10 @@ function renderLegalPage({ title, content }) {
             </a>
             <nav>
               <a href="/">Home</a>
-              <a href="/#equipment">Equipment</a>
-              <a href="/#kueche">Küche mieten</a>
-              <a href="/#catering">Catering</a>
+              <a href="/equipment">Equipment</a>
+              <a href="/kueche-mieten">Küche mieten</a>
+              <a href="/catering">Catering</a>
+              <a href="/services">Services</a>
               <a class="nav-button" href="/anfrage">Anfrage</a>
             </nav>
           </div>
@@ -198,4 +239,3 @@ publicRoutes.get("/agb", (req, res) => {
     `
   }));
 });
-

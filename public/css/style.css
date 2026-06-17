@@ -1156,3 +1156,23 @@ footer {
   justify-content: center;
   margin-top: 36px;
 }
+
+.success-box {
+  background: #e7f7ed;
+  color: #117a37;
+  border: 1px solid rgba(17,122,55,0.18);
+  padding: 18px 20px;
+  margin-bottom: 24px;
+}
+
+.success-box strong {
+  display: block;
+  font-size: 17px;
+  margin-bottom: 6px;
+}
+
+.success-box span {
+  display: block;
+  color: #2f7d4d;
+  line-height: 1.5;
+}

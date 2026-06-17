@@ -322,13 +322,13 @@ export function renderAdminInquiries({ inquiries = [] }) {
     return `
       <tr>
         <td>
-          <strong>${display(inquiry.name || inquiry.fullName || inquiry.contactName)}</strong><br>
+          <strong>${display(inquiry.customerName)}</strong><br>
           <span class="muted">${display(inquiry.email)}</span><br>
           <span class="muted">${display(inquiry.phone)}</span>
         </td>
-        <td>${display(inquiry.eventDate || inquiry.date)}</td>
-        <td>${display(inquiry.location || inquiry.eventLocation)}</td>
-        <td class="message-box">${display(inquiry.message || inquiry.notes || inquiry.details)}</td>
+        <td>${inquiry.eventDate ? new Date(inquiry.eventDate).toLocaleDateString("de-DE") : "-"}</td>
+        <td>${display(inquiry.deliveryAddress)}</td>
+        <td class="message-box">${display(inquiry.message)}</td>
         <td>${date}</td>
       </tr>
     `;
@@ -364,4 +364,5 @@ export function renderAdminInquiries({ inquiries = [] }) {
     `
   });
 }
+
 
