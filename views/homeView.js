@@ -1,4 +1,10 @@
-﻿function formatEuro(cents) {
+﻿import { renderServicesSection } from "./sections/servicesSection.js";
+import { renderWhySection } from "./sections/whySection.js";
+import { renderCateringSection } from "./sections/cateringSection.js";
+import { renderLogisticsSection } from "./sections/logisticsSection.js";
+import { renderPriceModelSection } from "./sections/priceModelSection.js";
+import { renderFaqSection } from "./sections/faqSection.js";
+function formatEuro(cents) {
   if (cents === null || cents === undefined) return null;
 
   return (cents / 100).toLocaleString("de-DE", {
@@ -350,7 +356,7 @@ export function renderHomePage({ products = [] }) {
 
             <nav>
               <a href="/">Home</a>
-              <a href="#equipment">Equipment</a>
+              <a href="#equipment">Equipment</a><a href="#services">Services</a>
               <a href="/admin">Admin</a>
               <a class="nav-button" href="/anfrage">Anfrage</a>
             </nav>
@@ -432,6 +438,13 @@ export function renderHomePage({ products = [] }) {
             </div>
           </section>
 
+          ${renderServicesSection()}
+          ${renderWhySection()}
+          ${renderCateringSection()}
+          ${renderLogisticsSection()}
+          ${renderPriceModelSection()}
+          ${renderFaqSection()}
+
           <section class="cta">
             <div class="cta-inner">
               <div>
@@ -458,6 +471,9 @@ export function renderHomePage({ products = [] }) {
     </html>
   `;
 }
+
+
+
 
 
 
