@@ -1,6 +1,27 @@
 ﻿import { renderAdminLayout } from "./adminLayoutView.js";
 
-export function renderAdminDashboard({ productCount = 0, inquiryCount = 0 }) {
+function formatEuro(cents) {
+  if (cents === null || cents === undefined) return "";
+  return (cents / 100).toFixed(2);
+}
+
+function formatEuroDisplay(cents) {
+  if (cents === null || cents === undefined) return "-";
+
+  return (cents / 100).toLocaleString("de-DE", {
+    style: "currency",
+    currency: "EUR"
+  });
+}
+
+function renderCategoryOptions(categories = [], selectedCategoryId = null) {
+  return categories.map((category) => {
+    const selected = Number(selectedCategoryId) === Number(category.id) ? "selected" : "";
+    return `<option value="${category.id}" ${selected}>${category.name}</option>`;
+  }).join("");
+}
+
+export function renderAdminDashboard({ productCount = 0, activeProductCount = 0, inquiryCount = 0 }) {
   return renderAdminLayout({
     title: "Dashboard",
     content: `
@@ -15,7 +36,11 @@ export function renderAdminDashboard({ productCount = 0, inquiryCount = 0 }) {
       <div class="form-grid">
         <div class="card">
           <h2>${productCount}</h2>
-          <p class="muted">Equipment-Artikel</p>
+          <p class="muted">Equipment-Artikel gesamt</p>
+        </div>
+        <div class="card">
+          <h2>${activeProductCount}</h2>
+          <p class="muted">Aktive Artikel auf der Website</p>
         </div>
         <div class="card">
           <h2>${inquiryCount}</h2>
@@ -28,17 +53,34 @@ export function renderAdminDashboard({ productCount = 0, inquiryCount = 0 }) {
 
 export function renderAdminProducts({ products = [] }) {
   const rows = products.map((product) => {
-    const price = (product.priceCents / 100).toLocaleString("de-DE", {
-      style: "currency",
-      currency: "EUR"
-    });
+    const price = formatEuroDisplay(product.priceCents);
 
     return `
       <tr>
-        <td><strong>${product.name}</strong><br><span class="muted">${product.slug}</span></td>
+        <td>
+          <strong>${product.name}</strong><br>
+          <span class="muted">${product.slug}</span>
+        </td>
         <td>${product.category?.name || "-"}</td>
         <td>${price}</td>
-        <td>${product.isActive ? "Aktiv" : "Inaktiv"}</td>
+        <td>
+          <span class="status ${product.isActive ? "active" : "inactive"}">
+            ${product.isActive ? "Aktiv" : "Inaktiv"}
+          </span>
+        </td>
+        <td class="actions-cell">
+          <a class="small-button" href="/admin/products/${product.id}/edit">Bearbeiten</a>
+
+          <form method="POST" action="/admin/products/${product.id}/toggle">
+            <button class="small-button secondary" type="submit">
+              ${product.isActive ? "Deaktivieren" : "Aktivieren"}
+            </button>
+          </form>
+
+          <form method="POST" action="/admin/products/${product.id}/delete" onsubmit="return confirm('Diesen Artikel wirklich löschen?');">
+            <button class="small-button danger" type="submit">Löschen</button>
+          </form>
+        </td>
       </tr>
     `;
   }).join("");
@@ -62,10 +104,11 @@ export function renderAdminProducts({ products = [] }) {
               <th>Kategorie</th>
               <th>Preis</th>
               <th>Status</th>
+              <th>Aktionen</th>
             </tr>
           </thead>
           <tbody>
-            ${rows || `<tr><td colspan="4">Noch keine Produkte vorhanden.</td></tr>`}
+            ${rows || `<tr><td colspan="5">Noch keine Produkte vorhanden.</td></tr>`}
           </tbody>
         </table>
       </div>
@@ -74,9 +117,7 @@ export function renderAdminProducts({ products = [] }) {
 }
 
 export function renderNewProductForm({ categories = [] }) {
-  const categoryOptions = categories.map((category) => {
-    return `<option value="${category.id}">${category.name}</option>`;
-  }).join("");
+  const categoryOptions = renderCategoryOptions(categories);
 
   return renderAdminLayout({
     title: "Equipment hinzufügen",
@@ -122,7 +163,7 @@ export function renderNewProductForm({ categories = [] }) {
 
             <div class="form-row">
               <label>Bild-URL</label>
-              <input name="imageUrl" placeholder="später Upload / aktuell optional URL" />
+              <input name="imageUrl" placeholder="z. B. /public/images/equipment/stehtisch.jpg" />
             </div>
 
             <div class="form-row full">
@@ -132,6 +173,76 @@ export function renderNewProductForm({ categories = [] }) {
           </div>
 
           <button class="button" type="submit">Equipment speichern</button>
+        </form>
+      </div>
+    `
+  });
+}
+
+export function renderEditProductForm({ product, categories = [] }) {
+  const categoryOptions = renderCategoryOptions(categories, product.categoryId);
+
+  return renderAdminLayout({
+    title: "Equipment bearbeiten",
+    content: `
+      <div class="topbar">
+        <div>
+          <h1>Equipment bearbeiten</h1>
+          <p class="muted">${product.name}</p>
+        </div>
+        <a class="button" href="/admin/products">Zur Liste</a>
+      </div>
+
+      <div class="card">
+        <form method="POST" action="/admin/products/${product.id}/update">
+          <div class="form-grid">
+            <div class="form-row">
+              <label>Name</label>
+              <input name="name" value="${product.name || ""}" required />
+            </div>
+
+            <div class="form-row">
+              <label>Slug / URL-Name</label>
+              <input name="slug" value="${product.slug || ""}" required />
+            </div>
+
+            <div class="form-row">
+              <label>Kategorie</label>
+              <select name="categoryId">
+                <option value="">Ohne Kategorie</option>
+                ${categoryOptions}
+              </select>
+            </div>
+
+            <div class="form-row">
+              <label>Preis in Euro</label>
+              <input name="priceEuro" type="number" step="0.01" value="${formatEuro(product.priceCents)}" required />
+            </div>
+
+            <div class="form-row">
+              <label>Kaution in Euro</label>
+              <input name="depositEuro" type="number" step="0.01" value="${formatEuro(product.depositCents)}" />
+            </div>
+
+            <div class="form-row">
+              <label>Bild-URL</label>
+              <input name="imageUrl" value="${product.imageUrl || ""}" />
+            </div>
+
+            <div class="form-row full">
+              <label>Beschreibung</label>
+              <textarea name="description" rows="5">${product.description || ""}</textarea>
+            </div>
+
+            <div class="form-row full checkbox-row">
+              <label>
+                <input type="checkbox" name="isActive" ${product.isActive ? "checked" : ""} />
+                Artikel aktiv auf der Website anzeigen
+              </label>
+            </div>
+          </div>
+
+          <button class="button" type="submit">Änderungen speichern</button>
         </form>
       </div>
     `
