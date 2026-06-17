@@ -1,4 +1,5 @@
 ﻿import { renderServicesSection } from "./sections/servicesSection.js";
+import { renderKitchenRentalSection } from "./sections/kitchenRentalSection.js";
 import { renderWhySection } from "./sections/whySection.js";
 import { renderCateringSection } from "./sections/cateringSection.js";
 import { renderLogisticsSection } from "./sections/logisticsSection.js";
@@ -93,7 +94,7 @@ export function renderHomePage({ products = [] }) {
 
             <nav>
               <a href="/">Home</a>
-              <a href="#equipment">Equipment</a>
+              <a href="#equipment">Equipment</a><a href="#kueche">Küche mieten</a>
               <a href="#services">Services</a>
               <a href="/admin">Admin</a>
               <a class="nav-button" href="/anfrage">Anfrage</a>
@@ -145,6 +146,7 @@ export function renderHomePage({ products = [] }) {
             </div>
           </section>
 
+          ${renderKitchenRentalSection()}
           ${renderServicesSection()}
           ${renderWhySection()}
           ${renderCateringSection()}
@@ -178,3 +180,7 @@ export function renderHomePage({ products = [] }) {
     </html>
   `;
 }
+
+
+
+
