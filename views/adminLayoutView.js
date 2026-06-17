@@ -1,4 +1,4 @@
-﻿export function renderAdminLayout({ title = "Admin", content = "", passwordQuery = "" }) {
+﻿export function renderAdminLayout({ title = "Admin", content = "" }) {
   return `
     <!DOCTYPE html>
     <html lang="de">
@@ -43,18 +43,34 @@
             margin-bottom: 34px;
           }
 
-          .sidebar a {
+          .sidebar a,
+          .logout-button {
             display: block;
+            width: 100%;
             color: white;
             text-decoration: none;
             padding: 13px 14px;
             border-radius: 14px;
             margin-bottom: 8px;
             font-weight: 700;
+            background: transparent;
+            border: 0;
+            text-align: left;
+            font-size: 15px;
+            cursor: pointer;
           }
 
-          .sidebar a:hover {
+          .sidebar a:hover,
+          .logout-button:hover {
             background: rgba(255,255,255,0.08);
+          }
+
+          .logout-form {
+            margin-top: 28px;
+          }
+
+          .logout-button {
+            color: #ffb4b4;
           }
 
           .main {
@@ -162,10 +178,14 @@
           <aside class="sidebar">
             <div class="brand">Feiermiete</div>
             <div class="claim">Admin Bereich</div>
-            <a href="/admin${passwordQuery}">Dashboard</a>
-            <a href="/admin/products${passwordQuery}">Equipment</a>
-            <a href="/admin/products/new${passwordQuery}">Equipment hinzufügen</a>
+            <a href="/admin">Dashboard</a>
+            <a href="/admin/products">Equipment</a>
+            <a href="/admin/products/new">Equipment hinzufügen</a>
             <a href="/">Website ansehen</a>
+
+            <form class="logout-form" method="POST" action="/admin/logout">
+              <button class="logout-button" type="submit">Ausloggen</button>
+            </form>
           </aside>
 
           <main class="main">

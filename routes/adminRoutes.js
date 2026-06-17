@@ -9,17 +9,35 @@ import {
 
 export const adminRoutes = express.Router();
 
-adminRoutes.use(requireAdmin);
-
-function getPasswordQuery(req) {
-  const password = req.query.password;
-  return password ? `?password=${encodeURIComponent(password)}` : "";
-}
-
 function euroToCents(value) {
   if (!value) return null;
   return Math.round(Number(String(value).replace(",", ".")) * 100);
 }
+
+adminRoutes.post("/login", (req, res) => {
+  const adminPassword = process.env.ADMIN_PASSWORD || "feiermiete-admin";
+  const cookieSecret = process.env.ADMIN_COOKIE_SECRET || adminPassword;
+
+  if (req.body.password !== adminPassword) {
+    return res.redirect("/admin");
+  }
+
+  res.cookie("feiermiete_admin", cookieSecret, {
+    httpOnly: true,
+    sameSite: "lax",
+    secure: process.env.NODE_ENV === "production",
+    maxAge: 1000 * 60 * 60 * 8
+  });
+
+  res.redirect("/admin");
+});
+
+adminRoutes.post("/logout", (req, res) => {
+  res.clearCookie("feiermiete_admin");
+  res.redirect("/admin");
+});
+
+adminRoutes.use(requireAdmin);
 
 adminRoutes.get("/", async (req, res) => {
   const productCount = await prisma.product.count();
@@ -27,8 +45,7 @@ adminRoutes.get("/", async (req, res) => {
 
   res.send(renderAdminDashboard({
     productCount,
-    inquiryCount,
-    passwordQuery: getPasswordQuery(req)
+    inquiryCount
   }));
 });
 
@@ -39,8 +56,7 @@ adminRoutes.get("/products", async (req, res) => {
   });
 
   res.send(renderAdminProducts({
-    products,
-    passwordQuery: getPasswordQuery(req)
+    products
   }));
 });
 
@@ -50,8 +66,7 @@ adminRoutes.get("/products/new", async (req, res) => {
   });
 
   res.send(renderNewProductForm({
-    categories,
-    passwordQuery: getPasswordQuery(req)
+    categories
   }));
 });
 
@@ -79,5 +94,5 @@ adminRoutes.post("/products", async (req, res) => {
     }
   });
 
-  res.redirect(`/admin/products${getPasswordQuery(req)}`);
+  res.redirect("/admin/products");
 });

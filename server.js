@@ -1,4 +1,5 @@
 ﻿import express from "express";
+import cookieParser from "cookie-parser";
 import { publicRoutes } from "./routes/publicRoutes.js";
 import { adminRoutes } from "./routes/adminRoutes.js";
 
@@ -8,6 +9,7 @@ const port = process.env.PORT || 3000;
 app.use("/public", express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(cookieParser());
 
 app.use("/", publicRoutes);
 app.use("/admin", adminRoutes);

@@ -1,8 +1,10 @@
 ﻿export function requireAdmin(req, res, next) {
   const adminPassword = process.env.ADMIN_PASSWORD || "feiermiete-admin";
-  const providedPassword = req.query.password || req.headers["x-admin-password"];
+  const cookieSecret = process.env.ADMIN_COOKIE_SECRET || adminPassword;
 
-  if (providedPassword === adminPassword) {
+  const adminCookie = req.cookies?.feiermiete_admin;
+
+  if (adminCookie === cookieSecret) {
     return next();
   }
 
@@ -70,14 +72,21 @@
             color: #141414;
             font-weight: 800;
           }
+
+          .hint {
+            font-size: 13px;
+            color: #999;
+            margin-top: 14px;
+          }
         </style>
       </head>
       <body>
-        <form class="login-box" method="GET" action="/admin">
+        <form class="login-box" method="POST" action="/admin/login">
           <h1>Feiermiete Admin</h1>
           <p>Bitte Passwort eingeben, um den Adminbereich zu öffnen.</p>
           <input type="password" name="password" placeholder="Admin-Passwort" required />
           <button type="submit">Einloggen</button>
+          <div class="hint">Das Passwort wird nicht in der URL angezeigt.</div>
           <a href="/">Zur Website</a>
         </form>
       </body>
