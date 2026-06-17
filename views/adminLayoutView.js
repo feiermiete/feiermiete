@@ -162,6 +162,63 @@
             color: #777;
           }
 
+          .actions-cell {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            align-items: center;
+          }
+
+          .actions-cell form {
+            margin: 0;
+          }
+
+          .small-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 34px;
+            padding: 0 12px;
+            border-radius: 999px;
+            border: 0;
+            background: #171717;
+            color: white;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 13px;
+            cursor: pointer;
+          }
+
+          .small-button.secondary {
+            background: #555;
+          }
+
+          .small-button.danger {
+            background: #b00020;
+          }
+
+          .status {
+            display: inline-flex;
+            padding: 6px 10px;
+            border-radius: 999px;
+            font-size: 12px;
+            font-weight: 900;
+          }
+
+          .status.active {
+            background: #e7f7ed;
+            color: #117a37;
+          }
+
+          .status.inactive {
+            background: #f3f3f3;
+            color: #777;
+          }
+
+          .checkbox-row input {
+            width: auto;
+            margin-right: 8px;
+          }
           @media (max-width: 800px) {
             .admin-shell {
               grid-template-columns: 1fr;
@@ -196,3 +253,4 @@
     </html>
   `;
 }
+
