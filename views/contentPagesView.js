@@ -96,10 +96,9 @@ export function renderEquipmentPage({ products = [] }) {
           <div class="wide-inner subpage-hero-grid">
             <div>
               <div class="section-kicker">Mietartikel</div>
-              <h1>Equipment für Feiern, Events und Caterings mieten.</h1>
+              <h1>Equipment mieten für Feiern, Events, Buffets und Caterings.</h1>
               <p>
-                Von Pavillons, Stehtischen und Bierzeltgarnituren bis zu Geschirr, Buffet-Equipment,
-                Getränkespendern und Zubehör: Wir stellen dir das passende Equipment für deine Veranstaltung zusammen.
+                Ob private Feier, Firmenveranstaltung, Buffet, Gartenfest oder Catering-Produktion: Auf dieser Seite findest du unser Mietsortiment. Du kannst einzelne Artikel anfragen oder mehrere Produkte zu einem passenden Paket kombinieren lassen.
               </p>
               <div class="hero-actions">
                 <a class="button primary" href="/anfrage">Equipment anfragen</a>
@@ -119,11 +118,10 @@ export function renderEquipmentPage({ products = [] }) {
             <div class="section-head">
               <div>
                 <div class="section-kicker">Kategorien</div>
-                <h2>Was du bei uns mieten kannst.</h2>
+                <h2>Mietartikel nach Kategorien.</h2>
               </div>
               <p>
-                Das Sortiment wird Schritt für Schritt erweitert. Neben klassischem Event-Equipment können später
-                auch Küchentechnik, Öfen, Wärmegeräte und Zubehör sauber aufgelistet werden.
+                Wir bauen das Sortiment Schritt für Schritt aus. Ziel ist eine klare Mietartikel-Übersicht wie ein Shop – aber mit individueller Anfrage statt direkter Onlinezahlung.
               </p>
             </div>
 
@@ -133,13 +131,46 @@ export function renderEquipmentPage({ products = [] }) {
               <div><strong>Geschirr & Besteck</strong><span>Teller, Besteck, Schalen, Servierartikel</span></div>
               <div><strong>Buffet & Warmhalten</strong><span>Chafing Dishes, Warmhaltebehälter, Zubehör</span></div>
               <div><strong>Getränke-Equipment</strong><span>Getränkespender, Glühweinbehälter, Ausschank</span></div>
-              <div><strong>Küchentechnik</strong><span>Öfen, Arbeitsflächen, Vorbereitung, Produktion</span></div>
+              <div><strong>Küchentechnik</strong><span>Öfen, Wärmegeräte, Arbeitsflächen und Produktionszubehör</span></div>
               <div><strong>Transport & Lagerung</strong><span>Boxen, Behälter, Organisation und Logistik</span></div>
-              <div><strong>Komplettpakete</strong><span>Individuell kombiniert nach Anlass und Personenanzahl</span></div>
+              <div><strong>Komplettpakete</strong><span>Individuell kombiniert nach Anlass, Personenanzahl und Ablauf</span></div>
             </div>
           </div>
         </section>
 
+        <section class="subpage-section">
+          <div class="wide-inner">
+            <div class="section-head">
+              <div>
+                <div class="section-kicker">Ablauf</div>
+                <h2>Einfach anfragen statt kompliziert bestellen.</h2>
+              </div>
+              <p>
+                Bei Feiermiete bekommst du kein starres Shopsystem, sondern eine passende Empfehlung.
+                So können Mietdauer, Lieferung, Aufbau, Kaution und Kombinationen sauber berücksichtigt werden.
+              </p>
+            </div>
+
+            <div class="process-grid">
+              <div>
+                <strong>1. Artikel auswählen</strong>
+                <span>Du suchst einzelne Produkte oder beschreibst, was du für deine Feier brauchst.</span>
+              </div>
+              <div>
+                <strong>2. Anfrage senden</strong>
+                <span>Teile uns Datum, Ort, Personenanzahl und gewünschte Leistungen mit.</span>
+              </div>
+              <div>
+                <strong>3. Angebot erhalten</strong>
+                <span>Wir prüfen Verfügbarkeit, Lieferaufwand, Kaution und mögliche Paketpreise.</span>
+              </div>
+              <div>
+                <strong>4. Lieferung planen</strong>
+                <span>Auf Wunsch liefern wir, unterstützen beim Aufbau und holen später wieder ab.</span>
+              </div>
+            </div>
+          </div>
+        </section>
         <section class="subpage-section cream" id="equipment-liste">
           <div class="wide-inner">
             <div class="section-head">
@@ -155,6 +186,17 @@ export function renderEquipmentPage({ products = [] }) {
             <div class="listing-grid">
               ${productCards || "<p>Noch keine Artikel vorhanden.</p>"}
             </div>
+          </div>
+        </section>
+
+        <section class="final-cta">
+          <div class="wide-inner final-cta-inner">
+            <div>
+              <div class="section-kicker">Equipment anfragen</div>
+              <h2>Du brauchst mehrere Artikel?</h2>
+              <p>Schick uns Datum, Ort, Personenanzahl und gewünschte Artikel. Wir stellen dir ein passendes Angebot zusammen.</p>
+            </div>
+            <a class="button primary" href="/anfrage">Anfrage senden</a>
           </div>
         </section>
       </main>
@@ -409,3 +451,6 @@ export function renderServicesPage() {
     `
   });
 }
+
+
+

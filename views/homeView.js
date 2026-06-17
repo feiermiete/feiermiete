@@ -76,10 +76,10 @@ export function renderHomePage({ products = [] }) {
 
             <nav>
               <a href="/">Home</a>
-              <a href="#equipment">Equipment</a>
-              <a href="#kueche">Küche mieten</a>
-              <a href="#catering">Catering</a>
-              <a href="#services">Services</a>
+              <a href="/equipment">Equipment</a>
+              <a href="/kueche-mieten">Küche mieten</a>
+              <a href="/catering">Catering</a>
+              <a href="/services">Services</a>
               
               <a class="nav-button" href="/anfrage">Anfrage</a>
             </nav>
@@ -98,7 +98,7 @@ export function renderHomePage({ products = [] }) {
 
                 <div class="actions">
                   <a class="button primary" href="/anfrage">Unverbindlich anfragen</a>
-                  <a class="button" href="#services">Leistungen ansehen</a>
+                  <a class="button" href="/services">Leistungen ansehen</a>
                 </div>
               </div>
 
@@ -126,10 +126,10 @@ export function renderHomePage({ products = [] }) {
               <div class="section-head">
                 <div>
                   <div class="section-kicker">Unsere Leistungen</div>
-                  <h2>Mehr als nur Equipment.</h2>
+                  <h2>Alles für deine Feier – klar aufgeteilt.</h2>
                 </div>
                 <p>
-                  Feiermiete verbindet Mietartikel, Produktionsküche, Catering-Koordination und Logistik zu einem einfachen Eventservice.
+                  Wähle den Bereich, der zu deiner Veranstaltung passt. Jede Leistung hat eine eigene Seite mit mehr Informationen.
                 </p>
               </div>
 
@@ -149,7 +149,7 @@ export function renderHomePage({ products = [] }) {
                       <li>Geschirr, Besteck, Chafing Dishes und Buffet-Zubehör</li>
                       <li>Flexible Zusammenstellung nach Personenanzahl und Anlass</li>
                     </ul>
-                    <a href="#equipment">Equipment ansehen</a>
+                    <a href="/equipment">Mehr zu Equipment</a>
                   </div>
                 </article>
 
@@ -168,7 +168,7 @@ export function renderHomePage({ products = [] }) {
                       <li>Für Vorbereitung, Produktion und Eventabwicklung</li>
                       <li>Nutzung nach Verfügbarkeit und individueller Absprache</li>
                     </ul>
-                    <a href="/anfrage?kategorie=kueche">Küche anfragen</a>
+                    <a href="/kueche-mieten">Mehr zur Küche</a>
                   </div>
                 </article>
 
@@ -187,7 +187,7 @@ export function renderHomePage({ products = [] }) {
                       <li>Abstimmung von Speisen, Buffetaufbau und Equipment</li>
                       <li>Ein Ansprechpartner statt viele einzelne Absprachen</li>
                     </ul>
-                    <a href="/anfrage?kategorie=catering">Catering anfragen</a>
+                    <a href="/catering">Mehr zu Catering</a>
                   </div>
                 </article>
 
@@ -206,7 +206,7 @@ export function renderHomePage({ products = [] }) {
                       <li>Aufbauhilfe nach Absprache möglich</li>
                       <li>Rückgabe, Abholung und Ablauf planbar organisiert</li>
                     </ul>
-                    <a href="/anfrage?kategorie=logistik">Ablauf besprechen</a>
+                    <a href="/services">Mehr zu Services</a>
                   </div>
                 </article>
               </div>
@@ -310,7 +310,7 @@ export function renderHomePage({ products = [] }) {
                 <div class="section-kicker">Anfrage</div>
                 <h2>Du planst eine Feier?</h2>
                 <p>
-                  Schreib uns, was du brauchst. Wir melden uns mit einer passenden Empfehlung und einem Angebot.
+                  Schreib uns Datum, Ort, Personenanzahl und was du brauchst. Wir empfehlen dir passende Artikel, Services oder eine Komplettlösung.
                 </p>
               </div>
               <a class="button primary" href="/anfrage">Jetzt Anfrage senden</a>
@@ -341,6 +341,11 @@ export function renderHomePage({ products = [] }) {
     </html>
   `;
 }
+
+
+
+
+
 
 
 

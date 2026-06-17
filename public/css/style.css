@@ -1150,3 +1150,9 @@ footer {
     grid-template-columns: 1fr;
   }
 }
+
+.center-action {
+  display: flex;
+  justify-content: center;
+  margin-top: 36px;
+}
