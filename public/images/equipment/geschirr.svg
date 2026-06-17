@@ -1,0 +1,8 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" width="900" height="560" viewBox="0 0 900 560">
+  <rect width="900" height="560" fill="#151515"/>
+  <circle cx="390" cy="270" r="95" fill="none" stroke="#ffffff" stroke-width="15"/>
+  <circle cx="390" cy="270" r="52" fill="none" stroke="#c70012" stroke-width="10"/>
+  <line x1="540" y1="180" x2="540" y2="380" stroke="#ffffff" stroke-width="14"/>
+  <line x1="585" y1="180" x2="585" y2="380" stroke="#c70012" stroke-width="10"/>
+  <text x="450" y="500" text-anchor="middle" fill="#ffffff" font-family="Arial" font-size="34" font-weight="700" letter-spacing="3">GESCHIRR</text>
+</svg>

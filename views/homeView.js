@@ -7,16 +7,32 @@
   });
 }
 
+function getProductImage(product) {
+  const map = {
+    "pavillon-6x3": "/public/images/equipment/pavillon.svg",
+    "stehtisch": "/public/images/equipment/stehtisch.svg",
+    "bierzeltgarnitur": "/public/images/equipment/bierzeltgarnitur.svg",
+    "chafing-dish": "/public/images/equipment/chafing-dish.svg",
+    "getraenkespender": "/public/images/equipment/getraenkespender.svg",
+    "gluehweinbehaelter": "/public/images/equipment/gluehweinbehaelter.svg",
+    "geschirr-besteck-set": "/public/images/equipment/geschirr.svg",
+    "buffet-tisch": "/public/images/equipment/buffet-tisch.svg"
+  };
+
+  return product.imageUrl || map[product.slug] || "/public/images/equipment/pavillon.svg";
+}
+
 export function renderHomePage({ products = [] }) {
   const productCards = products.map((product) => {
     const price = formatEuro(product.priceCents);
     const deposit = formatEuro(product.depositCents);
+    const image = getProductImage(product);
 
     return `
       <article class="product-card">
-        <div class="product-image">
-          <div class="product-symbol">${product.name?.slice(0, 1) || "F"}</div>
-        </div>
+        <a class="product-image" href="/anfrage?produkt=${product.slug}">
+          <img src="${image}" alt="${product.name}" />
+        </a>
 
         <div class="product-body">
           <div class="product-kicker">${product.category?.name || "Equipment"}</div>
@@ -50,23 +66,19 @@ export function renderHomePage({ products = [] }) {
         <style>
           :root {
             --red: #c70012;
-            --red-dark: #99000c;
+            --red-dark: #9d000d;
             --dark: #141414;
             --text: #242424;
-            --muted: #707070;
-            --cream: #f5f0e9;
-            --soft: #faf7f2;
+            --muted: #686868;
+            --cream: #f4efe8;
+            --soft: #fbf8f3;
             --line: rgba(20,20,20,0.09);
-            --shadow: 0 24px 70px rgba(0,0,0,0.09);
+            --shadow: 0 24px 70px rgba(0,0,0,0.08);
           }
 
-          * {
-            box-sizing: border-box;
-          }
+          * { box-sizing: border-box; }
 
-          html {
-            scroll-behavior: smooth;
-          }
+          html { scroll-behavior: smooth; }
 
           body {
             margin: 0;
@@ -75,20 +87,18 @@ export function renderHomePage({ products = [] }) {
             color: var(--text);
           }
 
-          a {
-            color: inherit;
-          }
+          a { color: inherit; }
 
           .topbar {
-            background: #8b8b8b;
+            background: #8c8c8c;
             color: white;
             font-size: 12px;
             letter-spacing: 0.04em;
-            padding: 9px 40px;
+            padding: 9px 56px;
           }
 
           .topbar-inner {
-            max-width: 1240px;
+            max-width: 1520px;
             margin: 0 auto;
             display: flex;
             justify-content: center;
@@ -97,7 +107,7 @@ export function renderHomePage({ products = [] }) {
           }
 
           header {
-            background: rgba(255,255,255,0.94);
+            background: rgba(255,255,255,0.96);
             backdrop-filter: blur(18px);
             border-bottom: 1px solid var(--line);
             position: sticky;
@@ -106,9 +116,9 @@ export function renderHomePage({ products = [] }) {
           }
 
           .header-inner {
-            max-width: 1240px;
+            max-width: 1520px;
             margin: 0 auto;
-            padding: 24px 40px;
+            padding: 24px 56px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -118,48 +128,32 @@ export function renderHomePage({ products = [] }) {
           .brand {
             text-decoration: none;
             display: flex;
-            align-items: center;
-            gap: 18px;
+            flex-direction: column;
+            align-items: flex-start;
           }
 
-          .brand-mark {
-            width: 42px;
-            height: 52px;
-            position: relative;
-          }
-
-          .brand-mark::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(145deg, var(--red), var(--red-dark));
-            clip-path: polygon(0 0, 72% 0, 72% 30%, 32% 45%, 32% 100%, 0 100%);
-          }
-
-          .brand-mark::after {
-            content: "";
-            position: absolute;
-            right: 0;
-            top: 21px;
-            width: 27px;
-            height: 25px;
-            background: linear-gradient(145deg, var(--red), var(--red-dark));
-            clip-path: polygon(0 26%, 100% 0, 100% 28%, 36% 48%, 100% 70%, 100% 100%, 0 68%);
-          }
-
-          .brand-copy strong {
-            display: block;
+          .brand-main {
             color: var(--red);
-            font-size: 30px;
-            line-height: 0.95;
-            font-weight: 800;
-            letter-spacing: -0.035em;
+            font-size: 34px;
+            line-height: 0.9;
+            font-weight: 900;
+            letter-spacing: -0.05em;
           }
 
-          .brand-copy span {
-            display: block;
-            margin-top: 7px;
-            color: #555;
+          .brand-main::before {
+            content: "";
+            display: inline-block;
+            width: 3px;
+            height: 34px;
+            background: var(--red);
+            margin-right: 14px;
+            transform: translateY(5px);
+          }
+
+          .brand-sub {
+            margin-top: 8px;
+            margin-left: 17px;
+            color: #565656;
             font-size: 11px;
             text-transform: uppercase;
             letter-spacing: 0.18em;
@@ -170,59 +164,57 @@ export function renderHomePage({ products = [] }) {
             align-items: center;
             gap: 30px;
             font-size: 13px;
-            font-weight: 800;
+            font-weight: 900;
             text-transform: uppercase;
             letter-spacing: 0.04em;
           }
 
-          nav a {
-            text-decoration: none;
-          }
+          nav a { text-decoration: none; }
 
           .nav-button {
             background: var(--red);
             color: white;
-            padding: 14px 20px;
+            padding: 14px 22px;
             border-radius: 2px;
-            box-shadow: 0 12px 26px rgba(199,0,18,0.22);
+            box-shadow: 0 16px 34px rgba(199,0,18,0.22);
           }
 
           .hero {
             position: relative;
             overflow: hidden;
             background:
-              linear-gradient(90deg, rgba(245,240,233,0.98) 0%, rgba(245,240,233,0.90) 48%, rgba(245,240,233,0.50) 100%),
-              radial-gradient(circle at 86% 18%, rgba(199,0,18,0.13), transparent 32%),
-              linear-gradient(135deg, #fff 0%, #efe6dc 100%);
+              linear-gradient(90deg, rgba(244,239,232,0.98) 0%, rgba(244,239,232,0.88) 52%, rgba(244,239,232,0.56) 100%),
+              radial-gradient(circle at 86% 20%, rgba(199,0,18,0.13), transparent 33%),
+              linear-gradient(135deg, #fff 0%, #eee4da 100%);
           }
 
           .hero::before {
             content: "";
             position: absolute;
-            right: -180px;
-            top: 70px;
-            width: 650px;
-            height: 650px;
-            border: 1px solid rgba(199,0,18,0.20);
+            right: -130px;
+            top: 80px;
+            width: 620px;
+            height: 620px;
+            border: 1px solid rgba(199,0,18,0.18);
             transform: rotate(35deg);
           }
 
           .hero::after {
             content: "";
             position: absolute;
-            right: 100px;
-            bottom: -130px;
-            width: 260px;
-            height: 260px;
-            background: rgba(255,255,255,0.58);
+            right: 40px;
+            bottom: -110px;
+            width: 250px;
+            height: 250px;
+            background: rgba(255,255,255,0.56);
             border: 1px solid rgba(255,255,255,0.9);
             transform: rotate(35deg);
           }
 
           .hero-inner {
-            max-width: 1240px;
+            max-width: 1520px;
             margin: 0 auto;
-            padding: 110px 40px 118px;
+            padding: 104px 56px 112px;
             position: relative;
             z-index: 2;
           }
@@ -253,9 +245,9 @@ export function renderHomePage({ products = [] }) {
           h1 {
             margin: 0;
             color: var(--dark);
-            font-size: clamp(54px, 7vw, 96px);
+            font-size: clamp(56px, 6.6vw, 100px);
             line-height: 0.92;
-            letter-spacing: -0.07em;
+            letter-spacing: -0.075em;
             text-transform: uppercase;
           }
 
@@ -265,7 +257,7 @@ export function renderHomePage({ products = [] }) {
           }
 
           .hero-text {
-            max-width: 650px;
+            max-width: 660px;
             margin: 30px 0 0;
             color: #3d3d3d;
             font-size: 21px;
@@ -296,7 +288,7 @@ export function renderHomePage({ products = [] }) {
             background: var(--red);
             border-color: var(--red);
             color: white;
-            box-shadow: 0 16px 32px rgba(199,0,18,0.22);
+            box-shadow: 0 16px 34px rgba(199,0,18,0.22);
           }
 
           .trust-row {
@@ -306,9 +298,9 @@ export function renderHomePage({ products = [] }) {
           }
 
           .trust-inner {
-            max-width: 1240px;
+            max-width: 1520px;
             margin: 0 auto;
-            padding: 26px 40px;
+            padding: 26px 56px;
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 22px;
@@ -336,11 +328,11 @@ export function renderHomePage({ products = [] }) {
           }
 
           .section {
-            padding: 84px 40px 96px;
+            padding: 88px 56px 104px;
           }
 
           .section-inner {
-            max-width: 1240px;
+            max-width: 1520px;
             margin: 0 auto;
           }
 
@@ -349,7 +341,7 @@ export function renderHomePage({ products = [] }) {
             justify-content: space-between;
             align-items: end;
             gap: 40px;
-            margin-bottom: 36px;
+            margin-bottom: 38px;
           }
 
           .section-kicker {
@@ -363,7 +355,7 @@ export function renderHomePage({ products = [] }) {
 
           h2 {
             margin: 0;
-            font-size: clamp(38px, 4vw, 58px);
+            font-size: clamp(40px, 4vw, 62px);
             line-height: 1;
             letter-spacing: -0.06em;
           }
@@ -378,8 +370,8 @@ export function renderHomePage({ products = [] }) {
 
           .product-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
-            gap: 22px;
+            grid-template-columns: repeat(auto-fit, minmax(285px, 1fr));
+            gap: 24px;
           }
 
           .product-card {
@@ -389,7 +381,7 @@ export function renderHomePage({ products = [] }) {
             overflow: hidden;
             display: flex;
             flex-direction: column;
-            min-height: 430px;
+            min-height: 455px;
             transition: transform 0.18s ease, box-shadow 0.18s ease;
           }
 
@@ -399,26 +391,22 @@ export function renderHomePage({ products = [] }) {
           }
 
           .product-image {
-            height: 150px;
-            background:
-              linear-gradient(135deg, rgba(20,20,20,0.82), rgba(20,20,20,0.62)),
-              radial-gradient(circle at 80% 30%, rgba(199,0,18,0.45), transparent 36%),
-              #222;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            height: 170px;
+            display: block;
+            overflow: hidden;
+            background: #161616;
           }
 
-          .product-symbol {
-            width: 66px;
-            height: 66px;
-            border: 1px solid rgba(255,255,255,0.55);
-            color: white;
-            display: grid;
-            place-items: center;
-            font-size: 32px;
-            font-weight: 900;
-            text-transform: uppercase;
+          .product-image img {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover;
+            transition: transform 0.22s ease;
+          }
+
+          .product-card:hover .product-image img {
+            transform: scale(1.035);
           }
 
           .product-body {
@@ -492,11 +480,11 @@ export function renderHomePage({ products = [] }) {
           .cta {
             background: #151515;
             color: white;
-            padding: 82px 40px;
+            padding: 82px 56px;
           }
 
           .cta-inner {
-            max-width: 1240px;
+            max-width: 1520px;
             margin: 0 auto;
             display: grid;
             grid-template-columns: 1.2fr 0.8fr;
@@ -504,9 +492,7 @@ export function renderHomePage({ products = [] }) {
             align-items: center;
           }
 
-          .cta h2 {
-            color: white;
-          }
+          .cta h2 { color: white; }
 
           .cta p {
             color: #cfcfcf;
@@ -518,12 +504,12 @@ export function renderHomePage({ products = [] }) {
           footer {
             background: white;
             border-top: 1px solid var(--line);
-            padding: 34px 40px;
+            padding: 34px 56px;
             color: #777;
           }
 
           .footer-inner {
-            max-width: 1240px;
+            max-width: 1520px;
             margin: 0 auto;
             display: flex;
             justify-content: space-between;
@@ -532,17 +518,13 @@ export function renderHomePage({ products = [] }) {
           }
 
           @media (max-width: 900px) {
-            .topbar {
-              display: none;
-            }
+            .topbar { display: none; }
 
             .header-inner {
               padding: 20px 22px;
             }
 
-            nav {
-              display: none;
-            }
+            nav { display: none; }
 
             .hero-inner,
             .section,
@@ -566,17 +548,8 @@ export function renderHomePage({ products = [] }) {
               margin-top: 16px;
             }
 
-            .brand-copy strong {
-              font-size: 25px;
-            }
-
-            .brand-copy span {
-              font-size: 10px;
-            }
-
-            .brand-mark {
-              width: 36px;
-              height: 46px;
+            .brand-main {
+              font-size: 30px;
             }
           }
         </style>
@@ -596,11 +569,8 @@ export function renderHomePage({ products = [] }) {
         <header>
           <div class="header-inner">
             <a class="brand" href="/">
-              <div class="brand-mark" aria-hidden="true"></div>
-              <div class="brand-copy">
-                <strong>Feiermiete</strong>
-                <span>Equipment für Feiern & Events</span>
-              </div>
+              <div class="brand-main">Feiermiete</div>
+              <div class="brand-sub">Equipment für Feiern & Events</div>
             </a>
 
             <nav>

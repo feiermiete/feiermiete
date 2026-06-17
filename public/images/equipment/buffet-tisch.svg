@@ -1,0 +1,8 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" width="900" height="560" viewBox="0 0 900 560">
+  <rect width="900" height="560" fill="#151515"/>
+  <rect x="210" y="240" width="480" height="54" rx="10" fill="#ffffff" opacity="0.92"/>
+  <line x1="260" y1="294" x2="230" y2="430" stroke="#ffffff" stroke-width="14"/>
+  <line x1="640" y1="294" x2="670" y2="430" stroke="#ffffff" stroke-width="14"/>
+  <rect x="300" y="170" width="300" height="42" rx="8" fill="#c70012"/>
+  <text x="450" y="500" text-anchor="middle" fill="#ffffff" font-family="Arial" font-size="34" font-weight="700" letter-spacing="3">BUFFET-TISCH</text>
+</svg>

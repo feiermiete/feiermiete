@@ -1,0 +1,7 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" width="900" height="560" viewBox="0 0 900 560">
+  <rect width="900" height="560" fill="#151515"/>
+  <rect x="310" y="150" width="280" height="290" rx="30" fill="none" stroke="#ffffff" stroke-width="16"/>
+  <path d="M380 150 C380 95, 520 95, 520 150" fill="none" stroke="#c70012" stroke-width="16"/>
+  <circle cx="450" cy="285" r="50" fill="none" stroke="#c70012" stroke-width="14"/>
+  <text x="450" y="500" text-anchor="middle" fill="#ffffff" font-family="Arial" font-size="34" font-weight="700" letter-spacing="3">HEISSGETRÄNKE</text>
+</svg>
