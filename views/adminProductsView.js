@@ -32,52 +32,84 @@ export function renderAdminDashboard({ productCount = 0, activeProductCount = 0,
       <div class="topbar">
         <div>
           <h1>Dashboard</h1>
-          <p class="muted">Hier verwaltest du deine Feiermiete-Website.</p>
+          <p class="muted">Zentrale Übersicht für deine Feiermiete-Website.</p>
         </div>
-        <a class="button" href="/admin/products/new">Equipment hinzufügen</a>
+        <a class="button" href="/">Website ansehen</a>
       </div>
 
       <div class="dashboard-grid">
         <div class="card stat-card">
-          <strong>${productCount}</strong>
-          <p class="muted">Equipment-Artikel gesamt</p>
-        </div>
-
-        <div class="card stat-card">
           <strong>${activeProductCount}</strong>
-          <p class="muted">Aktive Artikel auf der Website</p>
+          <p class="muted">Aktive Artikel online</p>
         </div>
 
         <div class="card stat-card">
           <strong>${inquiryCount}</strong>
-          <p class="muted">Kundenanfragen</p>
+          <p class="muted">Neue Kundenanfragen</p>
+        </div>
+
+        <div class="card stat-card">
+          <strong>${productCount}</strong>
+          <p class="muted">Artikel insgesamt</p>
         </div>
       </div>
 
+      <div class="admin-section-title">
+        <h2>Schnellzugriff</h2>
+        <p class="muted">Die wichtigsten Bereiche für die tägliche Bearbeitung.</p>
+      </div>
+
       <div class="action-grid">
-        <a class="action-card" href="/admin/products">
-          <span>1</span>
-          <strong>Equipment verwalten</strong>
-          <p>Artikel bearbeiten, deaktivieren oder löschen.</p>
+        <a class="action-card" href="/admin/inquiries">
+          <span>!</span>
+          <strong>Anfragen bearbeiten</strong>
+          <p>Kundenanfragen prüfen und später beantworten.</p>
         </a>
 
         <a class="action-card" href="/admin/products/new">
-          <span>2</span>
-          <strong>Neues Equipment</strong>
-          <p>Neue Mietartikel mit Preis, Kaution und Bild-URL anlegen.</p>
+          <span>+</span>
+          <strong>Artikel hinzufügen</strong>
+          <p>Neues Equipment, Küchenangebot oder Serviceleistung anlegen.</p>
         </a>
 
-        <a class="action-card" href="/admin/inquiries">
-          <span>3</span>
-          <strong>Anfragen ansehen</strong>
-          <p>Kundenanfragen prüfen und später bearbeiten.</p>
+        <a class="action-card" href="/admin/products">
+          <span>✎</span>
+          <strong>Sortiment pflegen</strong>
+          <p>Preise, Texte, Status und Bild-URLs der Artikel verwalten.</p>
         </a>
 
         <a class="action-card" href="/">
-          <span>4</span>
+          <span>↗</span>
           <strong>Website prüfen</strong>
-          <p>Öffentliche Website ansehen und Änderungen kontrollieren.</p>
+          <p>Öffentliche Seite öffnen und Änderungen kontrollieren.</p>
         </a>
+      </div>
+
+      <div class="admin-section-title">
+        <h2>Nächste To-dos</h2>
+        <p class="muted">Diese Punkte sollten wir als nächstes finalisieren.</p>
+      </div>
+
+      <div class="todo-grid">
+        <div class="todo-card">
+          <strong>Bilder klären</strong>
+          <p>Für Equipment, Küche, Catering und Logistik brauchen wir echte oder KI-generierte Bilder.</p>
+        </div>
+
+        <div class="todo-card">
+          <strong>Anfrageformular verbinden</strong>
+          <p>Anfragen sollen sauber in der Datenbank landen und im Admin sichtbar sein.</p>
+        </div>
+
+        <div class="todo-card">
+          <strong>Kategorien verwalten</strong>
+          <p>Später sollen Kategorien im Admin erstellt und bearbeitet werden können.</p>
+        </div>
+
+        <div class="todo-card">
+          <strong>Domain verbinden</strong>
+          <p>feiermiete.de später sauber mit Railway verbinden.</p>
+        </div>
       </div>
     `
   });
@@ -332,3 +364,4 @@ export function renderAdminInquiries({ inquiries = [] }) {
     `
   });
 }
+

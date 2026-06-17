@@ -305,6 +305,41 @@
             max-width: 520px;
           }
 
+          .admin-section-title {
+            margin: 34px 0 18px;
+          }
+
+          .admin-section-title h2 {
+            margin: 0 0 6px;
+            font-size: 26px;
+            letter-spacing: -0.04em;
+          }
+
+          .todo-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+          }
+
+          .todo-card {
+            background: white;
+            border-radius: 24px;
+            padding: 24px;
+            box-shadow: 0 18px 45px rgba(0,0,0,0.06);
+            border: 1px solid rgba(0,0,0,0.05);
+          }
+
+          .todo-card strong {
+            display: block;
+            font-size: 18px;
+            margin-bottom: 8px;
+          }
+
+          .todo-card p {
+            margin: 0;
+            color: #777;
+            line-height: 1.5;
+          }
           @media (max-width: 1000px) {
             .admin-shell {
               grid-template-columns: 1fr;
@@ -316,7 +351,7 @@
             }
 
             .dashboard-grid,
-            .action-grid,
+            .action-grid,`n            .todo-grid,
             .form-grid {
               grid-template-columns: 1fr;
             }
@@ -352,3 +387,4 @@
     </html>
   `;
 }
+
