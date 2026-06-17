@@ -298,245 +298,20 @@ export function renderHomePage({ products = [] }) {
           }
 
           .trust-inner {
-            max-width: 1520px;
-            margin: 0 auto;
-            padding: 26px 56px;
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 22px;
-          }
-
-          .trust-item {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-size: 13px;
-            font-weight: 900;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-          }
-
-          .trust-icon {
-            width: 32px;
-            height: 32px;
-            border: 1px solid var(--red);
-            color: var(--red);
-            border-radius: 50%;
-            display: grid;
-            place-items: center;
-            flex: 0 0 auto;
-          }
-
-          .section {
-            padding: 88px 56px 104px;
-          }
-
-          .section-inner {
-            max-width: 1520px;
-            margin: 0 auto;
-          }
-
-          .section-head {
-            display: flex;
-            justify-content: space-between;
-            align-items: end;
-            gap: 40px;
-            margin-bottom: 38px;
-          }
-
-          .section-kicker {
-            color: var(--red);
-            font-size: 13px;
-            font-weight: 900;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            margin-bottom: 12px;
-          }
-
-          h2 {
-            margin: 0;
-            font-size: clamp(40px, 4vw, 62px);
-            line-height: 1;
-            letter-spacing: -0.06em;
-          }
-
-          .section-head p {
-            max-width: 440px;
-            margin: 0;
-            color: var(--muted);
-            line-height: 1.6;
-            font-size: 17px;
-          }
-
-          .product-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(285px, 1fr));
-            gap: 24px;
-          }
-
-          .product-card {
-            background: white;
-            border: 1px solid var(--line);
-            box-shadow: var(--shadow);
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            min-height: 455px;
-            transition: transform 0.18s ease, box-shadow 0.18s ease;
-          }
-
-          .product-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 30px 90px rgba(0,0,0,0.12);
-          }
-
-          .product-image {
-            height: 170px;
-            display: block;
-            overflow: hidden;
-            background: #161616;
-          }
-
-          .product-image img {
-            width: 100%;
-            height: 100%;
-            display: block;
-            object-fit: cover;
-            transition: transform 0.22s ease;
-          }
-
-          .product-card:hover .product-image img {
-            transform: scale(1.035);
-          }
-
-          .product-body {
-            padding: 24px 24px 18px;
-            flex: 1;
-          }
-
-          .product-kicker {
-            color: var(--red);
-            font-size: 12px;
-            font-weight: 900;
-            text-transform: uppercase;
-            letter-spacing: 0.10em;
-            margin-bottom: 14px;
-          }
-
-          .product-card h3 {
-            margin: 0 0 12px;
-            font-size: 25px;
-            letter-spacing: -0.035em;
-            line-height: 1.08;
-          }
-
-          .product-card p {
-            margin: 0;
-            color: #5c5c5c;
-            line-height: 1.55;
-            font-size: 15px;
-          }
-
-          .product-meta {
-            margin: 0 24px 18px;
-            padding: 16px 0;
-            border-top: 1px solid var(--line);
-            border-bottom: 1px solid var(--line);
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 14px;
-          }
-
-          .product-meta span {
-            display: block;
-            color: var(--muted);
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            margin-bottom: 4px;
-          }
-
-          .product-meta strong {
-            font-size: 17px;
-          }
-
-          .product-button {
-            margin: 0 24px 24px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 48px;
-            background: var(--dark);
-            color: white;
-            text-decoration: none;
-            font-weight: 900;
-            border-radius: 2px;
-          }
-
-          .product-button:hover {
-            background: var(--red);
-          }
-
-          .cta {
-            background: #151515;
-            color: white;
-            padding: 82px 56px;
-          }
-
-          .cta-inner {
-            max-width: 1520px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1.2fr 0.8fr;
-            gap: 40px;
-            align-items: center;
-          }
-
-          .cta h2 { color: white; }
-
-          .cta p {
-            color: #cfcfcf;
-            font-size: 19px;
-            line-height: 1.6;
-            max-width: 640px;
-          }
-
-          footer {
-            background: white;
-            border-top: 1px solid var(--line);
-            padding: 34px 56px;
-            color: #777;
-          }
-
-          .footer-inner {
-            max-width: 1520px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            gap: 20px;
-            flex-wrap: wrap;
-          }
-
-          @media (max-width: 900px) {
-            .topbar { display: none; }
-
-            .header-inner {
-              padding: 20px 22px;
+              grid-template-columns: 1fr 1fr;
             }
 
-            nav { display: none; }
-
-            .hero-inner,
-            .section,
-            .cta,
-            .trust-inner,
-            footer {
+            .catering-section {
               padding-left: 22px;
               padding-right: 22px;
             }
 
-            .trust-inner {
-              grid-template-columns: 1fr 1fr;
+            .catering-card {
+              padding: 34px 24px;
+            }
+
+            .catering-points {
+              grid-template-columns: 1fr;
             }
 
             .section-head,
@@ -626,6 +401,37 @@ export function renderHomePage({ products = [] }) {
             </div>
           </section>
 
+          <section class="catering-section">
+            <div class="catering-inner">
+              <div class="catering-card">
+                <div class="section-kicker">Catering & Eventservice</div>
+                <h2>Alles aus einer Hand.</h2>
+                <p>
+                  Neben Equipment unterstützen wir dich auf Wunsch auch bei passenden Catering-Lösungen. 
+                  Wir arbeiten mit erfahrenen Cateringfirmen zusammen und können Equipment, Lieferung, Aufbau 
+                  und Speisen sinnvoll miteinander koordinieren.
+                </p>
+
+                <div class="catering-points">
+                  <div>
+                    <strong>Für Privatfeiern</strong>
+                    <span>Geburtstage, Gartenfeiern, Hochzeiten und Familienfeiern.</span>
+                  </div>
+                  <div>
+                    <strong>Für Firmen</strong>
+                    <span>Sommerfeste, Teamevents, Buffets, Empfänge und Business-Events.</span>
+                  </div>
+                  <div>
+                    <strong>Ein Ansprechpartner</strong>
+                    <span>Equipment, Catering und Ablauf können gemeinsam geplant werden.</span>
+                  </div>
+                </div>
+
+                <a class="button primary" href="/anfrage">Event anfragen</a>
+              </div>
+            </div>
+          </section>
+
           <section class="cta">
             <div class="cta-inner">
               <div>
@@ -652,3 +458,6 @@ export function renderHomePage({ products = [] }) {
     </html>
   `;
 }
+
+
+
