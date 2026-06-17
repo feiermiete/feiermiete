@@ -135,48 +135,83 @@ export function renderHomePage({ products = [] }) {
 
               <div class="service-grid">
                 <article class="service-card">
-                  <div class="service-image service-equipment"></div>
+                  <div class="service-image service-equipment">
+                    <span>Equipment</span>
+                  </div>
                   <div class="service-content">
                     <span>01</span>
                     <h3>Equipment mieten</h3>
-                    <p>Pavillons, Stehtische, Bierzeltgarnituren, Geschirr, Chafing Dishes und Buffet-Zubehör.</p>
+                    <p>
+                      Miete genau das Equipment, das du für deine Feier brauchst – einzeln oder als passendes Paket. Ideal für Geburtstage, Gartenfeiern, Hochzeiten, Firmenfeiern und kleine Events.
+                    </p>
+                    <ul class="service-points">
+                      <li>Pavillons, Stehtische und Bierzeltgarnituren</li>
+                      <li>Geschirr, Besteck, Chafing Dishes und Buffet-Zubehör</li>
+                      <li>Flexible Zusammenstellung nach Personenanzahl und Anlass</li>
+                    </ul>
                     <a href="#equipment">Equipment ansehen</a>
                   </div>
                 </article>
 
                 <article class="service-card" id="kueche">
-                  <div class="service-image service-kitchen"></div>
+                  <div class="service-image service-kitchen">
+                    <span>Küche</span>
+                  </div>
                   <div class="service-content">
                     <span>02</span>
                     <h3>Küche mieten</h3>
-                    <p>Produktionsküche stundenweise oder tageweise für Caterer, Food-Startups, Events und Vorbereitung.</p>
+                    <p>
+                      Unsere Produktionsküche kannst du stundenweise oder tageweise anfragen. Perfekt, wenn du vorbereiten, produzieren, verpacken oder größere Mengen für ein Event organisieren möchtest.
+                    </p>
+                    <ul class="service-points">
+                      <li>Für Caterer, Food-Startups und Pop-up-Konzepte</li>
+                      <li>Für Vorbereitung, Produktion und Eventabwicklung</li>
+                      <li>Nutzung nach Verfügbarkeit und individueller Absprache</li>
+                    </ul>
                     <a href="/anfrage?kategorie=kueche">Küche anfragen</a>
                   </div>
                 </article>
 
                 <article class="service-card" id="catering">
-                  <div class="service-image service-catering"></div>
+                  <div class="service-image service-catering">
+                    <span>Catering</span>
+                  </div>
                   <div class="service-content">
                     <span>03</span>
                     <h3>Catering koordinieren</h3>
-                    <p>Auf Wunsch arbeiten wir mit passenden Cateringfirmen zusammen, damit Speisen und Equipment zusammenpassen.</p>
+                    <p>
+                      Du brauchst neben Equipment auch passende Speisen? Auf Wunsch koordinieren wir Catering-Lösungen mit erfahrenen Partnern, damit Essen, Equipment, Lieferung und Ablauf zusammenpassen.
+                    </p>
+                    <ul class="service-points">
+                      <li>Catering-Koordination für private und geschäftliche Events</li>
+                      <li>Abstimmung von Speisen, Buffetaufbau und Equipment</li>
+                      <li>Ein Ansprechpartner statt viele einzelne Absprachen</li>
+                    </ul>
                     <a href="/anfrage?kategorie=catering">Catering anfragen</a>
                   </div>
                 </article>
 
                 <article class="service-card">
-                  <div class="service-image service-logistics"></div>
+                  <div class="service-image service-logistics">
+                    <span>Logistik</span>
+                  </div>
                   <div class="service-content">
                     <span>04</span>
                     <h3>Lieferung & Aufbau</h3>
-                    <p>Wir liefern, unterstützen beim Aufbau und holen das Equipment nach der Veranstaltung wieder ab.</p>
+                    <p>
+                      Wir liefern das gewünschte Equipment zum vereinbarten Zeitpunkt, unterstützen bei der sinnvollen Platzierung und holen alles nach der Veranstaltung wieder ab.
+                    </p>
+                    <ul class="service-points">
+                      <li>Lieferung nach Berlin, Brandenburg und Umgebung</li>
+                      <li>Aufbauhilfe nach Absprache möglich</li>
+                      <li>Rückgabe, Abholung und Ablauf planbar organisiert</li>
+                    </ul>
                     <a href="/anfrage?kategorie=logistik">Ablauf besprechen</a>
                   </div>
                 </article>
               </div>
             </div>
           </section>
-
           <section class="section product-section" id="equipment">
             <div class="wide-inner">
               <div class="section-head">
@@ -293,5 +328,6 @@ export function renderHomePage({ products = [] }) {
     </html>
   `;
 }
+
 
 
