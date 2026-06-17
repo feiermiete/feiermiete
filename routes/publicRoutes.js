@@ -2,6 +2,12 @@
 import { prisma } from "../lib/prisma.js";
 import { renderHomePage } from "../views/homeView.js";
 import { renderInquiryPage } from "../views/inquiryView.js";
+import {
+  renderEquipmentPage,
+  renderKitchenPage,
+  renderCateringPage,
+  renderServicesPage
+} from "../views/contentPagesView.js";
 
 export const publicRoutes = express.Router();
 
@@ -13,6 +19,28 @@ publicRoutes.get("/", async (req, res) => {
   });
 
   res.send(renderHomePage({ products }));
+});
+
+publicRoutes.get("/equipment", async (req, res) => {
+  const products = await prisma.product.findMany({
+    where: { isActive: true },
+    include: { category: true },
+    orderBy: { createdAt: "desc" }
+  });
+
+  res.send(renderEquipmentPage({ products }));
+});
+
+publicRoutes.get("/kueche-mieten", (req, res) => {
+  res.send(renderKitchenPage());
+});
+
+publicRoutes.get("/catering", (req, res) => {
+  res.send(renderCateringPage());
+});
+
+publicRoutes.get("/services", (req, res) => {
+  res.send(renderServicesPage());
 });
 
 publicRoutes.get("/anfrage", async (req, res) => {
@@ -170,3 +198,4 @@ publicRoutes.get("/agb", (req, res) => {
     `
   }));
 });
+
