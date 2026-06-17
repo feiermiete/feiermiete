@@ -794,3 +794,95 @@ footer {
     padding: 28px;
   }
 }
+
+.inquiry-page {
+  padding: 86px 54px;
+  background: var(--cream);
+  min-height: 72vh;
+}
+
+.inquiry-grid {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 54px;
+  align-items: start;
+}
+
+.inquiry-intro h1 {
+  font-size: clamp(54px, 6vw, 86px);
+  line-height: 0.92;
+  margin-bottom: 24px;
+}
+
+.inquiry-intro p {
+  color: #555;
+  font-size: 18px;
+  line-height: 1.7;
+  max-width: 620px;
+}
+
+.inquiry-benefits {
+  display: grid;
+  gap: 14px;
+  margin-top: 34px;
+}
+
+.inquiry-benefits div {
+  background: white;
+  border-left: 4px solid var(--red);
+  padding: 20px;
+  box-shadow: 0 16px 40px rgba(0,0,0,0.05);
+}
+
+.inquiry-benefits strong {
+  display: block;
+  font-size: 18px;
+  margin-bottom: 6px;
+}
+
+.inquiry-benefits span {
+  color: #666;
+  line-height: 1.5;
+}
+
+.inquiry-card {
+  background: white;
+  padding: 34px;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--line);
+}
+
+.inquiry-card .form-row {
+  margin-bottom: 18px;
+}
+
+.inquiry-card label {
+  display: block;
+  font-weight: 900;
+  margin-bottom: 8px;
+}
+
+.inquiry-card input,
+.inquiry-card textarea,
+.inquiry-card select {
+  width: 100%;
+  padding: 15px;
+  border: 1px solid #ddd;
+  font-size: 15px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.inquiry-card textarea {
+  resize: vertical;
+}
+
+@media (max-width: 900px) {
+  .inquiry-page {
+    padding-left: 22px;
+    padding-right: 22px;
+  }
+
+  .inquiry-grid {
+    grid-template-columns: 1fr;
+  }
+}
