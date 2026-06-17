@@ -1,15 +1,16 @@
 ﻿import { renderAdminLayout } from "./adminLayoutView.js";
 
-export function renderAdminDashboard({ productCount = 0, inquiryCount = 0 }) {
+export function renderAdminDashboard({ productCount = 0, inquiryCount = 0, passwordQuery = "" }) {
   return renderAdminLayout({
     title: "Dashboard",
+    passwordQuery,
     content: `
       <div class="topbar">
         <div>
           <h1>Dashboard</h1>
           <p class="muted">Übersicht für Feiermiete.</p>
         </div>
-        <a class="button" href="/admin/products/new">Equipment hinzufügen</a>
+        <a class="button" href="/admin/products/new${passwordQuery}">Equipment hinzufügen</a>
       </div>
 
       <div class="form-grid">
@@ -26,7 +27,7 @@ export function renderAdminDashboard({ productCount = 0, inquiryCount = 0 }) {
   });
 }
 
-export function renderAdminProducts({ products = [] }) {
+export function renderAdminProducts({ products = [], passwordQuery = "" }) {
   const rows = products.map((product) => {
     const price = (product.priceCents / 100).toLocaleString("de-DE", {
       style: "currency",
@@ -45,13 +46,14 @@ export function renderAdminProducts({ products = [] }) {
 
   return renderAdminLayout({
     title: "Equipment",
+    passwordQuery,
     content: `
       <div class="topbar">
         <div>
           <h1>Equipment</h1>
           <p class="muted">Alle Mietartikel verwalten.</p>
         </div>
-        <a class="button" href="/admin/products/new">Neu hinzufügen</a>
+        <a class="button" href="/admin/products/new${passwordQuery}">Neu hinzufügen</a>
       </div>
 
       <div class="card">
@@ -73,24 +75,25 @@ export function renderAdminProducts({ products = [] }) {
   });
 }
 
-export function renderNewProductForm({ categories = [] }) {
+export function renderNewProductForm({ categories = [], passwordQuery = "" }) {
   const categoryOptions = categories.map((category) => {
     return `<option value="${category.id}">${category.name}</option>`;
   }).join("");
 
   return renderAdminLayout({
     title: "Equipment hinzufügen",
+    passwordQuery,
     content: `
       <div class="topbar">
         <div>
           <h1>Equipment hinzufügen</h1>
           <p class="muted">Neuen Mietartikel anlegen.</p>
         </div>
-        <a class="button" href="/admin/products">Zur Liste</a>
+        <a class="button" href="/admin/products${passwordQuery}">Zur Liste</a>
       </div>
 
       <div class="card">
-        <form method="POST" action="/admin/products">
+        <form method="POST" action="/admin/products${passwordQuery}">
           <div class="form-grid">
             <div class="form-row">
               <label>Name</label>

@@ -1,5 +1,6 @@
 ﻿import express from "express";
 import { prisma } from "../lib/prisma.js";
+import { requireAdmin } from "../middleware/requireAdmin.js";
 import {
   renderAdminDashboard,
   renderAdminProducts,
@@ -7,6 +8,13 @@ import {
 } from "../views/adminProductsView.js";
 
 export const adminRoutes = express.Router();
+
+adminRoutes.use(requireAdmin);
+
+function getPasswordQuery(req) {
+  const password = req.query.password;
+  return password ? `?password=${encodeURIComponent(password)}` : "";
+}
 
 function euroToCents(value) {
   if (!value) return null;
@@ -17,7 +25,11 @@ adminRoutes.get("/", async (req, res) => {
   const productCount = await prisma.product.count();
   const inquiryCount = await prisma.inquiry.count();
 
-  res.send(renderAdminDashboard({ productCount, inquiryCount }));
+  res.send(renderAdminDashboard({
+    productCount,
+    inquiryCount,
+    passwordQuery: getPasswordQuery(req)
+  }));
 });
 
 adminRoutes.get("/products", async (req, res) => {
@@ -26,7 +38,10 @@ adminRoutes.get("/products", async (req, res) => {
     orderBy: { createdAt: "desc" }
   });
 
-  res.send(renderAdminProducts({ products }));
+  res.send(renderAdminProducts({
+    products,
+    passwordQuery: getPasswordQuery(req)
+  }));
 });
 
 adminRoutes.get("/products/new", async (req, res) => {
@@ -34,7 +49,10 @@ adminRoutes.get("/products/new", async (req, res) => {
     orderBy: { name: "asc" }
   });
 
-  res.send(renderNewProductForm({ categories }));
+  res.send(renderNewProductForm({
+    categories,
+    passwordQuery: getPasswordQuery(req)
+  }));
 });
 
 adminRoutes.post("/products", async (req, res) => {
@@ -61,5 +79,5 @@ adminRoutes.post("/products", async (req, res) => {
     }
   });
 
-  res.redirect("/admin/products");
+  res.redirect(`/admin/products${getPasswordQuery(req)}`);
 });

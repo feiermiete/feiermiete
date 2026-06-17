@@ -80,7 +80,7 @@ export function renderHomePage({ products = [] }) {
               <a href="#kueche">Küche mieten</a>
               <a href="#catering">Catering</a>
               <a href="#services">Services</a>
-              <a href="/admin">Admin</a>
+              
               <a class="nav-button" href="/anfrage">Anfrage</a>
             </nav>
           </div>
@@ -293,3 +293,5 @@ export function renderHomePage({ products = [] }) {
     </html>
   `;
 }
+
+

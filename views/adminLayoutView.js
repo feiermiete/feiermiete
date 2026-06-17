@@ -1,4 +1,4 @@
-﻿export function renderAdminLayout({ title = "Admin", content = "" }) {
+﻿export function renderAdminLayout({ title = "Admin", content = "", passwordQuery = "" }) {
   return `
     <!DOCTYPE html>
     <html lang="de">
@@ -30,7 +30,7 @@
 
           .brand {
             font-size: 24px;
-            font-weight: 800;
+            font-weight: 900;
             color: #d1111b;
             margin-bottom: 6px;
           }
@@ -151,10 +151,6 @@
               grid-template-columns: 1fr;
             }
 
-            .sidebar {
-              position: static;
-            }
-
             .form-grid {
               grid-template-columns: 1fr;
             }
@@ -166,9 +162,9 @@
           <aside class="sidebar">
             <div class="brand">Feiermiete</div>
             <div class="claim">Admin Bereich</div>
-            <a href="/admin">Dashboard</a>
-            <a href="/admin/products">Equipment</a>
-            <a href="/admin/products/new">Equipment hinzufügen</a>
+            <a href="/admin${passwordQuery}">Dashboard</a>
+            <a href="/admin/products${passwordQuery}">Equipment</a>
+            <a href="/admin/products/new${passwordQuery}">Equipment hinzufügen</a>
             <a href="/">Website ansehen</a>
           </aside>
 
