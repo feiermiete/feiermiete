@@ -646,3 +646,151 @@ footer {
 .service-content a {
   margin-top: auto;
 }
+
+.faq-section {
+  background: linear-gradient(180deg, #f3eee7 0%, #f7f3ee 100%);
+}
+
+.faq-grid details {
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.faq-grid details:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 22px 55px rgba(0,0,0,0.07);
+}
+
+.faq-grid details[open] {
+  border-color: rgba(199,0,18,0.28);
+}
+
+.faq-grid details[open] summary {
+  color: var(--red);
+}
+
+.final-cta {
+  background: radial-gradient(circle at 80% 20%, rgba(199,0,18,0.24), transparent 32%), linear-gradient(135deg, #111 0%, #1b1b1b 100%);
+  min-height: 320px;
+  display: flex;
+  align-items: center;
+}
+
+.final-cta-inner {
+  width: 100%;
+}
+
+.final-cta .button.primary {
+  min-width: 250px;
+  box-shadow: 0 22px 55px rgba(199,0,18,0.28);
+}
+
+.site-footer {
+  background: #0f0f0f;
+  color: white;
+  padding: 46px 54px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.7fr 0.8fr;
+  gap: 36px;
+  align-items: start;
+}
+
+.site-footer strong {
+  display: block;
+  color: white;
+  font-size: 26px;
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  margin-bottom: 8px;
+}
+
+.site-footer p {
+  color: #aaa;
+  margin: 0;
+  line-height: 1.6;
+}
+
+.footer-contact span {
+  display: block;
+  color: #777;
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  margin-bottom: 8px;
+}
+
+.footer-contact a {
+  color: white;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: flex-end;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+.footer-links a {
+  color: #cfcfcf;
+  text-decoration: none;
+  font-weight: 800;
+}
+
+.footer-links a:hover {
+  color: white;
+}
+
+.legal-page {
+  padding: 82px 54px;
+  background: var(--cream);
+  min-height: 70vh;
+}
+
+.legal-box {
+  background: white;
+  padding: 52px;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--line);
+}
+
+.legal-box h1 {
+  font-size: clamp(42px, 5vw, 72px);
+  margin-bottom: 32px;
+}
+
+.legal-box p {
+  color: #555;
+  font-size: 17px;
+  line-height: 1.75;
+  max-width: 900px;
+}
+
+@media (max-width: 900px) {
+  .site-footer {
+    padding-left: 22px;
+    padding-right: 22px;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-links {
+    justify-content: flex-start;
+  }
+
+  .legal-page {
+    padding-left: 22px;
+    padding-right: 22px;
+  }
+
+  .legal-box {
+    padding: 28px;
+  }
+}

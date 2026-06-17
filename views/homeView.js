@@ -318,16 +318,30 @@ export function renderHomePage({ products = [] }) {
           </section>
         </main>
 
-        <footer>
-          <div class="wide-inner footer-inner">
-            <strong>Feiermiete</strong>
-            <span>Equipment · Küche · Catering · Eventservice · Berlin & Brandenburg</span>
+        <footer class="site-footer">
+          <div class="wide-inner footer-grid">
+            <div>
+              <strong>Feiermiete</strong>
+              <p>Equipment · Küche · Catering · Eventservice · Berlin & Brandenburg</p>
+            </div>
+
+            <div class="footer-contact">
+              <span>Anfragen</span>
+              <a href="mailto:info@feiermiete.de">info@feiermiete.de</a>
+            </div>
+
+            <div class="footer-links">
+              <a href="/impressum">Impressum</a>
+              <a href="/datenschutz">Datenschutz</a>
+              <a href="/agb">AGB</a>
+            </div>
           </div>
         </footer>
       </body>
     </html>
   `;
 }
+
 
 
 
