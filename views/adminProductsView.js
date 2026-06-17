@@ -21,6 +21,10 @@ function renderCategoryOptions(categories = [], selectedCategoryId = null) {
   }).join("");
 }
 
+function display(value) {
+  return value || "-";
+}
+
 export function renderAdminDashboard({ productCount = 0, activeProductCount = 0, inquiryCount = 0 }) {
   return renderAdminLayout({
     title: "Dashboard",
@@ -28,24 +32,52 @@ export function renderAdminDashboard({ productCount = 0, activeProductCount = 0,
       <div class="topbar">
         <div>
           <h1>Dashboard</h1>
-          <p class="muted">Übersicht für Feiermiete.</p>
+          <p class="muted">Hier verwaltest du deine Feiermiete-Website.</p>
         </div>
         <a class="button" href="/admin/products/new">Equipment hinzufügen</a>
       </div>
 
-      <div class="form-grid">
-        <div class="card">
-          <h2>${productCount}</h2>
+      <div class="dashboard-grid">
+        <div class="card stat-card">
+          <strong>${productCount}</strong>
           <p class="muted">Equipment-Artikel gesamt</p>
         </div>
-        <div class="card">
-          <h2>${activeProductCount}</h2>
+
+        <div class="card stat-card">
+          <strong>${activeProductCount}</strong>
           <p class="muted">Aktive Artikel auf der Website</p>
         </div>
-        <div class="card">
-          <h2>${inquiryCount}</h2>
-          <p class="muted">Anfragen</p>
+
+        <div class="card stat-card">
+          <strong>${inquiryCount}</strong>
+          <p class="muted">Kundenanfragen</p>
         </div>
+      </div>
+
+      <div class="action-grid">
+        <a class="action-card" href="/admin/products">
+          <span>1</span>
+          <strong>Equipment verwalten</strong>
+          <p>Artikel bearbeiten, deaktivieren oder löschen.</p>
+        </a>
+
+        <a class="action-card" href="/admin/products/new">
+          <span>2</span>
+          <strong>Neues Equipment</strong>
+          <p>Neue Mietartikel mit Preis, Kaution und Bild-URL anlegen.</p>
+        </a>
+
+        <a class="action-card" href="/admin/inquiries">
+          <span>3</span>
+          <strong>Anfragen ansehen</strong>
+          <p>Kundenanfragen prüfen und später bearbeiten.</p>
+        </a>
+
+        <a class="action-card" href="/">
+          <span>4</span>
+          <strong>Website prüfen</strong>
+          <p>Öffentliche Website ansehen und Änderungen kontrollieren.</p>
+        </a>
       </div>
     `
   });
@@ -127,7 +159,7 @@ export function renderNewProductForm({ categories = [] }) {
           <h1>Equipment hinzufügen</h1>
           <p class="muted">Neuen Mietartikel anlegen.</p>
         </div>
-        <a class="button" href="/admin/products">Zur Liste</a>
+        <a class="button black" href="/admin/products">Zur Liste</a>
       </div>
 
       <div class="card">
@@ -190,7 +222,7 @@ export function renderEditProductForm({ product, categories = [] }) {
           <h1>Equipment bearbeiten</h1>
           <p class="muted">${product.name}</p>
         </div>
-        <a class="button" href="/admin/products">Zur Liste</a>
+        <a class="button black" href="/admin/products">Zur Liste</a>
       </div>
 
       <div class="card">
@@ -244,6 +276,58 @@ export function renderEditProductForm({ product, categories = [] }) {
 
           <button class="button" type="submit">Änderungen speichern</button>
         </form>
+      </div>
+    `
+  });
+}
+
+export function renderAdminInquiries({ inquiries = [] }) {
+  const rows = inquiries.map((inquiry) => {
+    const date = inquiry.createdAt
+      ? new Date(inquiry.createdAt).toLocaleString("de-DE")
+      : "-";
+
+    return `
+      <tr>
+        <td>
+          <strong>${display(inquiry.name || inquiry.fullName || inquiry.contactName)}</strong><br>
+          <span class="muted">${display(inquiry.email)}</span><br>
+          <span class="muted">${display(inquiry.phone)}</span>
+        </td>
+        <td>${display(inquiry.eventDate || inquiry.date)}</td>
+        <td>${display(inquiry.location || inquiry.eventLocation)}</td>
+        <td class="message-box">${display(inquiry.message || inquiry.notes || inquiry.details)}</td>
+        <td>${date}</td>
+      </tr>
+    `;
+  }).join("");
+
+  return renderAdminLayout({
+    title: "Anfragen",
+    content: `
+      <div class="topbar">
+        <div>
+          <h1>Anfragen</h1>
+          <p class="muted">Alle eingegangenen Kundenanfragen.</p>
+        </div>
+        <a class="button black" href="/admin">Dashboard</a>
+      </div>
+
+      <div class="card">
+        <table>
+          <thead>
+            <tr>
+              <th>Kontakt</th>
+              <th>Datum</th>
+              <th>Ort</th>
+              <th>Nachricht</th>
+              <th>Eingang</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${rows || `<tr><td colspan="5">Noch keine Anfragen vorhanden.</td></tr>`}
+          </tbody>
+        </table>
       </div>
     `
   });

@@ -5,7 +5,8 @@ import {
   renderAdminDashboard,
   renderAdminProducts,
   renderNewProductForm,
-  renderEditProductForm
+  renderEditProductForm,
+  renderAdminInquiries
 } from "../views/adminProductsView.js";
 
 export const adminRoutes = express.Router();
@@ -176,4 +177,12 @@ adminRoutes.post("/products/:id/delete", async (req, res) => {
   });
 
   res.redirect("/admin/products");
+});
+
+adminRoutes.get("/inquiries", async (req, res) => {
+  const inquiries = await prisma.inquiry.findMany({
+    orderBy: { createdAt: "desc" }
+  });
+
+  res.send(renderAdminInquiries({ inquiries }));
 });
