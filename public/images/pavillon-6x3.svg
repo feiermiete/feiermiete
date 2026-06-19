@@ -2,20 +2,18 @@
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0%" stop-color="#edf4e5"/>
-      <stop offset="100%" stop-color="#b9c7a5"/>
+      <stop offset="100%" stop-color="#b7c9a3"/>
     </linearGradient>
   </defs>
   <rect width="1200" height="800" fill="url(#bg)"/>
-  <circle cx="950" cy="150" r="170" fill="#c70012" opacity=".10"/>
+  <circle cx="945" cy="155" r="165" fill="#c70012" opacity=".10"/>
 
-  <path d="M160 360 L600 150 L1040 360 Z" fill="#ffffff" opacity=".95"/>
-  <path d="M230 360 V680 M970 360 V680 M600 180 V680" stroke="#ffffff" stroke-width="26"/>
-  <path d="M240 360 H960" stroke="#d7c7ad" stroke-width="20" opacity=".65"/>
+  <path d="M150 350 L600 140 L1050 350 Z" fill="#ffffff" opacity=".96"/>
+  <path d="M230 350 V670 M970 350 V670 M600 170 V670" stroke="#ffffff" stroke-width="26"/>
+  <path d="M240 350 H960" stroke="#d7c7ad" stroke-width="20" opacity=".60"/>
 
-  <rect x="290" y="525" width="160" height="46" rx="23" fill="#ffffff"/>
-  <rect x="750" y="525" width="160" height="46" rx="23" fill="#ffffff"/>
-  <rect x="350" y="570" width="20" height="90" fill="#ffffff"/>
-  <rect x="810" y="570" width="20" height="90" fill="#ffffff"/>
-
-  <text x="600" y="110" text-anchor="middle" font-family="Arial, sans-serif" font-size="54" font-weight="900" fill="#111">PAVILLON 6x3</text>
+  <rect x="290" y="520" width="160" height="46" rx="23" fill="#ffffff"/>
+  <rect x="750" y="520" width="160" height="46" rx="23" fill="#ffffff"/>
+  <rect x="350" y="566" width="20" height="92" fill="#ffffff"/>
+  <rect x="810" y="566" width="20" height="92" fill="#ffffff"/>
 </svg>

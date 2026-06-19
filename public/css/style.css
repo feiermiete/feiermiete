@@ -4004,3 +4004,22 @@ body.fm-cart-open .fm-cart-panel {
 .premium-categories div:nth-child(5)::before {
   background-image: url("/public/images/drinks-dispenser.jpg") !important;
 }
+
+/* SVG PRODUCT IMAGE CLEANUP */
+.shop-card-image img[src$=".svg"],
+.compact-product-image img[src$=".svg"] {
+  object-fit: contain !important;
+  padding: 14px !important;
+  background: #f7f3ee !important;
+}
+
+.premium-categories div:nth-child(1)::before,
+.premium-categories div:nth-child(2)::before {
+  background-size: contain !important;
+  background-repeat: no-repeat !important;
+  background-color: #f7f3ee !important;
+}
+
+.shop-card-image {
+  background: #f7f3ee !important;
+}
