@@ -408,10 +408,12 @@ export function renderHomePage({ products = [] }) {
         </main>
 
         ${renderFooter()}
+              <script src="/public/js/cart.js"></script>
       </body>
     </html>
   `;
 }
+
 
 
 

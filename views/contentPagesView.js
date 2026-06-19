@@ -60,6 +60,7 @@ function renderPage({ title, content, active = "" }) {
         ${renderSiteHeader(active)}
         ${content}
         ${renderSiteFooter()}
+              <script src="/public/js/cart.js"></script>
       </body>
     </html>
   `;
@@ -445,6 +446,7 @@ export function renderServicesPage() {
     `
   });
 }
+
 
 
 

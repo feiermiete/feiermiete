@@ -169,8 +169,10 @@
             </div>
           </div>
         </footer>
+              <script src="/public/js/cart.js"></script>
       </body>
     </html>
   `;
 }
+
 
