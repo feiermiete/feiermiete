@@ -3991,3 +3991,16 @@ body.fm-cart-open .fm-cart-panel {
   line-height: 1.6;
   margin: 0;
 }
+
+/* CATEGORY IMAGE DIFFERENTIATION */
+.premium-categories div:nth-child(1)::before {
+  background-image: url("/public/images/pavillon-6x3.svg") !important;
+}
+
+.premium-categories div:nth-child(2)::before {
+  background-image: url("/public/images/stehtisch.svg") !important;
+}
+
+.premium-categories div:nth-child(5)::before {
+  background-image: url("/public/images/drinks-dispenser.jpg") !important;
+}
