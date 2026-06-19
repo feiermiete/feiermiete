@@ -1,15 +1,15 @@
 ﻿function getProductImage(product) {
   const name = (product.name || "").toLowerCase();
 
-  if (name.includes("buffet")) return "/public/images/buffet-clean.svg";
-  if (name.includes("geschirr") || name.includes("besteck")) return "/public/images/tableware-clean.svg";
-  if (name.includes("glühwein") || name.includes("gluehwein")) return "/public/images/drinks-clean.svg";
-  if (name.includes("getränkespender") || name.includes("getraenkespender")) return "/public/images/drinks-clean.svg";
-  if (name.includes("chafing")) return "/public/images/buffet-clean.svg";
-  if (name.includes("stehtisch")) return "/public/images/equipment-clean.svg";
-  if (name.includes("pavillon")) return "/public/images/equipment-clean.svg";
+  if (name.includes("buffet")) return "/public/images/catering-photo.jpg";
+  if (name.includes("geschirr") || name.includes("besteck")) return "/public/images/cutlery-set.jpg";
+  if (name.includes("glühwein") || name.includes("gluehwein")) return "/public/images/drinks-dispenser.jpg";
+  if (name.includes("getränkespender") || name.includes("getraenkespender")) return "/public/images/drinks-dispenser.jpg";
+  if (name.includes("chafing")) return "/public/images/catering-photo.jpg";
+  if (name.includes("stehtisch")) return "/public/images/equipment-photo.jpg";
+  if (name.includes("pavillon")) return "/public/images/equipment-photo.jpg";
 
-  return "/public/images/equipment-clean.svg";
+  return "/public/images/equipment-photo.jpg";
 }
 function formatPrice(product) {
   if (!product.priceCents) return "auf Anfrage";
@@ -104,10 +104,10 @@ function renderFooter() {
 
 export function renderHomePage({ products = [] }) {
   const fallbackProducts = [
-    { name: "Chafing Dish", category: { name: "Buffet & Warmhalten" }, description: "Warmhaltebehälter für Buffets, Catering und Events.", priceCents: 950, imageUrl: "/public/images/buffet-clean.svg" },
-    { name: "Stehtisch", category: { name: "Tische & Sitzmöbel" }, description: "Klapptisch für Empfang, Gartenfeier oder Firmenveranstaltung.", priceCents: 1200, imageUrl: "/public/images/equipment-clean.svg" },
-    { name: "Geschirr-Set", category: { name: "Geschirr & Besteck" }, description: "Teller, Besteck, Gläser und Serviermaterial für dein Event.", priceCents: 250, imageUrl: "/public/images/gastro-kitchen-clean.svg" },
-    { name: "Getränkespender", category: { name: "Getränke-Equipment" }, description: "Für Wasser, Limonade, Eistee oder Infused Water.", priceCents: 1000, imageUrl: "/public/images/buffet-clean.svg" }
+    { name: "Chafing Dish", category: { name: "Buffet & Warmhalten" }, description: "Warmhaltebehälter für Buffets, Catering und Events.", priceCents: 950, imageUrl: "/public/images/catering-photo.jpg" },
+    { name: "Stehtisch", category: { name: "Tische & Sitzmöbel" }, description: "Klapptisch für Empfang, Gartenfeier oder Firmenveranstaltung.", priceCents: 1200, imageUrl: "/public/images/equipment-photo.jpg" },
+    { name: "Geschirr-Set", category: { name: "Geschirr & Besteck" }, description: "Teller, Besteck, Gläser und Serviermaterial für dein Event.", priceCents: 250, imageUrl: "/public/images/gastro-kitchen.jpg" },
+    { name: "Getränkespender", category: { name: "Getränke-Equipment" }, description: "Für Wasser, Limonade, Eistee oder Infused Water.", priceCents: 1000, imageUrl: "/public/images/catering-photo.jpg" }
   ];
 
   const visibleProducts = products.length ? products.slice(0, 4) : fallbackProducts;
@@ -179,7 +179,7 @@ export function renderHomePage({ products = [] }) {
 
           <section class="fm-service-strip">
             <article>
-              <img src="/public/images/equipment-clean.svg" alt="Equipment" />
+              <img src="/public/images/equipment-photo.jpg" alt="Equipment" />
               <div>
                 <span>01 Equipment</span>
                 <h3>Event-Equipment mieten</h3>
@@ -188,7 +188,7 @@ export function renderHomePage({ products = [] }) {
             </article>
 
             <article>
-              <img src="/public/images/gastro-kitchen-clean.svg" alt="Küche" />
+              <img src="/public/images/gastro-kitchen.jpg" alt="Küche" />
               <div>
                 <span>02 Küche</span>
                 <h3>Gastro-Küche mieten</h3>
@@ -197,7 +197,7 @@ export function renderHomePage({ products = [] }) {
             </article>
 
             <article>
-              <img src="/public/images/buffet-clean.svg" alt="Catering" />
+              <img src="/public/images/catering-photo.jpg" alt="Catering" />
               <div>
                 <span>03 Catering</span>
                 <h3>Catering koordinieren</h3>
@@ -206,7 +206,7 @@ export function renderHomePage({ products = [] }) {
             </article>
 
             <article>
-              <img src="/public/images/equipment-clean.svg" alt="Services" />
+              <img src="/public/images/equipment-photo.jpg" alt="Services" />
               <div>
                 <span>04 Services</span>
                 <h3>Lieferung & Aufbau</h3>
@@ -412,6 +412,7 @@ export function renderHomePage({ products = [] }) {
     </html>
   `;
 }
+
 
 
 
