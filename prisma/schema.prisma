@@ -1,4 +1,4 @@
-﻿generator client {
+generator client {
   provider = "prisma-client-js"
 }
 
@@ -17,14 +17,14 @@ model Category {
 }
 
 model Product {
-  id           Int      @id @default(autoincrement())
+  id           Int     @id @default(autoincrement())
   name         String
-  slug         String   @unique
+  slug         String  @unique
   description  String?
   priceCents   Int
   depositCents Int?
   imageUrl     String?
-  isActive     Boolean  @default(true)
+  isActive     Boolean @default(true)
 
   categoryId Int?
   category   Category? @relation(fields: [categoryId], references: [id])
@@ -36,20 +36,20 @@ model Product {
 }
 
 model Inquiry {
-  contractNumber String?
-  rentalTotalCents Int @default(0)
-  depositTotalCents Int @default(0)
-  deliveryFeeCents Int @default(0)
-  adminNote String?
-  id              Int           @id @default(autoincrement())
-  customerName    String
-  companyName     String?
-  email           String
-  phone           String?
-  eventDate       DateTime?
-  deliveryAddress String?
-  message         String?
-  status          String        @default("NEW")
+  contractNumber    String?
+  rentalTotalCents  Int       @default(0)
+  depositTotalCents Int       @default(0)
+  deliveryFeeCents  Int       @default(0)
+  adminNote         String?
+  id                Int       @id @default(autoincrement())
+  customerName      String
+  companyName       String?
+  email             String
+  phone             String?
+  eventDate         DateTime?
+  deliveryAddress   String?
+  message           String?
+  status            String    @default("NEW")
 
   items InquiryItem[]
 
