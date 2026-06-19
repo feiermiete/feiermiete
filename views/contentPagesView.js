@@ -78,7 +78,7 @@ export function renderEquipmentPage({ products = [] }) {
     return `
       <article class="shop-card">
         <div class="shop-card-image">
-          <img src="${product.imageUrl || "/public/images/equipment.svg"}" alt="${product.name}" />
+          <img src="${product.imageUrl || "/public/images/equipment-photo.jpg"}" alt="${product.name}" />
         </div>
         <div class="shop-card-body">
           <div class="shop-card-category">${product.category?.name || "Mietartikel"}</div>
@@ -122,7 +122,7 @@ export function renderEquipmentPage({ products = [] }) {
             </div>
 
             <div class="visual-hero-image">
-              <img src="/public/images/equipment.svg" alt="Event Equipment" />
+              <img src="/public/images/equipment-photo.jpg" alt="Event Equipment" />
             </div>
           </div>
         </section>
@@ -233,7 +233,7 @@ export function renderKitchenPage() {
             </div>
 
             <div class="visual-hero-image">
-              <img src="/public/images/kitchen.svg" alt="Produktionsküche" />
+              <img src="/public/images/kitchen-photo.jpg" alt="Produktionsküche" />
             </div>
           </div>
         </section>
@@ -320,7 +320,7 @@ export function renderCateringPage() {
             </div>
 
             <div class="visual-hero-image">
-              <img src="/public/images/catering.svg" alt="Catering" />
+              <img src="/public/images/catering-photo.jpg" alt="Catering" />
             </div>
           </div>
         </section>
@@ -396,7 +396,7 @@ export function renderServicesPage() {
             </div>
 
             <div class="visual-hero-image">
-              <img src="/public/images/services.svg" alt="Eventservice" />
+              <img src="/public/images/service-photo.jpg" alt="Eventservice" />
             </div>
           </div>
         </section>
@@ -443,3 +443,4 @@ export function renderServicesPage() {
     `
   });
 }
+

@@ -91,10 +91,10 @@ function renderFooter() {
 
 export function renderHomePage({ products = [] }) {
   const fallbackProducts = [
-    { name: "Chafing Dish", category: { name: "Buffet & Warmhalten" }, description: "Warmhaltebehälter für Buffets, Catering und Events.", priceCents: 950, imageUrl: "/public/images/catering-photo.svg" },
-    { name: "Stehtisch", category: { name: "Tische & Sitzmöbel" }, description: "Klapptisch für Empfang, Gartenfeier oder Firmenveranstaltung.", priceCents: 1200, imageUrl: "/public/images/equipment-photo.svg" },
-    { name: "Geschirr-Set", category: { name: "Geschirr & Besteck" }, description: "Teller, Besteck, Gläser und Serviermaterial für dein Event.", priceCents: 250, imageUrl: "/public/images/kitchen-photo.svg" },
-    { name: "Getränkespender", category: { name: "Getränke-Equipment" }, description: "Für Wasser, Limonade, Eistee oder Infused Water.", priceCents: 1000, imageUrl: "/public/images/catering-photo.svg" }
+    { name: "Chafing Dish", category: { name: "Buffet & Warmhalten" }, description: "Warmhaltebehälter für Buffets, Catering und Events.", priceCents: 950, imageUrl: "/public/images/catering-photo.jpg" },
+    { name: "Stehtisch", category: { name: "Tische & Sitzmöbel" }, description: "Klapptisch für Empfang, Gartenfeier oder Firmenveranstaltung.", priceCents: 1200, imageUrl: "/public/images/equipment-photo.jpg" },
+    { name: "Geschirr-Set", category: { name: "Geschirr & Besteck" }, description: "Teller, Besteck, Gläser und Serviermaterial für dein Event.", priceCents: 250, imageUrl: "/public/images/kitchen-photo.jpg" },
+    { name: "Getränkespender", category: { name: "Getränke-Equipment" }, description: "Für Wasser, Limonade, Eistee oder Infused Water.", priceCents: 1000, imageUrl: "/public/images/catering-photo.jpg" }
   ];
 
   const visibleProducts = products.length ? products.slice(0, 4) : fallbackProducts;
@@ -104,7 +104,7 @@ export function renderHomePage({ products = [] }) {
     return `
       <article class="compact-product">
         <div class="compact-product-image">
-          <img src="${product.imageUrl || "/public/images/equipment-photo.svg"}" alt="${product.name}" />
+          <img src="${product.imageUrl || "/public/images/equipment-photo.jpg"}" alt="${product.name}" />
         </div>
         <div class="compact-product-body">
           <div class="small-red">${product.category?.name || "Mietartikel"}</div>
@@ -156,7 +156,7 @@ export function renderHomePage({ products = [] }) {
             </div>
 
             <div class="fm-hero-image">
-              <img src="/public/images/hero-event.svg" alt="Event mit Pavillon und gedeckten Tischen" />
+              <img src="/public/images/hero-event.jpg" alt="Event mit Pavillon und gedeckten Tischen" />
               <div class="fm-hero-card">
                 <strong>Unverbindlich anfragen</strong>
                 <span>Wir prüfen Verfügbarkeit, Lieferung, Aufbau und Kaution vor dem Angebot.</span>
@@ -166,7 +166,7 @@ export function renderHomePage({ products = [] }) {
 
           <section class="fm-service-strip">
             <article>
-              <img src="/public/images/equipment-photo.svg" alt="Equipment" />
+              <img src="/public/images/equipment-photo.jpg" alt="Equipment" />
               <div>
                 <span>01 Equipment</span>
                 <h3>Event-Equipment mieten</h3>
@@ -175,7 +175,7 @@ export function renderHomePage({ products = [] }) {
             </article>
 
             <article>
-              <img src="/public/images/kitchen-photo.svg" alt="Küche" />
+              <img src="/public/images/kitchen-photo.jpg" alt="Küche" />
               <div>
                 <span>02 Küche</span>
                 <h3>Produktionsküche nutzen</h3>
@@ -184,7 +184,7 @@ export function renderHomePage({ products = [] }) {
             </article>
 
             <article>
-              <img src="/public/images/catering-photo.svg" alt="Catering" />
+              <img src="/public/images/catering-photo.jpg" alt="Catering" />
               <div>
                 <span>03 Catering</span>
                 <h3>Catering koordinieren</h3>
@@ -193,7 +193,7 @@ export function renderHomePage({ products = [] }) {
             </article>
 
             <article>
-              <img src="/public/images/service-photo.svg" alt="Services" />
+              <img src="/public/images/service-photo.jpg" alt="Services" />
               <div>
                 <span>04 Services</span>
                 <h3>Lieferung & Aufbau</h3>
@@ -222,7 +222,7 @@ export function renderHomePage({ products = [] }) {
                 <li><strong>Individuelle Pakete</strong><span>Passend zu Personenanzahl, Anlass und Budget.</span></li>
                 <li><strong>Persönlich koordiniert</strong><span>Von Anfrage bis Rückgabe praktisch abgestimmt.</span></li>
               </ul>
-              <img src="/public/images/advisor-photo.svg" alt="Beratung" />
+              <img src="/public/images/advisor-photo.jpg" alt="Beratung" />
             </aside>
           </section>
 
@@ -386,4 +386,5 @@ export function renderHomePage({ products = [] }) {
     </html>
   `;
 }
+
 
