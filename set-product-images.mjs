@@ -32,9 +32,9 @@ await prisma.product.updateMany({
 
 await prisma.product.updateMany({
   where: { name: { contains: "Stehtisch" } },
-  data: { imageUrl: "/public/images/table-photo.jpg" }
+  data: { imageUrl: "/public/images/equipment-photo.jpg" }
 });
 
 await prisma.$disconnect();
 
-console.log("Produktbilder wurden gesetzt");
+console.log("Produktbilder wurden erfolgreich gesetzt.");
