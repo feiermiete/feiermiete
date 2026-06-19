@@ -3424,3 +3424,21 @@ html, body {
     grid-template-columns: 1fr !important;
   }
 }
+
+/* ACTIVE NAVIGATION */
+.site-header nav a.active {
+  color: var(--red) !important;
+  border-bottom: 3px solid var(--red) !important;
+  padding-bottom: 10px !important;
+}
+
+.site-header nav a.nav-button.active {
+  color: white !important;
+  border-bottom: none !important;
+  padding-bottom: 14px !important;
+  background: var(--red) !important;
+}
+
+.site-header nav a:not(.nav-button):hover {
+  color: var(--red) !important;
+}

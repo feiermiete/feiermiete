@@ -36,7 +36,7 @@
               <a href="/kueche-mieten">Küche mieten</a>
               <a href="/catering">Catering</a>
               <a href="/services">Services</a>
-              <a class="nav-button" href="/anfrage">Anfrage</a>
+              <a class="nav-button active" href="/anfrage">Anfrage</a>
             </nav>
           </div>
         </header>
@@ -173,3 +173,4 @@
     </html>
   `;
 }
+

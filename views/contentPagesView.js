@@ -1,6 +1,8 @@
-﻿function renderSiteHeader() {
+﻿function renderSiteHeader(active = "") {
+  const isActive = (key) => active === key ? "active" : "";
+
   return `
-    <header class="site-header">
+    <header class="site-header clean-header">
       <div class="header-inner">
         <a class="brand" href="/">
           <div class="brand-main">Feiermiete</div>
@@ -8,12 +10,12 @@
         </a>
 
         <nav>
-          <a href="/">Home</a>
-          <a href="/equipment">Equipment</a>
-          <a href="/kueche-mieten">Küche mieten</a>
-          <a href="/catering">Catering</a>
-          <a href="/services">Services</a>
-          <a class="nav-button" href="/anfrage">Anfrage</a>
+          <a class="${isActive("home")}" href="/">Home</a>
+          <a class="${isActive("equipment")}" href="/equipment">Equipment</a>
+          <a class="${isActive("kueche")}" href="/kueche-mieten">Küche mieten</a>
+          <a class="${isActive("catering")}" href="/catering">Catering</a>
+          <a class="${isActive("services")}" href="/services">Services</a>
+          <a class="nav-button ${isActive("anfrage")}" href="/anfrage">Anfrage</a>
         </nav>
       </div>
     </header>
@@ -44,7 +46,7 @@ function renderSiteFooter() {
   `;
 }
 
-function renderPage({ title, content }) {
+function renderPage({ title, content, active = "" }) {
   return `
     <!DOCTYPE html>
     <html lang="de">
@@ -55,7 +57,7 @@ function renderPage({ title, content }) {
         <link rel="stylesheet" href="/public/css/style.css" />
       </head>
       <body>
-        ${renderSiteHeader()}
+        ${renderSiteHeader(active)}
         ${content}
         ${renderSiteFooter()}
       </body>
@@ -103,7 +105,7 @@ export function renderEquipmentPage({ products = [] }) {
   }).join("");
 
   return renderPage({
-    title: "Equipment mieten",
+    title: "Equipment mieten", active: "equipment",
     content: `
       <main>
         <section class="visual-hero">
@@ -214,7 +216,7 @@ export function renderEquipmentPage({ products = [] }) {
 
 export function renderKitchenPage() {
   return renderPage({
-    title: "Produktionsküche mieten",
+    title: "Produktionsküche mieten", active: "kueche",
     content: `
       <main>
         <section class="visual-hero">
@@ -301,7 +303,7 @@ export function renderKitchenPage() {
 
 export function renderCateringPage() {
   return renderPage({
-    title: "Catering koordinieren",
+    title: "Catering koordinieren", active: "catering",
     content: `
       <main>
         <section class="visual-hero">
@@ -377,7 +379,7 @@ export function renderCateringPage() {
 
 export function renderServicesPage() {
   return renderPage({
-    title: "Services",
+    title: "Services", active: "services",
     content: `
       <main>
         <section class="visual-hero">
@@ -443,4 +445,5 @@ export function renderServicesPage() {
     `
   });
 }
+
 
