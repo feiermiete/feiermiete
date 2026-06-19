@@ -1,4 +1,4 @@
-﻿generator client {
+generator client {
   provider = "prisma-client-js"
 }
 
@@ -36,11 +36,6 @@ model Product {
 }
 
 model Inquiry {
-  contractNumber String?
-  rentalTotalCents Int @default(0)
-  depositTotalCents Int @default(0)
-  deliveryFeeCents Int @default(0)
-  adminNote String?
   id              Int           @id @default(autoincrement())
   customerName    String
   companyName     String?
