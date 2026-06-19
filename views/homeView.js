@@ -1,57 +1,76 @@
-﻿function formatEuro(cents) {
-  if (cents === null || cents === undefined) return null;
+﻿function formatPrice(product) {
+  if (!product.priceCents) return "auf Anfrage";
 
-  return (cents / 100).toLocaleString("de-DE", {
+  return (product.priceCents / 100).toLocaleString("de-DE", {
     style: "currency",
     currency: "EUR"
   });
 }
 
-function getProductImage(product) {
-  const map = {
-    "pavillon-6x3": "/public/images/equipment/pavillon.svg",
-    "stehtisch": "/public/images/equipment/stehtisch.svg",
-    "bierzeltgarnitur": "/public/images/equipment/bierzeltgarnitur.svg",
-    "chafing-dish": "/public/images/equipment/chafing-dish.svg",
-    "getraenkespender": "/public/images/equipment/getraenkespender.svg",
-    "gluehweinbehaelter": "/public/images/equipment/gluehweinbehaelter.svg",
-    "geschirr-besteck-set": "/public/images/equipment/geschirr.svg",
-    "buffet-tisch": "/public/images/equipment/buffet-tisch.svg"
-  };
+function renderHeader() {
+  return `
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="brand" href="/">
+          <div class="brand-main">Feiermiete</div>
+          <div class="brand-sub">Equipment für Feiern & Events</div>
+        </a>
 
-  return product.imageUrl || map[product.slug] || "/public/images/equipment/pavillon.svg";
+        <nav>
+          <a href="/">Home</a>
+          <a href="/equipment">Equipment</a>
+          <a href="/kueche-mieten">Küche mieten</a>
+          <a href="/catering">Catering</a>
+          <a href="/services">Services</a>
+          <a class="nav-button" href="/anfrage">Anfrage</a>
+        </nav>
+      </div>
+    </header>
+  `;
+}
+
+function renderFooter() {
+  return `
+    <footer class="site-footer">
+      <div class="wide-inner footer-grid">
+        <div>
+          <strong>Feiermiete</strong>
+          <p>Equipment · Küche · Catering · Eventservice · Berlin & Brandenburg</p>
+        </div>
+
+        <div class="footer-contact">
+          <span>Anfragen</span>
+          <a href="mailto:info@feiermiete.de">info@feiermiete.de</a>
+        </div>
+
+        <div class="footer-links">
+          <a href="/impressum">Impressum</a>
+          <a href="/datenschutz">Datenschutz</a>
+          <a href="/agb">AGB</a>
+        </div>
+      </div>
+    </footer>
+  `;
 }
 
 export function renderHomePage({ products = [] }) {
-  const productCards = products.slice(0, 8).map((product) => {
-    const price = formatEuro(product.priceCents);
-    const deposit = formatEuro(product.depositCents);
-    const image = getProductImage(product);
+  const productCards = products.slice(0, 4).map((product) => {
+    const price = formatPrice(product);
 
     return `
-      <article class="product-card">
-        <a class="product-image" href="/anfrage?produkt=${product.slug}">
-          <img src="${image}" alt="${product.name}" />
-        </a>
-
-        <div class="product-body">
-          <div class="product-kicker">${product.category?.name || "Equipment"}</div>
+      <article class="home-product-card">
+        <div class="home-product-image">
+          <img src="${product.imageUrl || "/public/images/equipment.svg"}" alt="${product.name}" />
+        </div>
+        <div class="home-product-body">
+          <div class="home-product-category">${product.category?.name || "Mietartikel"}</div>
           <h3>${product.name}</h3>
-          <p>${product.description || "Hochwertiges Equipment für deine Feier oder Veranstaltung."}</p>
-        </div>
-
-        <div class="product-meta">
-          <div>
-            <span>Mietpreis</span>
+          <p>${product.description || "Mietartikel für Feiern, Events, Buffets und Catering."}</p>
+          <div class="home-product-bottom">
             <strong>ab ${price}</strong>
-          </div>
-          <div>
-            <span>Kaution</span>
-            <strong>${deposit || "auf Anfrage"}</strong>
+            <a href="/anfrage">Anfragen</a>
           </div>
         </div>
-
-        <a class="product-button" href="/anfrage?produkt=${product.slug}">Artikel anfragen</a>
       </article>
     `;
   }).join("");
@@ -62,299 +81,289 @@ export function renderHomePage({ products = [] }) {
       <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Feiermiete - Equipment, Küche & Eventservice mieten</title>
+        <title>Feiermiete - Equipment, Küche & Eventservice</title>
         <link rel="stylesheet" href="/public/css/style.css" />
       </head>
 
       <body>
-        <header class="site-header">
-          <div class="header-inner">
-            <a class="brand" href="/">
-              <div class="brand-main">Feiermiete</div>
-              <div class="brand-sub">Equipment für Feiern & Events</div>
-            </a>
-
-            <nav>
-              <a href="/">Home</a>
-              <a href="/equipment">Equipment</a>
-              <a href="/kueche-mieten">Küche mieten</a>
-              <a href="/catering">Catering</a>
-              <a href="/services">Services</a>
-              
-              <a class="nav-button" href="/anfrage">Anfrage</a>
-            </nav>
-          </div>
-        </header>
+        ${renderHeader()}
 
         <main>
-          <section class="hero">
-            <div class="wide-inner hero-grid">
-              <div class="hero-copy">
-                <div class="eyebrow">Event- & Partyequipment in Berlin</div>
-                <h1>Sie feiern.<span>Wir liefern.</span></h1>
+          <section class="home-hero-v2">
+            <div class="wide-inner home-hero-grid">
+              <div class="home-hero-content">
+                <div class="section-kicker">Equipment · Küche · Catering · Eventservice</div>
+                <h1>Alles für deine Feier. Einfach mieten, planen und anfragen.</h1>
                 <p>
-                  Equipment, Produktionsküche, Catering-Koordination und Eventlogistik für private Feiern, Firmenveranstaltungen und Caterings.
+                  Feiermiete verbindet Mietartikel, Produktionsküche, Catering-Koordination,
+                  Lieferung und Aufbau zu einer praktischen Lösung für private Feiern,
+                  Firmenveranstaltungen, Buffets und Events in Berlin & Brandenburg.
                 </p>
 
-                <div class="actions">
-                  <a class="button primary" href="/anfrage">Unverbindlich anfragen</a>
-                  <a class="button" href="/services">Leistungen ansehen</a>
+                <div class="hero-actions">
+                  <a class="button primary" href="/anfrage">Jetzt Anfrage senden</a>
+                  <a class="button secondary" href="/equipment">Equipment ansehen</a>
+                </div>
+
+                <div class="hero-mini-facts">
+                  <div><strong>Berlin & Brandenburg</strong><span>Lieferung nach Absprache</span></div>
+                  <div><strong>Privat & Firma</strong><span>Feiern, Events, Buffets</span></div>
+                  <div><strong>Flexibel</strong><span>Einzelartikel oder Paket</span></div>
                 </div>
               </div>
 
-              <div class="hero-visual">
-                <div class="hero-card">
-                  <span>Feiermiete</span>
-                  <strong>Alles für deine Feier aus einer Hand.</strong>
-                  <p>Equipment · Küche · Catering · Lieferung</p>
+              <div class="home-hero-visual">
+                <img src="/public/images/equipment.svg" alt="Event Equipment mieten" />
+                <div class="hero-floating-card">
+                  <strong>Unverbindlich anfragen</strong>
+                  <span>Wir prüfen Verfügbarkeit, Lieferung, Aufbau und Kaution vor dem Angebot.</span>
                 </div>
               </div>
             </div>
           </section>
 
-          <section class="trust-row">
-            <div class="wide-inner trust-inner">
-              <div><strong>Berlin & Brandenburg</strong><span>Liefergebiet</span></div>
-              <div><strong>Privat & Firma</strong><span>Für jede Feier</span></div>
-              <div><strong>Flexible Pakete</strong><span>Nach Bedarf</span></div>
-              <div><strong>Ein Ansprechpartner</strong><span>Alles koordiniert</span></div>
+          <section class="home-trust-band">
+            <div class="wide-inner trust-grid-v2">
+              <div>
+                <span>01</span>
+                <strong>Equipment mieten</strong>
+                <p>Pavillons, Stehtische, Geschirr, Chafing Dishes, Getränkespender und mehr.</p>
+              </div>
+              <div>
+                <span>02</span>
+                <strong>Küche mieten</strong>
+                <p>Produktionsküche stundenweise oder tageweise für Vorbereitung und Produktion.</p>
+              </div>
+              <div>
+                <span>03</span>
+                <strong>Catering koordinieren</strong>
+                <p>Speisen, Buffet, Equipment und Logistik können gemeinsam geplant werden.</p>
+              </div>
+              <div>
+                <span>04</span>
+                <strong>Lieferung & Aufbau</strong>
+                <p>Auf Wunsch mit Lieferung, Aufbau, Abholung und praktischer Eventlogistik.</p>
+              </div>
             </div>
           </section>
 
-          <section class="section services-overview" id="services">
+          <section class="home-services-v2">
             <div class="wide-inner">
-              <div class="section-head">
+              <div class="home-section-head">
                 <div>
-                  <div class="section-kicker">Unsere Leistungen</div>
-                  <h2>Alles für deine Feier – klar aufgeteilt.</h2>
+                  <div class="section-kicker">Leistungen</div>
+                  <h2>Mehr als nur ein Mietshop.</h2>
                 </div>
                 <p>
-                  Wähle den Bereich, der zu deiner Veranstaltung passt. Jede Leistung hat eine eigene Seite mit mehr Informationen.
+                  Du musst nicht selbst herausfinden, welche Artikel zusammenpassen.
+                  Wir denken Anlass, Personenanzahl, Standort, Aufbau und Rückgabe direkt mit.
                 </p>
               </div>
 
-              <div class="service-grid">
-                <article class="service-card">
-                  <div class="service-image service-equipment">
+              <div class="service-showcase-grid">
+                <article>
+                  <img src="/public/images/equipment.svg" alt="Equipment" />
+                  <div>
                     <span>Equipment</span>
-                  </div>
-                  <div class="service-content">
-                    <span>01</span>
-                    <h3>Equipment mieten</h3>
+                    <h3>Mietartikel für jeden Anlass</h3>
                     <p>
-                      Miete genau das Equipment, das du für deine Feier brauchst – einzeln oder als passendes Paket. Ideal für Geburtstage, Gartenfeiern, Hochzeiten, Firmenfeiern und kleine Events.
+                      Von Pavillons und Tischen bis zu Buffet-Equipment, Geschirr,
+                      Getränkespendern und Zubehör.
                     </p>
-                    <ul class="service-points">
-                      <li>Pavillons, Stehtische und Bierzeltgarnituren</li>
-                      <li>Geschirr, Besteck, Chafing Dishes und Buffet-Zubehör</li>
-                      <li>Flexible Zusammenstellung nach Personenanzahl und Anlass</li>
-                    </ul>
-                    <a href="/equipment">Mehr zu Equipment</a>
+                    <a href="/equipment">Equipment ansehen</a>
                   </div>
                 </article>
 
-                <article class="service-card" id="kueche">
-                  <div class="service-image service-kitchen">
+                <article>
+                  <img src="/public/images/kitchen.svg" alt="Produktionsküche" />
+                  <div>
                     <span>Küche</span>
-                  </div>
-                  <div class="service-content">
-                    <span>02</span>
-                    <h3>Küche mieten</h3>
+                    <h3>Produktionsküche flexibel nutzen</h3>
                     <p>
-                      Unsere Produktionsküche kannst du stundenweise oder tageweise anfragen. Perfekt, wenn du vorbereiten, produzieren, verpacken oder größere Mengen für ein Event organisieren möchtest.
+                      Für Caterer, Food-Startups, Eventvorbereitung, Produktionsspitzen
+                      oder größere Mengen.
                     </p>
-                    <ul class="service-points">
-                      <li>Für Caterer, Food-Startups und Pop-up-Konzepte</li>
-                      <li>Für Vorbereitung, Produktion und Eventabwicklung</li>
-                      <li>Nutzung nach Verfügbarkeit und individueller Absprache</li>
-                    </ul>
-                    <a href="/kueche-mieten">Mehr zur Küche</a>
+                    <a href="/kueche-mieten">Küche mieten</a>
                   </div>
                 </article>
 
-                <article class="service-card" id="catering">
-                  <div class="service-image service-catering">
+                <article>
+                  <img src="/public/images/catering.svg" alt="Catering" />
+                  <div>
                     <span>Catering</span>
-                  </div>
-                  <div class="service-content">
-                    <span>03</span>
-                    <h3>Catering koordinieren</h3>
+                    <h3>Catering und Equipment zusammen planen</h3>
                     <p>
-                      Du brauchst neben Equipment auch passende Speisen? Auf Wunsch koordinieren wir Catering-Lösungen mit erfahrenen Partnern, damit Essen, Equipment, Lieferung und Ablauf zusammenpassen.
+                      Speisen, Buffet, Warmhalten, Geschirr, Lieferung und Aufbau
+                      können sinnvoll kombiniert werden.
                     </p>
-                    <ul class="service-points">
-                      <li>Catering-Koordination für private und geschäftliche Events</li>
-                      <li>Abstimmung von Speisen, Buffetaufbau und Equipment</li>
-                      <li>Ein Ansprechpartner statt viele einzelne Absprachen</li>
-                    </ul>
-                    <a href="/catering">Mehr zu Catering</a>
+                    <a href="/catering">Catering ansehen</a>
                   </div>
                 </article>
 
-                <article class="service-card">
-                  <div class="service-image service-logistics">
-                    <span>Logistik</span>
-                  </div>
-                  <div class="service-content">
-                    <span>04</span>
-                    <h3>Lieferung & Aufbau</h3>
+                <article>
+                  <img src="/public/images/services.svg" alt="Services" />
+                  <div>
+                    <span>Services</span>
+                    <h3>Lieferung, Aufbau und Rückgabe</h3>
                     <p>
-                      Wir liefern das gewünschte Equipment zum vereinbarten Zeitpunkt, unterstützen bei der sinnvollen Platzierung und holen alles nach der Veranstaltung wieder ab.
+                      Damit dein Event praktisch funktioniert: Lieferung, Aufbau,
+                      Abholung und Ablauf nach Absprache.
                     </p>
-                    <ul class="service-points">
-                      <li>Lieferung nach Berlin, Brandenburg und Umgebung</li>
-                      <li>Aufbauhilfe nach Absprache möglich</li>
-                      <li>Rückgabe, Abholung und Ablauf planbar organisiert</li>
-                    </ul>
-                    <a href="/services">Mehr zu Services</a>
+                    <a href="/services">Services ansehen</a>
                   </div>
                 </article>
               </div>
             </div>
           </section>
-          <section class="section product-section" id="equipment">
-            <div class="wide-inner">
-              <div class="section-head">
+
+          <section class="home-dark-info">
+            <div class="wide-inner dark-info-grid">
+              <div>
+                <div class="section-kicker">Warum Feiermiete?</div>
+                <h2>Ein Ansprechpartner für viele Event-Bausteine.</h2>
+              </div>
+              <div class="dark-info-list">
                 <div>
-                  <div class="section-kicker">Mietartikel</div>
-                  <h2>Beliebtes Equipment</h2>
+                  <strong>Keine blinde Onlinezahlung</strong>
+                  <p>Wir prüfen zuerst Verfügbarkeit, Mietdauer, Lieferort, Aufbau und Kaution.</p>
+                </div>
+                <div>
+                  <strong>Individuelle Pakete</strong>
+                  <p>Einzelne Artikel oder Kombinationen passend zu Personenanzahl und Anlass.</p>
+                </div>
+                <div>
+                  <strong>Praktisch geplant</strong>
+                  <p>Equipment, Küche, Catering und Logistik werden nicht getrennt gedacht.</p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="home-products-v2">
+            <div class="wide-inner">
+              <div class="home-section-head">
+                <div>
+                  <div class="section-kicker">Beliebte Mietartikel</div>
+                  <h2>Ein erster Blick ins Sortiment.</h2>
                 </div>
                 <p>
-                  Starte mit einzelnen Artikeln oder kombiniere mehrere Produkte zu einem passenden Paket.
+                  Das vollständige Sortiment findest du auf der Equipment-Seite.
+                  Dort bauen wir nach und nach alle Kategorien und Artikel aus.
                 </p>
               </div>
 
-              <div class="product-grid">
-                ${productCards || "<p>Noch keine Produkte eingetragen.</p>"}
+              <div class="home-product-grid">
+                ${productCards || "<p>Noch keine Artikel vorhanden.</p>"}
+              </div>
+
+              <div class="center-action">
+                <a class="button primary" href="/equipment">Gesamtes Equipment ansehen</a>
               </div>
             </div>
           </section>
 
-          <section class="section process-section">
+          <section class="home-process-v2">
             <div class="wide-inner">
-              <div class="center-head">
+              <div class="process-title-v2">
                 <div class="section-kicker">Ablauf</div>
                 <h2>So funktioniert es.</h2>
-                <p>Du fragst an, wir prüfen Verfügbarkeit und erstellen dir ein passendes Angebot.</p>
+                <p>
+                  Du fragst an, wir prüfen die passenden Möglichkeiten und erstellen
+                  dir ein Angebot mit den relevanten Positionen.
+                </p>
               </div>
 
-              <div class="process-grid">
-                <div>
+              <div class="process-cards-v2">
+                <article>
                   <span>01</span>
                   <h3>Anfrage senden</h3>
-                  <p>Datum, Ort, gewünschtes Equipment und besondere Wünsche mitteilen.</p>
-                </div>
-                <div>
+                  <p>Datum, Ort, Personenanzahl, gewünschte Artikel oder Leistungen mitteilen.</p>
+                  <ul>
+                    <li>Equipment</li>
+                    <li>Küche</li>
+                    <li>Catering</li>
+                  </ul>
+                </article>
+
+                <article>
                   <span>02</span>
                   <h3>Angebot erhalten</h3>
-                  <p>Wir prüfen Artikel, Küche, Catering und Lieferung nach Verfügbarkeit.</p>
-                </div>
-                <div>
+                  <p>Wir prüfen Verfügbarkeit, Lieferaufwand, Aufbau, Kaution und Kombinationen.</p>
+                  <ul>
+                    <li>transparent</li>
+                    <li>individuell</li>
+                    <li>passend geplant</li>
+                  </ul>
+                </article>
+
+                <article>
                   <span>03</span>
                   <h3>Feier vorbereiten</h3>
-                  <p>Wir koordinieren Lieferung, Aufbau und Rückgabe nach Absprache.</p>
-                </div>
+                  <p>Nach Bestätigung werden Lieferung, Aufbau, Rückgabe und Ablauf abgestimmt.</p>
+                  <ul>
+                    <li>Lieferung</li>
+                    <li>Aufbau</li>
+                    <li>Abholung</li>
+                  </ul>
+                </article>
               </div>
             </div>
           </section>
 
-          <section class="section faq-section premium-faq">
-  <div class="wide-inner faq-premium-grid">
-    <div class="faq-intro">
-      <div class="section-kicker">Fragen & Antworten</div>
-      <h2>Gut zu wissen.</h2>
-      <p>
-        Hier findest du die wichtigsten Antworten zur Miete von Equipment,
-        Produktionsküche, Lieferung, Aufbau, Kaution und Catering-Koordination.
-      </p>
+          <section class="premium-faq">
+            <div class="wide-inner faq-premium-grid">
+              <div class="faq-intro">
+                <div class="section-kicker">Fragen & Antworten</div>
+                <h2>Gut zu wissen.</h2>
+                <p>
+                  Die wichtigsten Antworten zur Miete von Equipment, Produktionsküche,
+                  Catering-Koordination, Lieferung, Aufbau und Kaution.
+                </p>
 
-      <div class="faq-note-box">
-        <strong>Deine Frage ist nicht dabei?</strong>
-        <span>
-          Schreib uns einfach, was du planst. Wir prüfen dein Anliegen und melden uns mit einer passenden Empfehlung.
-        </span>
-        <a href="/anfrage">Anfrage senden</a>
-      </div>
-    </div>
+                <div class="faq-note-box">
+                  <strong>Deine Frage ist nicht dabei?</strong>
+                  <span>Schreib uns einfach, was du planst. Wir melden uns mit einer passenden Empfehlung.</span>
+                  <a href="/anfrage">Anfrage senden</a>
+                </div>
+              </div>
 
-    <div class="faq-list">
-      <details>
-        <summary>
-          <span>Kann ich auch einzelne Artikel mieten?</span>
-          <strong>+</strong>
-        </summary>
-        <p>
-          Ja. Du kannst einzelne Mietartikel wie Stehtische, Pavillons, Chafing Dishes,
-          Getränkespender oder Geschirr anfragen. Wenn mehrere Artikel benötigt werden,
-          stellen wir dir ein passendes Paket zusammen.
-        </p>
-      </details>
+              <div class="faq-list">
+                <details>
+                  <summary><span>Kann ich auch einzelne Artikel mieten?</span><strong>+</strong></summary>
+                  <p>Ja. Einzelne Artikel wie Stehtische, Pavillons, Chafing Dishes, Getränkespender oder Geschirr können angefragt werden.</p>
+                </details>
 
-      <details>
-        <summary>
-          <span>Bietet ihr Lieferung und Aufbau an?</span>
-          <strong>+</strong>
-        </summary>
-        <p>
-          Ja, Lieferung, Aufbau und spätere Abholung können je nach Auftrag und Standort
-          mit angeboten werden. Die Kosten hängen von Entfernung, Menge, Zeitfenster und Aufwand ab.
-        </p>
-      </details>
+                <details>
+                  <summary><span>Bietet ihr Lieferung und Aufbau an?</span><strong>+</strong></summary>
+                  <p>Ja. Lieferung, Aufbau und Abholung können je nach Standort, Menge und Zeitfenster angeboten werden.</p>
+                </details>
 
-      <details>
-        <summary>
-          <span>Kann ich eure Produktionsküche mieten?</span>
-          <strong>+</strong>
-        </summary>
-        <p>
-          Ja. Die Produktionsküche kann stundenweise oder tageweise angefragt werden.
-          Sie eignet sich für Vorbereitung, Produktion, Catering, Pop-ups, Food-Startups
-          oder größere Eventmengen.
-        </p>
-      </details>
+                <details>
+                  <summary><span>Kann ich eure Produktionsküche mieten?</span><strong>+</strong></summary>
+                  <p>Ja. Die Küche kann stundenweise oder tageweise für Vorbereitung, Produktion oder Eventabwicklung angefragt werden.</p>
+                </details>
 
-      <details>
-        <summary>
-          <span>Bietet ihr auch Catering an?</span>
-          <strong>+</strong>
-        </summary>
-        <p>
-          Auf Wunsch koordinieren wir passende Catering-Lösungen. Besonders sinnvoll ist das,
-          wenn Equipment, Speisen, Lieferung und Aufbau gemeinsam geplant werden sollen.
-        </p>
-      </details>
+                <details>
+                  <summary><span>Bietet ihr auch Catering an?</span><strong>+</strong></summary>
+                  <p>Auf Wunsch koordinieren wir passende Catering-Lösungen, besonders wenn Speisen, Equipment und Logistik zusammen geplant werden sollen.</p>
+                </details>
 
-      <details>
-        <summary>
-          <span>Gibt es eine Kaution?</span>
-          <strong>+</strong>
-        </summary>
-        <p>
-          Je nach Artikel, Menge und Mietdauer kann eine Kaution anfallen. Das wird im Angebot
-          transparent aufgeführt, damit du vorher weißt, welche Kosten entstehen.
-        </p>
-      </details>
+                <details>
+                  <summary><span>Gibt es eine Kaution?</span><strong>+</strong></summary>
+                  <p>Je nach Artikel, Menge und Mietdauer kann eine Kaution anfallen. Diese wird im Angebot transparent aufgeführt.</p>
+                </details>
+              </div>
+            </div>
+          </section>
 
-      <details>
-        <summary>
-          <span>Kann ich kurzfristig anfragen?</span>
-          <strong>+</strong>
-        </summary>
-        <p>
-          Ja, kurzfristige Anfragen sind möglich. Je früher du anfragst, desto besser können wir
-          Verfügbarkeit, Lieferung und mögliche Zusatzleistungen einplanen.
-        </p>
-      </details>
-    </div>
-  </div>
-</section>
-<section class="final-cta">
+          <section class="final-cta">
             <div class="wide-inner final-cta-inner">
               <div>
                 <div class="section-kicker">Anfrage</div>
                 <h2>Du planst eine Feier?</h2>
                 <p>
-                  Schreib uns Datum, Ort, Personenanzahl und was du brauchst. Wir empfehlen dir passende Artikel, Services oder eine Komplettlösung.
+                  Schreib uns Datum, Ort, Personenanzahl und was du brauchst.
+                  Wir empfehlen dir passende Artikel, Services oder eine Komplettlösung.
                 </p>
               </div>
               <a class="button primary" href="/anfrage">Jetzt Anfrage senden</a>
@@ -362,36 +371,8 @@ export function renderHomePage({ products = [] }) {
           </section>
         </main>
 
-        <footer class="site-footer">
-          <div class="wide-inner footer-grid">
-            <div>
-              <strong>Feiermiete</strong>
-              <p>Equipment · Küche · Catering · Eventservice · Berlin & Brandenburg</p>
-            </div>
-
-            <div class="footer-contact">
-              <span>Anfragen</span>
-              <a href="mailto:info@feiermiete.de">info@feiermiete.de</a>
-            </div>
-
-            <div class="footer-links">
-              <a href="/impressum">Impressum</a>
-              <a href="/datenschutz">Datenschutz</a>
-              <a href="/agb">AGB</a>
-            </div>
-          </div>
-        </footer>
+        ${renderFooter()}
       </body>
     </html>
   `;
 }
-
-
-
-
-
-
-
-
-
-
