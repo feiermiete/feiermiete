@@ -1353,3 +1353,235 @@ footer {
     padding: 0 22px 24px;
   }
 }
+
+/* FINAL VISUAL UPGRADE */
+.site-header {
+  background: rgba(255,255,255,0.96) !important;
+  backdrop-filter: blur(14px);
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.04);
+}
+
+.visual-hero {
+  padding: 96px 54px;
+  background: linear-gradient(135deg, #f7f3ee 0%, #ffffff 58%, #eee7de 100%);
+}
+
+.visual-hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 0.92fr;
+  gap: 64px;
+  align-items: center;
+}
+
+.visual-hero h1 {
+  font-size: clamp(54px, 6vw, 92px);
+  line-height: 0.92;
+  letter-spacing: -0.075em;
+  margin-bottom: 28px;
+  max-width: 980px;
+}
+
+.visual-hero p {
+  color: #4f4f4f;
+  font-size: 19px;
+  line-height: 1.75;
+  max-width: 760px;
+}
+
+.visual-hero-image {
+  min-height: 460px;
+  box-shadow: 0 32px 90px rgba(0,0,0,0.14);
+  overflow: hidden;
+  border: 1px solid rgba(0,0,0,0.08);
+}
+
+.visual-hero-image img {
+  width: 100%;
+  height: 100%;
+  min-height: 460px;
+  object-fit: cover;
+  display: block;
+}
+
+.content-band {
+  padding: 72px 54px;
+  background: #151515;
+  color: white;
+}
+
+.intro-grid {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 64px;
+  align-items: center;
+}
+
+.intro-grid h2 {
+  color: white;
+  font-size: clamp(42px, 5vw, 72px);
+  line-height: 0.96;
+  letter-spacing: -0.065em;
+}
+
+.intro-grid p {
+  color: #d6d6d6;
+  font-size: 18px;
+  line-height: 1.8;
+}
+
+.premium-categories div {
+  min-height: 190px;
+  position: relative;
+  overflow: hidden;
+}
+
+.premium-categories div::after {
+  content: '';
+  position: absolute;
+  right: -36px;
+  bottom: -36px;
+  width: 110px;
+  height: 110px;
+  background: rgba(199,0,18,0.08);
+  border-radius: 999px;
+}
+
+.shop-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.shop-card {
+  background: white;
+  border: 1px solid rgba(0,0,0,0.08);
+  box-shadow: 0 20px 55px rgba(0,0,0,0.06);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.shop-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 30px 75px rgba(0,0,0,0.10);
+}
+
+.shop-card-image {
+  height: 210px;
+  background: #151515;
+  overflow: hidden;
+}
+
+.shop-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.shop-card-body {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.shop-card-category {
+  color: var(--red);
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.shop-card h3 {
+  font-size: 25px;
+  line-height: 1.08;
+  margin-bottom: 12px;
+}
+
+.shop-card p {
+  color: #5f5f5f;
+  line-height: 1.6;
+  font-size: 15px;
+}
+
+.shop-card-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  border-top: 1px solid var(--line);
+  padding-top: 16px;
+  margin-top: auto;
+}
+
+.shop-card-info span {
+  display: block;
+  color: #888;
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.shop-card-info strong {
+  font-size: 14px;
+}
+
+.shop-card-button {
+  display: block;
+  margin-top: 18px;
+  background: #151515;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  font-weight: 900;
+  padding: 14px;
+}
+
+.shop-card-button:hover {
+  background: var(--red);
+}
+
+.process-grid div {
+  min-height: 170px;
+}
+
+.final-cta {
+  background: radial-gradient(circle at 85% 20%, rgba(199,0,18,0.26), transparent 34%), linear-gradient(135deg, #111 0%, #1b1b1b 100%) !important;
+}
+
+@media (max-width: 1200px) {
+  .shop-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 1000px) {
+  .visual-hero-grid,
+  .intro-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 700px) {
+  .visual-hero,
+  .content-band {
+    padding-left: 22px;
+    padding-right: 22px;
+  }
+
+  .shop-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .visual-hero-image,
+  .visual-hero-image img {
+    min-height: 300px;
+  }
+}
