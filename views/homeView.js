@@ -215,31 +215,46 @@ export function renderHomePage({ products = [] }) {
             </article>
           </section>
 
-          <section class="fm-products-why">
-            <div class="fm-products-left">
-              <div class="small-red">Beliebte Mietartikel</div>
-              <h2>Ein erster Blick ins Sortiment.</h2>
-              <p>Das vollständige Sortiment findest du auf der Equipment-Seite mit allen Kategorien und Artikeln.</p>
-              <a class="button primary" href="/equipment">Gesamtes Equipment ansehen</a>
-            </div>
+          <section class="fm-products-premium">
+  <div class="wide-inner">
+    <div class="fm-products-top">
+      <div>
+        <div class="small-red">Beliebte Mietartikel</div>
+        <h2>Ein erster Blick ins Sortiment.</h2>
+        <p>
+          Das vollständige Sortiment findest du auf der Equipment-Seite.
+          Dort bauen wir nach und nach alle Kategorien und Artikel aus.
+        </p>
+        <a class="button primary" href="/equipment">Gesamtes Equipment ansehen</a>
+      </div>
 
-            <div class="fm-product-list">
-              ${productCards}
-            </div>
+      <aside class="fm-why-premium">
+        <div class="small-red">Warum Feiermiete?</div>
+        <h3>Ein Ansprechpartner. Viele Event-Bausteine.</h3>
 
-            <aside class="fm-why-box">
-              <div class="small-red">Warum Feiermiete?</div>
-              <h2>Ein Ansprechpartner. Viele Event-Bausteine.</h2>
-              <ul>
-                <li><strong>Keine direkte Online-Zahlung</strong><span>Wir prüfen Verfügbarkeit, Lieferung, Aufbau und Kaution.</span></li>
-                <li><strong>Individuelle Pakete</strong><span>Passend zu Personenanzahl, Anlass und Budget.</span></li>
-                <li><strong>Persönlich koordiniert</strong><span>Von Anfrage bis Rückgabe praktisch abgestimmt.</span></li>
-              </ul>
-              <img src="/public/images/advisor-photo.jpg" alt="Beratung" />
-            </aside>
-          </section>
+        <ul>
+          <li>
+            <strong>Keine direkte Online-Zahlung</strong>
+            <span>Wir prüfen Verfügbarkeit, Lieferung, Aufbau und Kaution vor dem Angebot.</span>
+          </li>
+          <li>
+            <strong>Individuelle Pakete</strong>
+            <span>Passend zu Personenanzahl, Anlass, Mietdauer und Budget.</span>
+          </li>
+          <li>
+            <strong>Persönlich koordiniert</strong>
+            <span>Von Anfrage bis Rückgabe praktisch abgestimmt.</span>
+          </li>
+        </ul>
+      </aside>
+    </div>
 
-          <section class="fm-dark-process">
+    <div class="fm-product-row">
+      ${productCards}
+    </div>
+  </div>
+</section>
+<section class="fm-dark-process">
             <div class="wide-inner fm-dark-grid">
               <div>
                 <div class="small-red">So funktioniert es</div>
@@ -399,6 +414,7 @@ export function renderHomePage({ products = [] }) {
     </html>
   `;
 }
+
 
 
 
