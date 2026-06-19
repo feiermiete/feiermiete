@@ -1,4 +1,17 @@
-﻿function formatPrice(product) {
+﻿function getProductImage(product) {
+  const name = (product.name || "").toLowerCase();
+
+  if (name.includes("buffet")) return "/public/images/buffet-table.jpg";
+  if (name.includes("geschirr") || name.includes("besteck")) return "/public/images/cutlery-set.jpg";
+  if (name.includes("glühwein") || name.includes("gluehwein")) return "/public/images/hot-drink-dispenser.jpg";
+  if (name.includes("getränkespender") || name.includes("getraenkespender")) return "/public/images/drinks-dispenser.jpg";
+  if (name.includes("chafing")) return "/public/images/buffet-table.jpg";
+  if (name.includes("stehtisch")) return "/public/images/equipment-photo.jpg";
+  if (name.includes("pavillon")) return "/public/images/equipment-photo.jpg";
+
+  return "/public/images/equipment-photo.jpg";
+}
+function formatPrice(product) {
   if (!product.priceCents) return "auf Anfrage";
   return (product.priceCents / 100).toLocaleString("de-DE", {
     style: "currency",
@@ -93,7 +106,7 @@ export function renderHomePage({ products = [] }) {
   const fallbackProducts = [
     { name: "Chafing Dish", category: { name: "Buffet & Warmhalten" }, description: "Warmhaltebehälter für Buffets, Catering und Events.", priceCents: 950, imageUrl: "/public/images/catering-photo.jpg" },
     { name: "Stehtisch", category: { name: "Tische & Sitzmöbel" }, description: "Klapptisch für Empfang, Gartenfeier oder Firmenveranstaltung.", priceCents: 1200, imageUrl: "/public/images/equipment-photo.jpg" },
-    { name: "Geschirr-Set", category: { name: "Geschirr & Besteck" }, description: "Teller, Besteck, Gläser und Serviermaterial für dein Event.", priceCents: 250, imageUrl: "/public/images/kitchen-photo.jpg" },
+    { name: "Geschirr-Set", category: { name: "Geschirr & Besteck" }, description: "Teller, Besteck, Gläser und Serviermaterial für dein Event.", priceCents: 250, imageUrl: "/public/images/gastro-kitchen.jpg" },
     { name: "Getränkespender", category: { name: "Getränke-Equipment" }, description: "Für Wasser, Limonade, Eistee oder Infused Water.", priceCents: 1000, imageUrl: "/public/images/catering-photo.jpg" }
   ];
 
@@ -104,7 +117,7 @@ export function renderHomePage({ products = [] }) {
     return `
       <article class="compact-product">
         <div class="compact-product-image">
-          <img src="${product.imageUrl || "/public/images/equipment-photo.jpg"}" alt="${product.name}" />
+          <img src="${getProductImage(product)}" alt="${product.name}" />
         </div>
         <div class="compact-product-body">
           <div class="small-red">${product.category?.name || "Mietartikel"}</div>
@@ -138,7 +151,7 @@ export function renderHomePage({ products = [] }) {
               <div class="section-kicker">Equipment · Küche · Catering · Eventservice</div>
               <h1>Alles für deine Feier. Einfach mieten, planen, anfragen.</h1>
               <p>
-                Feiermiete kombiniert hochwertiges Leih-Equipment, Produktionsküche,
+                Feiermiete kombiniert hochwertiges Leih-Equipment, Gastro-Küche,
                 Catering-Koordination, Lieferung und Aufbau für private Feiern,
                 Firmenevents, Buffets und Veranstaltungen in Berlin & Brandenburg.
               </p>
@@ -175,7 +188,7 @@ export function renderHomePage({ products = [] }) {
             </article>
 
             <article>
-              <img src="/public/images/kitchen-photo.jpg" alt="Küche" />
+              <img src="/public/images/gastro-kitchen.jpg" alt="Küche" />
               <div>
                 <span>02 Küche</span>
                 <h3>Gastro-Küche mieten</h3>
@@ -354,7 +367,7 @@ export function renderHomePage({ products = [] }) {
                 </details>
 
                 <details>
-                  <summary>Kann ich die Produktionsküche mieten?</summary>
+                  <summary>Kann ich die Gastro-Küche mieten?</summary>
                   <p>Ja. Die Küche kann stundenweise oder tageweise für Vorbereitung, Produktion oder Eventabwicklung angefragt werden.</p>
                 </details>
 
@@ -386,6 +399,10 @@ export function renderHomePage({ products = [] }) {
     </html>
   `;
 }
+
+
+
+
 
 
 
