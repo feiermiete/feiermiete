@@ -4063,3 +4063,43 @@ body.fm-cart-open .fm-cart-panel {
 .premium-categories div:nth-child(8)::before {
   background-image: url("/public/images/bierzeltgarnitur.jpg") !important;
 }
+
+/* FINAL CATEGORY PHOTOS */
+.premium-categories div::before {
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  padding: 0 !important;
+}
+
+.premium-categories div:nth-child(1)::before {
+  background-image: url("/public/images/pavillon-6x3.jpg") !important;
+}
+
+.premium-categories div:nth-child(2)::before {
+  background-image: url("/public/images/stehtisch.jpg") !important;
+}
+
+.premium-categories div:nth-child(3)::before {
+  background-image: url("/public/images/cutlery-set.jpg") !important;
+}
+
+.premium-categories div:nth-child(4)::before {
+  background-image: url("/public/images/buffet-table.jpg") !important;
+}
+
+.premium-categories div:nth-child(5)::before {
+  background-image: url("/public/images/drinks-dispenser.jpg") !important;
+}
+
+.premium-categories div:nth-child(6)::before {
+  background-image: url("/public/images/gastro-kitchen.jpg") !important;
+}
+
+.premium-categories div:nth-child(7)::before {
+  background-image: url("/public/images/service-photo.jpg") !important;
+}
+
+.premium-categories div:nth-child(8)::before {
+  background-image: url("/public/images/bierzeltgarnitur.jpg") !important;
+}
