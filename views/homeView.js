@@ -258,53 +258,97 @@ export function renderHomePage({ products = [] }) {
             </div>
           </section>
 
-          <section class="section faq-section">
-            <div class="wide-inner">
-              <div class="section-head">
-                <div>
-                  <div class="section-kicker">Fragen & Antworten</div>
-                  <h2>Gut zu wissen.</h2>
-                </div>
-                <p>
-                  Die wichtigsten Antworten zu Equipment, Küche, Catering, Lieferung und Kaution.
-                </p>
-              </div>
+          <section class="section faq-section premium-faq">
+  <div class="wide-inner faq-premium-grid">
+    <div class="faq-intro">
+      <div class="section-kicker">Fragen & Antworten</div>
+      <h2>Gut zu wissen.</h2>
+      <p>
+        Hier findest du die wichtigsten Antworten zur Miete von Equipment,
+        Produktionsküche, Lieferung, Aufbau, Kaution und Catering-Koordination.
+      </p>
 
-              <div class="faq-grid">
-                <details>
-                  <summary>Kann ich auch einzelne Artikel mieten?</summary>
-                  <p>Ja. Du kannst einzelne Artikel wie Stehtische, Pavillons, Geschirr oder Chafing Dishes anfragen.</p>
-                </details>
+      <div class="faq-note-box">
+        <strong>Deine Frage ist nicht dabei?</strong>
+        <span>
+          Schreib uns einfach, was du planst. Wir prüfen dein Anliegen und melden uns mit einer passenden Empfehlung.
+        </span>
+        <a href="/anfrage">Anfrage senden</a>
+      </div>
+    </div>
 
-                <details>
-                  <summary>Kann ich eure Produktionsküche mieten?</summary>
-                  <p>Ja. Die Produktionsküche kann stundenweise oder tageweise angefragt werden, je nach Verfügbarkeit und Nutzungszweck.</p>
-                </details>
+    <div class="faq-list">
+      <details>
+        <summary>
+          <span>Kann ich auch einzelne Artikel mieten?</span>
+          <strong>+</strong>
+        </summary>
+        <p>
+          Ja. Du kannst einzelne Mietartikel wie Stehtische, Pavillons, Chafing Dishes,
+          Getränkespender oder Geschirr anfragen. Wenn mehrere Artikel benötigt werden,
+          stellen wir dir ein passendes Paket zusammen.
+        </p>
+      </details>
 
-                <details>
-                  <summary>Bietet ihr selbst Catering an?</summary>
-                  <p>Feiermiete steht für Equipment, Küche und Eventlogistik. Auf Wunsch koordinieren wir passende Catering-Lösungen über unser Netzwerk.</p>
-                </details>
+      <details>
+        <summary>
+          <span>Bietet ihr Lieferung und Aufbau an?</span>
+          <strong>+</strong>
+        </summary>
+        <p>
+          Ja, Lieferung, Aufbau und spätere Abholung können je nach Auftrag und Standort
+          mit angeboten werden. Die Kosten hängen von Entfernung, Menge, Zeitfenster und Aufwand ab.
+        </p>
+      </details>
 
-                <details>
-                  <summary>Gibt es eine Kaution?</summary>
-                  <p>Bei bestimmten Artikeln kann eine Kaution anfallen. Die genaue Höhe wird im Angebot transparent ausgewiesen.</p>
-                </details>
+      <details>
+        <summary>
+          <span>Kann ich eure Produktionsküche mieten?</span>
+          <strong>+</strong>
+        </summary>
+        <p>
+          Ja. Die Produktionsküche kann stundenweise oder tageweise angefragt werden.
+          Sie eignet sich für Vorbereitung, Produktion, Catering, Pop-ups, Food-Startups
+          oder größere Eventmengen.
+        </p>
+      </details>
 
-                <details>
-                  <summary>Liefert ihr auch außerhalb von Berlin?</summary>
-                  <p>Ja, nach Absprache liefern wir auch nach Brandenburg und Umgebung. Die Lieferkosten hängen von Entfernung und Aufwand ab.</p>
-                </details>
+      <details>
+        <summary>
+          <span>Bietet ihr auch Catering an?</span>
+          <strong>+</strong>
+        </summary>
+        <p>
+          Auf Wunsch koordinieren wir passende Catering-Lösungen. Besonders sinnvoll ist das,
+          wenn Equipment, Speisen, Lieferung und Aufbau gemeinsam geplant werden sollen.
+        </p>
+      </details>
 
-                <details>
-                  <summary>Kann ich kurzfristig anfragen?</summary>
-                  <p>Kurzfristige Anfragen sind möglich. Ob es klappt, hängt von Verfügbarkeit, Menge und Lieferaufwand ab.</p>
-                </details>
-              </div>
-            </div>
-          </section>
+      <details>
+        <summary>
+          <span>Gibt es eine Kaution?</span>
+          <strong>+</strong>
+        </summary>
+        <p>
+          Je nach Artikel, Menge und Mietdauer kann eine Kaution anfallen. Das wird im Angebot
+          transparent aufgeführt, damit du vorher weißt, welche Kosten entstehen.
+        </p>
+      </details>
 
-          <section class="final-cta">
+      <details>
+        <summary>
+          <span>Kann ich kurzfristig anfragen?</span>
+          <strong>+</strong>
+        </summary>
+        <p>
+          Ja, kurzfristige Anfragen sind möglich. Je früher du anfragst, desto besser können wir
+          Verfügbarkeit, Lieferung und mögliche Zusatzleistungen einplanen.
+        </p>
+      </details>
+    </div>
+  </div>
+</section>
+<section class="final-cta">
             <div class="wide-inner final-cta-inner">
               <div>
                 <div class="section-kicker">Anfrage</div>
@@ -341,6 +385,7 @@ export function renderHomePage({ products = [] }) {
     </html>
   `;
 }
+
 
 
 
