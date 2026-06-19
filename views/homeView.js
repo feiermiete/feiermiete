@@ -250,6 +250,135 @@ export function renderHomePage({ products = [] }) {
               <a class="button primary" href="/anfrage">Jetzt Anfrage senden</a>
             </div>
           </section>
+
+          <section class="fm-detail-section">
+            <div class="wide-inner fm-detail-grid">
+              <div>
+                <div class="small-red">Für welche Events?</div>
+                <h2>Von der kleinen Gartenfeier bis zum Firmenevent.</h2>
+                <p>
+                  Feiermiete ist für alle gedacht, die nicht nur einen einzelnen Artikel suchen,
+                  sondern eine praktische Lösung für ihr Event brauchen. Du kannst einzelne Mietartikel
+                  anfragen oder mehrere Leistungen miteinander kombinieren.
+                </p>
+              </div>
+
+              <div class="fm-detail-list">
+                <div>
+                  <strong>Private Feiern</strong>
+                  <span>Geburtstage, Gartenfeiern, Hochzeiten, Einschulungen und Familienfeiern.</span>
+                </div>
+                <div>
+                  <strong>Firmenevents</strong>
+                  <span>Sommerfeste, Teamevents, Empfänge, Business-Lunches und Firmenbuffets.</span>
+                </div>
+                <div>
+                  <strong>Catering & Buffet</strong>
+                  <span>Chafing Dishes, Geschirr, Buffet-Tische, Getränkespender und Warmhaltung.</span>
+                </div>
+                <div>
+                  <strong>Produktion & Küche</strong>
+                  <span>Produktionsküche für Vorbereitung, Pop-ups, Caterer und größere Mengen.</span>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="fm-package-section">
+            <div class="wide-inner">
+              <div class="fm-section-center">
+                <div class="small-red">Pakete statt Chaos</div>
+                <h2>Du sagst uns, was du planst. Wir denken mit.</h2>
+                <p>
+                  Statt blind online zu bezahlen, erhältst du ein Angebot, das wirklich zu deinem Event passt:
+                  mit Mietdauer, Lieferung, Aufbau, Kaution, Rückgabe und passenden Zusatzleistungen.
+                </p>
+              </div>
+
+              <div class="fm-package-grid">
+                <article>
+                  <strong>Basic</strong>
+                  <h3>Nur Equipment</h3>
+                  <p>Für Selbstabholer oder einfache Events mit klaren Artikeln.</p>
+                  <ul>
+                    <li>Einzelartikel</li>
+                    <li>Mietdauer nach Absprache</li>
+                    <li>Kaution je nach Artikel</li>
+                  </ul>
+                </article>
+
+                <article>
+                  <strong>Plus</strong>
+                  <h3>Equipment mit Lieferung</h3>
+                  <p>Für Events, bei denen Artikel geliefert und später abgeholt werden sollen.</p>
+                  <ul>
+                    <li>Lieferung möglich</li>
+                    <li>Aufbau nach Absprache</li>
+                    <li>Rückgabe organisiert</li>
+                  </ul>
+                </article>
+
+                <article>
+                  <strong>Komplett</strong>
+                  <h3>Eventlösung</h3>
+                  <p>Für Feiern mit Equipment, Küche, Catering-Koordination und Service.</p>
+                  <ul>
+                    <li>Alles aus einer Hand</li>
+                    <li>individuelles Angebot</li>
+                    <li>ein Ansprechpartner</li>
+                  </ul>
+                </article>
+              </div>
+            </div>
+          </section>
+
+          <section class="fm-faq-section">
+            <div class="wide-inner fm-faq-grid">
+              <div>
+                <div class="small-red">Fragen & Antworten</div>
+                <h2>Gut zu wissen.</h2>
+                <p>
+                  Die wichtigsten Antworten zu Equipment, Küche, Catering, Lieferung, Aufbau und Kaution.
+                </p>
+              </div>
+
+              <div class="fm-faq-list">
+                <details>
+                  <summary>Kann ich einzelne Artikel mieten?</summary>
+                  <p>Ja. Du kannst einzelne Artikel wie Stehtische, Pavillons, Chafing Dishes, Geschirr oder Getränkespender anfragen.</p>
+                </details>
+
+                <details>
+                  <summary>Bietet ihr Lieferung und Aufbau an?</summary>
+                  <p>Ja. Lieferung, Aufbau und Abholung können je nach Standort, Menge und Zeitfenster angeboten werden.</p>
+                </details>
+
+                <details>
+                  <summary>Kann ich die Produktionsküche mieten?</summary>
+                  <p>Ja. Die Küche kann stundenweise oder tageweise für Vorbereitung, Produktion oder Eventabwicklung angefragt werden.</p>
+                </details>
+
+                <details>
+                  <summary>Warum keine direkte Onlinezahlung?</summary>
+                  <p>Weil Verfügbarkeit, Mietdauer, Lieferort, Aufbau, Kaution und Rückgabe vorher geprüft werden müssen.</p>
+                </details>
+              </div>
+            </div>
+          </section>
+
+          <section class="fm-final-cta">
+            <div class="wide-inner fm-final-grid">
+              <div>
+                <div class="small-red">Anfrage</div>
+                <h2>Du planst eine Feier?</h2>
+                <p>
+                  Schreib uns Datum, Ort, Personenanzahl und was du brauchst.
+                  Wir melden uns mit einer passenden Empfehlung und einem Angebot.
+                </p>
+              </div>
+              <a class="button primary" href="/anfrage">Jetzt Anfrage senden</a>
+            </div>
+          </section>
         </main>
 
         ${renderFooter()}
@@ -257,3 +386,4 @@ export function renderHomePage({ products = [] }) {
     </html>
   `;
 }
+
