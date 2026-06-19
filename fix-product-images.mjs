@@ -1,40 +1,24 @@
 ﻿import { prisma } from "./lib/prisma.js";
 
-await prisma.product.updateMany({
-  where: { name: { contains: "Buffet" } },
-  data: { imageUrl: "/public/images/equipment-clean.svg" }
-});
+async function setImage(nameContains, imageUrl) {
+  const result = await prisma.product.updateMany({
+    where: { name: { contains: nameContains } },
+    data: { imageUrl }
+  });
 
-await prisma.product.updateMany({
-  where: { name: { contains: "Geschirr" } },
-  data: { imageUrl: "/public/images/tableware-clean.svg" }
-});
+  console.log(nameContains, "=>", imageUrl, "| geändert:", result.count);
+}
 
-await prisma.product.updateMany({
-  where: { name: { contains: "Besteck" } },
-  data: { imageUrl: "/public/images/tableware-clean.svg" }
-});
-
-await prisma.product.updateMany({
-  where: { name: { contains: "Glühwein" } },
-  data: { imageUrl: "/public/images/drinks-clean.svg" }
-});
-
-await prisma.product.updateMany({
-  where: { name: { contains: "Getränkespender" } },
-  data: { imageUrl: "/public/images/drinks-clean.svg" }
-});
-
-await prisma.product.updateMany({
-  where: { name: { contains: "Chafing" } },
-  data: { imageUrl: "/public/images/buffet-clean.svg" }
-});
-
-await prisma.product.updateMany({
-  where: { name: { contains: "Stehtisch" } },
-  data: { imageUrl: "/public/images/equipment-clean.svg" }
-});
+await setImage("Buffet-Tisch", "/public/images/buffet-table.jpg");
+await setImage("Geschirr", "/public/images/cutlery-set.jpg");
+await setImage("Besteck", "/public/images/cutlery-set.jpg");
+await setImage("Glühwein", "/public/images/hot-drink-dispenser.jpg");
+await setImage("Getränkespender", "/public/images/drinks-dispenser.jpg");
+await setImage("Chafing", "/public/images/catering-photo.jpg");
+await setImage("Bierzelt", "/public/images/hero-event.jpg");
+await setImage("Stehtisch", "/public/images/service-photo.jpg");
+await setImage("Pavillon", "/public/images/equipment-photo.jpg");
 
 await prisma.$disconnect();
 
-console.log("Falsche Produktbilder ersetzt.");
+console.log("Produktbilder wurden neu zugeordnet.");
