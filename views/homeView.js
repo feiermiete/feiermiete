@@ -178,8 +178,8 @@ export function renderHomePage({ products = [] }) {
               <img src="/public/images/kitchen-photo.jpg" alt="Küche" />
               <div>
                 <span>02 Küche</span>
-                <h3>Produktionsküche nutzen</h3>
-                <p>Professionelle Küche stundenweise oder tageweise mieten.</p>
+                <h3>Gastro-Küche mieten</h3>
+                <p>Professionell ausgestattete Gastro-Küche für Caterer, Vorproduktion, Pop-ups, Food-Start-ups und größere Produktionen.</p>
               </div>
             </article>
 
@@ -278,7 +278,7 @@ export function renderHomePage({ products = [] }) {
                 </div>
                 <div>
                   <strong>Produktion & Küche</strong>
-                  <span>Produktionsküche für Vorbereitung, Pop-ups, Caterer und größere Mengen.</span>
+                  <span>Gastro-Küche für Vorbereitung, Produktion, Catering, Pop-ups und größere Mengen.</span>
                 </div>
               </div>
             </div>
@@ -386,6 +386,7 @@ export function renderHomePage({ products = [] }) {
     </html>
   `;
 }
+
 
 
 
