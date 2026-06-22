@@ -206,7 +206,7 @@ export function renderAdminInquiryDetail(inquiry, options = {}) {
         </div>
 
         <div class="form-row full">
-          <label>Interne Notiz</label>
+          <label>Interne Notiz (nicht im Vertrag sichtbar)</label>
           <textarea name="adminNote" rows="6">${safe(inquiry.adminNote)}</textarea>
         </div>
       </div>
