@@ -724,9 +724,43 @@ export function renderAdminInquiryDetail(inquiry) {
     </section>
 
     <form class="admin-card admin-form" method="POST" action="/admin/inquiries/${inquiry.id}/update">
-      <h2>Kalkulation & Bearbeitung</h2>
+      <h2>Kundendaten bearbeiten</h2>
 
-      <div class="form-grid">
+<div class="form-grid">
+  <div class="form-row">
+    <label>Name / Ansprechpartner</label>
+    <input name="customerName" value="${safe(inquiry.customerName)}" required />
+  </div>
+
+  <div class="form-row">
+    <label>Firma</label>
+    <input name="companyName" value="${safe(inquiry.companyName)}" />
+  </div>
+
+  <div class="form-row">
+    <label>E-Mail</label>
+    <input name="email" type="email" value="${safe(inquiry.email)}" required />
+  </div>
+
+  <div class="form-row">
+    <label>Telefon</label>
+    <input name="phone" value="${safe(inquiry.phone)}" />
+  </div>
+
+  <div class="form-row">
+    <label>Eventdatum</label>
+    <input name="eventDate" type="date" value="${inquiry.eventDate ? new Date(inquiry.eventDate).toISOString().slice(0, 10) : ""}" />
+  </div>
+
+  <div class="form-row">
+    <label>Ort / Lieferadresse</label>
+    <input name="deliveryAddress" value="${safe(inquiry.deliveryAddress)}" />
+  </div>
+</div>
+
+<h2>Kalkulation & Bearbeitung</h2>
+
+<div class="form-grid">
         <div class="form-row">
           <label>Status</label>
           <select name="status">

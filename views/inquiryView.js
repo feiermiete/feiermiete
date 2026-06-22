@@ -87,18 +87,18 @@
                 </div>
 
                 <div class="form-row">
-                  <label>Telefon</label>
+                  <label>Telefon *</label>
                   <input name="phone" placeholder="Telefonnummer" required />
                 </div>
 
                 <div class="form-row">
-                  <label>Eventdatum</label>
+                  <label>Eventdatum *</label>
                   <input name="eventDate" placeholder="z. B. 24.08.2026" />
                 </div>
 
                 <div class="form-row">
-                  <label>Ort / Lieferadresse</label>
-                  <input name="location" required placeholder="z. B. Berlin, Brandenburg oder genaue Adresse" />
+                  <label>Ort / Lieferadresse *</label>
+                  <input name="location" required required placeholder="z. B. Berlin, Brandenburg oder genaue Adresse" />
                 </div>
 
                 <div class="form-row">
@@ -140,8 +140,8 @@
                 </div>
 
                 <div class="form-row">
-                  <label>Nachricht</label>
-                  <textarea name="message" required rows="6" placeholder="Was brauchst du? Mietdauer, Uhrzeit, Ausstattung, Küche, Catering, Aufbau, Besonderheiten usw."></textarea>
+                  <label>Nachricht *</label>
+                  <textarea name="message" required required rows="6" placeholder="Was brauchst du? Mietdauer, Uhrzeit, Ausstattung, Küche, Catering, Aufbau, Besonderheiten usw."></textarea>
                 </div>
 
                 <button class="button primary" type="submit">Anfrage senden</button>
