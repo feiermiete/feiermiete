@@ -90,8 +90,17 @@ publicRoutes.post("/anfrage", async (req, res) => {
     guestCount,
     serviceType,
     deliveryNeeded,
-    message
+    message,
+    cartData
   } = req.body;
+
+  let cartItems = [];
+
+  try {
+    cartItems = cartData ? JSON.parse(cartData) : [];
+  } catch {
+    cartItems = [];
+  }
 
   const selectedDetails = [
     product ? `Wunschartikel / Leistung: ${product}` : null,
@@ -101,7 +110,7 @@ publicRoutes.post("/anfrage", async (req, res) => {
     message ? `Nachricht: ${message}` : null
   ].filter(Boolean).join("\n\n");
 
-  await prisma.inquiry.create({
+  const inquiry = await prisma.inquiry.create({
     data: {
       customerName: name,
       companyName: companyName || null,
@@ -113,6 +122,31 @@ publicRoutes.post("/anfrage", async (req, res) => {
       status: "NEW"
     }
   });
+
+  for (const item of cartItems) {
+    const productRecord = await prisma.product.findFirst({
+      where: {
+        name: {
+          equals: item.name
+        }
+      }
+    });
+
+    await prisma.inquiryItem.create({
+      data: {
+        inquiryId: inquiry.id,
+        productId: productRecord ? productRecord.id : null,
+        name: item.name || "Artikel",
+        category: item.category || null,
+        quantity: Number(item.quantity || 1),
+        priceText: item.price || null,
+        depositText: item.deposit || null,
+        stockText: item.stock || null,
+        priceCents: productRecord ? productRecord.priceCents : 0,
+        depositCents: productRecord ? productRecord.depositCents : 0
+      }
+    });
+  }
 
   res.redirect("/anfrage?success=1");
 });
@@ -239,3 +273,4 @@ publicRoutes.get("/agb", (req, res) => {
     `
   }));
 });
+

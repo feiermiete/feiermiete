@@ -214,6 +214,17 @@
       </div>
     `;
 
+    let hidden = form.querySelector('input[name="cartData"]');
+
+    if (!hidden) {
+      hidden = document.createElement("input");
+      hidden.type = "hidden";
+      hidden.name = "cartData";
+      form.appendChild(hidden);
+    }
+
+    hidden.value = JSON.stringify(cart);
+
     const cartText = buildCartText();
 
     if (cartText && !textarea.value.includes("Anfragekorb:")) {
@@ -226,5 +237,13 @@
     bindEvents();
     updateFloatingCart();
     renderInquiryCartBox();
+
+    const form = document.querySelector("form");
+    if (form) {
+      form.addEventListener("submit", function () {
+        renderInquiryCartBox();
+      });
+    }
   });
 })();
+
