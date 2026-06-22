@@ -1,5 +1,6 @@
 ﻿import express from "express";
 import { prisma } from "../lib/prisma.js";
+import { sendInquiryNotification } from "../utils/mailjet.js";
 import { renderHomePage } from "../views/homeView.js";
 import { renderInquiryPage } from "../views/inquiryView.js";
 import {
@@ -148,6 +149,17 @@ publicRoutes.post("/anfrage", async (req, res) => {
     });
   }
 
+  try {
+    const savedItems = await prisma.inquiryItem.findMany({
+      where: { inquiryId: inquiry.id },
+      orderBy: { id: "asc" }
+    });
+
+    await sendInquiryNotification(inquiry, savedItems);
+  } catch (mailError) {
+    console.error("Anfrage wurde gespeichert, aber Mailjet-Mail konnte nicht gesendet werden:", mailError);
+  }
+
   res.redirect("/anfrage?success=1");
 });
 
@@ -273,4 +285,6 @@ publicRoutes.get("/agb", (req, res) => {
     `
   }));
 });
+
+
 
