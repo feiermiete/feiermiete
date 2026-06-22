@@ -539,8 +539,11 @@ export function renderInquiryContract(inquiry) {
             <div class="term-box"><strong>Zahlung und Bestätigung</strong>Eine Buchung gilt erst nach schriftlicher Bestätigung durch den Vermieter als verbindlich. Zahlung, Kaution und Fälligkeit richten sich nach der individuellen Vereinbarung.</div>
           </div>
 
-          <h2>7. Besondere Vereinbarung / interne Notiz</h2>
-          <pre>${safe(inquiry.adminNote)}</pre>
+          <h2>7. Besondere Vereinbarungen</h2>
+          <p class="note">
+            Besondere Vereinbarungen wie abweichende Mietdauer, Sonderpreise, Lieferung, Aufbau,
+            Abholung oder Zahlungsbedingungen werden nur wirksam, wenn sie schriftlich best?tigt wurden.
+          </p>
 
           <div class="signatures">
             <div class="signature-line">Ort, Datum / Vermieter<br>Edis Gastrobetriebe GmbH & Co. KG / Feiermiete</div>
