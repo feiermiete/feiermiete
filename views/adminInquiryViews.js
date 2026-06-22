@@ -1,4 +1,3 @@
-import { renderAdminLayout } from "./adminLayout.js";
 ﻿function formatMoney(cents) {
   const value = Number(cents || 0) / 100;
   return value.toLocaleString("de-DE", {
