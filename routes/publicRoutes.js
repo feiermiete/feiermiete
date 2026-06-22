@@ -80,6 +80,7 @@ publicRoutes.get("/anfrage", async (req, res) => {
 });
 
 publicRoutes.post("/anfrage", async (req, res) => {
+  console.log("[INQUIRY] Anfrage POST /anfrage erhalten");
   const {
     name,
     companyName,
@@ -111,6 +112,8 @@ publicRoutes.post("/anfrage", async (req, res) => {
     message ? `Nachricht: ${message}` : null
   ].filter(Boolean).join("\n\n");
 
+  console.log("[INQUIRY] Anfrage wird in Datenbank gespeichert");
+
   const inquiry = await prisma.inquiry.create({
     data: {
       customerName: name,
@@ -123,6 +126,8 @@ publicRoutes.post("/anfrage", async (req, res) => {
       status: "NEW"
     }
   });
+
+  console.log(`[INQUIRY] Anfrage #${inquiry.id} gespeichert. Warenkorb-Positionen: ${cartItems.length}`);
 
   for (const item of cartItems) {
     const productRecord = await prisma.product.findFirst({
@@ -149,6 +154,8 @@ publicRoutes.post("/anfrage", async (req, res) => {
     });
   }
 
+  console.log(`[INQUIRY] Artikelpositionen f?r Anfrage #${inquiry.id} gespeichert. Mailjet wird versucht.`);
+
   try {
     const savedItems = await prisma.inquiryItem.findMany({
       where: { inquiryId: inquiry.id },
@@ -156,10 +163,12 @@ publicRoutes.post("/anfrage", async (req, res) => {
     });
 
     await sendInquiryNotification(inquiry, savedItems);
+    console.log(`[INQUIRY] Mailjet-Mail f?r Anfrage #${inquiry.id} erfolgreich abgeschlossen.`);
   } catch (mailError) {
     console.error("Anfrage wurde gespeichert, aber Mailjet-Mail konnte nicht gesendet werden:", mailError);
   }
 
+  console.log(`[INQUIRY] Anfrage #${inquiry.id} abgeschlossen. Redirect auf Erfolg.`);
   res.redirect("/anfrage?success=1");
 });
 
