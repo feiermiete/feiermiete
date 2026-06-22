@@ -4560,3 +4560,30 @@ body.fm-cart-open .fm-cart-panel {
 .admin-totals-box strong {
   font-size: 22px;
 }
+
+
+/* Anfragekorb oben rechts */
+.floating-cart,
+.cart-floating,
+.inquiry-cart-floating,
+.inquiry-cart-button,
+.cart-summary-floating,
+.anfragekorb-floating {
+  position: fixed !important;
+  right: 34px !important;
+  top: 118px !important;
+  bottom: auto !important;
+  z-index: 9999 !important;
+}
+
+@media (max-width: 768px) {
+  .floating-cart,
+  .cart-floating,
+  .inquiry-cart-floating,
+  .inquiry-cart-button,
+  .cart-summary-floating,
+  .anfragekorb-floating {
+    right: 16px !important;
+    top: 92px !important;
+  }
+}
