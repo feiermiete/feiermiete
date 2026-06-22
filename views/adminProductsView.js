@@ -1,3 +1,4 @@
+import { renderAdminLayout } from "./adminLayout.js";
 ﻿import { renderAdminLayout } from "./adminLayoutView.js";
 
 function formatEuro(cents) {
