@@ -105,9 +105,15 @@
                   <label>Personenanzahl *</label>
                   <input name="guestCount" placeholder="z. B. 40 Personen" required />
                 </div>
+                <div class="form-row">
+                  <label>Mietdauer / Zeitraum *</label>
+                  <input name="rentalDuration" placeholder="z. B. Samstag 12-22 Uhr oder 2 Tage" required />
+                </div>
+
+
 
                 <div class="form-row">
-                  <label>Art der Anfrage</label>
+                  <label>Art der Anfrage *</label>
                   <select name="serviceType" required>
                     <option value="">Bitte auswählen</option>
                     <option value="Equipment mieten">Equipment mieten</option>

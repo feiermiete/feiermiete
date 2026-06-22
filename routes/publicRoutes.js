@@ -90,6 +90,7 @@ publicRoutes.post("/anfrage", async (req, res) => {
     location,
     product,
     guestCount,
+    rentalDuration,
     serviceType,
     deliveryNeeded,
     message,
