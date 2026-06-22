@@ -324,28 +324,24 @@ export function renderAdminInquiries({ inquiries = [] }) {
       ? new Date(inquiry.createdAt).toLocaleString("de-DE")
       : "-";
 
-    return \`
+    return `
       <tr>
         <td>
-          <strong>\${display(inquiry.customerName)}</strong><br>
-          <span class="muted">\${display(inquiry.email)}</span><br>
-          <span class="muted">\${display(inquiry.phone)}</span>
+          <strong>${display(inquiry.customerName)}</strong><br>
+          <span class="muted">${display(inquiry.email)}</span><br>
+          <span class="muted">${display(inquiry.phone)}</span>
         </td>
-        <td>\${inquiry.eventDate ? new Date(inquiry.eventDate).toLocaleDateString("de-DE") : "-"}</td>
-        <td>\${display(inquiry.deliveryAddress)}</td>
-        <td class="message-box">\${display(inquiry.message)}</td>
-        <td>\${date}</td>
-        <td class="actions-cell">
-          <a class="small-button" href="/admin/inquiries/\${inquiry.id}">?ffnen</a>
-          <a class="small-button secondary" href="/admin/inquiries/\${inquiry.id}/contract" target="_blank">Vertrag</a>
-        </td>
+        <td>${inquiry.eventDate ? new Date(inquiry.eventDate).toLocaleDateString("de-DE") : "-"}</td>
+        <td>${display(inquiry.deliveryAddress)}</td>
+        <td class="message-box">${display(inquiry.message)}</td>
+        <td>${date}</td>
       </tr>
-    \`;
+    `;
   }).join("");
 
   return renderAdminLayout({
     title: "Anfragen",
-    content: \`
+    content: `
       <div class="topbar">
         <div>
           <h1>Anfragen</h1>
@@ -367,10 +363,10 @@ export function renderAdminInquiries({ inquiries = [] }) {
             </tr>
           </thead>
           <tbody>
-            \${rows || \`<tr><td colspan="6">Noch keine Anfragen vorhanden.</td></tr>\`}
+            ${rows || `<tr><td colspan="6">Noch keine Anfragen vorhanden.</td></tr>`}
           </tbody>
         </table>
       </div>
-    \`
+    `
   });
 }
