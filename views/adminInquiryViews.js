@@ -230,121 +230,218 @@ export function renderInquiryContract(inquiry) {
   const totalWithDeposit = rentalTotal + deliveryFee + depositTotal;
 
   const today = new Date().toLocaleDateString("de-DE");
+  const contractNumber = inquiry.contractNumber || `FM-${String(inquiry.id).padStart(5, "0")}`;
 
   return `
     <!doctype html>
     <html lang="de">
       <head>
         <meta charset="utf-8" />
-        <title>Mietvertrag Anfrage ${inquiry.id}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Mietvertrag ${contractNumber}</title>
         <style>
           * { box-sizing: border-box; }
 
           body {
-            font-family: Arial, sans-serif;
-            color: #111;
             margin: 0;
-            padding: 40px;
+            background: #ece7df;
+            color: #151515;
+            font-family: Arial, Helvetica, sans-serif;
             line-height: 1.5;
-            background: #fff;
           }
 
           .print-button {
             position: fixed;
-            top: 20px;
-            right: 20px;
+            top: 22px;
+            right: 22px;
+            z-index: 10;
             background: #d40016;
             color: #fff;
             border: 0;
-            padding: 14px 22px;
+            border-radius: 999px;
+            padding: 13px 22px;
             font-weight: 800;
             cursor: pointer;
+            box-shadow: 0 12px 26px rgba(0,0,0,.18);
           }
 
-          .top {
-            display: flex;
-            justify-content: space-between;
-            gap: 40px;
+          .page {
+            max-width: 1040px;
+            margin: 34px auto;
+            background: #fff;
+            padding: 48px;
+            box-shadow: 0 22px 70px rgba(0,0,0,.12);
+          }
+
+          .contract-top {
+            display: grid;
+            grid-template-columns: 1.2fr .8fr;
+            gap: 36px;
+            align-items: start;
             border-bottom: 4px solid #111;
-            padding-bottom: 24px;
-            margin-bottom: 34px;
+            padding-bottom: 26px;
+            margin-bottom: 30px;
           }
 
           .brand {
             color: #d40016;
             font-weight: 900;
-            font-size: 34px;
+            font-size: 36px;
+            letter-spacing: -1px;
             line-height: 1;
           }
 
-          .sub {
+          .brand-sub {
+            margin-top: 8px;
             text-transform: uppercase;
             letter-spacing: .18em;
             font-size: 11px;
-            margin-top: 6px;
+            color: #555;
+            font-weight: 700;
           }
 
-          h1 { font-size: 34px; margin: 0 0 8px; }
+          .meta-box {
+            border: 1px solid #ded8cf;
+            background: #f8f5f0;
+            padding: 18px;
+            font-size: 14px;
+          }
+
+          .meta-box strong {
+            display: inline-block;
+            min-width: 120px;
+          }
+
+          h1 {
+            font-size: 34px;
+            margin: 0 0 10px;
+            letter-spacing: -1px;
+          }
+
+          .intro {
+            margin: 0 0 24px;
+            color: #333;
+            max-width: 850px;
+          }
+
+          .badge {
+            display: inline-block;
+            background: #111;
+            color: #fff;
+            padding: 6px 10px;
+            border-radius: 999px;
+            font-size: 12px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: .08em;
+          }
 
           h2 {
-            font-size: 20px;
-            margin-top: 34px;
-            border-bottom: 2px solid #111;
+            font-size: 19px;
+            margin: 34px 0 12px;
             padding-bottom: 8px;
+            border-bottom: 2px solid #111;
           }
 
           table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 14px;
+            margin-top: 10px;
           }
 
           th, td {
-            border: 1px solid #ddd;
+            border: 1px solid #ded8cf;
             padding: 11px;
             vertical-align: top;
+            font-size: 14px;
           }
 
           th {
             background: #f4f1ec;
             text-align: left;
+            font-weight: 800;
+          }
+
+          .two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 22px;
+          }
+
+          .summary-table .total-row td {
+            background: #111;
+            color: #fff;
+            font-weight: 900;
+          }
+
+          .summary-table .deposit-row td {
+            background: #f8f5f0;
+            font-weight: 800;
+          }
+
+          .note {
+            background: #fff4f4;
+            border-left: 5px solid #d40016;
+            padding: 15px 18px;
+            margin-top: 16px;
+            font-size: 14px;
+          }
+
+          .terms {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+          }
+
+          .term-box {
+            border: 1px solid #ded8cf;
+            background: #faf8f4;
+            padding: 15px;
+            min-height: 110px;
+          }
+
+          .term-box strong {
+            display: block;
+            margin-bottom: 6px;
           }
 
           pre {
             white-space: pre-wrap;
-            font-family: Arial, sans-serif;
-            background: #f7f3ee;
-            padding: 16px;
-            border: 1px solid #e8e1d8;
-          }
-
-          .note {
-            background: #f7f3ee;
-            padding: 16px;
-            border-left: 4px solid #d40016;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f8f5f0;
+            border: 1px solid #ded8cf;
+            padding: 14px;
+            min-height: 70px;
           }
 
           .signatures {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 60px;
+            gap: 70px;
             margin-top: 70px;
           }
 
-          .line {
+          .signature-line {
             border-top: 1px solid #111;
-            padding-top: 8px;
-            min-height: 60px;
+            padding-top: 10px;
+            min-height: 70px;
+            font-size: 14px;
           }
 
-          .small {
-            color: #555;
-            font-size: 13px;
+          .footer-note {
+            margin-top: 32px;
+            color: #666;
+            font-size: 12px;
+            border-top: 1px solid #ded8cf;
+            padding-top: 14px;
           }
 
           @media print {
-            body { padding: 22px; }
+            body { background: #fff; }
+            .page { box-shadow: none; margin: 0; max-width: none; padding: 22px; }
             .print-button { display: none; }
+            h2 { break-after: avoid; }
+            table, .term-box { break-inside: avoid; }
           }
         </style>
       </head>
@@ -352,99 +449,112 @@ export function renderInquiryContract(inquiry) {
       <body>
         <button class="print-button" onclick="window.print()">Drucken / PDF speichern</button>
 
-        <div class="top">
-          <div>
-            <div class="brand">Feiermiete</div>
-            <div class="sub">Equipment für Feiern & Events</div>
+        <main class="page">
+          <section class="contract-top">
+            <div>
+              <div class="brand">Feiermiete</div>
+              <div class="brand-sub">Equipment für Feiern & Events</div>
+            </div>
+
+            <div class="meta-box">
+              <div><strong>Dokument:</strong> Mietvertrag / Auftragsbestätigung</div>
+              <div><strong>Vertrags-Nr.:</strong> ${contractNumber}</div>
+              <div><strong>Anfrage-Nr.:</strong> ${inquiry.id}</div>
+              <div><strong>Erstellt am:</strong> ${today}</div>
+              <div><strong>Status:</strong> ${safe(inquiry.status || "NEW")}</div>
+            </div>
+          </section>
+
+          <h1>Mietvertrag für Event-Equipment</h1>
+          <p class="intro">
+            Dieser Vertrag regelt die Vermietung von Event-Equipment, Zubehör und optionalen Serviceleistungen.
+            Die Buchung wird erst verbindlich, wenn sie durch den Vermieter schriftlich bestätigt wurde.
+          </p>
+
+          <p><span class="badge">Entwurf / Vertragsansicht</span></p>
+
+          <div class="two-col">
+            <section>
+              <h2>1. Vermieter</h2>
+              <table>
+                <tr><th>Firma</th><td>Edis Gastrobetriebe GmbH & Co. KG / Feiermiete</td></tr>
+                <tr><th>Adresse</th><td>Goerzallee 299, 14167 Berlin</td></tr>
+                <tr><th>E-Mail</th><td>info@feiermiete.de</td></tr>
+                <tr><th>Leistung</th><td>Vermietung von Event-Equipment, Gastro-Küche, Catering-Koordination und Eventservice</td></tr>
+              </table>
+            </section>
+
+            <section>
+              <h2>2. Mieter / Kunde</h2>
+              <table>
+                <tr><th>Name</th><td>${safe(inquiry.customerName)}</td></tr>
+                <tr><th>Firma</th><td>${safe(inquiry.companyName)}</td></tr>
+                <tr><th>E-Mail</th><td>${safe(inquiry.email)}</td></tr>
+                <tr><th>Telefon</th><td>${safe(inquiry.phone)}</td></tr>
+                <tr><th>Eventdatum</th><td>${formatDate(inquiry.eventDate)}</td></tr>
+                <tr><th>Ort / Lieferadresse</th><td>${safe(inquiry.deliveryAddress)}</td></tr>
+              </table>
+            </section>
           </div>
 
-          <div>
-            <strong>Mietvertrag / Auftragsbestätigung</strong><br>
-            Anfrage-Nr.: ${inquiry.id}<br>
-            Erstellt am: ${today}<br>
-            Status: ${safe(inquiry.status || "NEW")}
+          <h2>3. Mietartikel / Leistungsumfang</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Artikel</th>
+                <th>Kategorie</th>
+                <th>Menge</th>
+                <th>Mietpreis</th>
+                <th>Kaution</th>
+                <th>Summe</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${itemRows(inquiry.items || [])}
+            </tbody>
+          </table>
+
+          <h2>4. Kostenübersicht</h2>
+          <table class="summary-table">
+            <tr><th>Position</th><th>Betrag</th></tr>
+            <tr><td>Mietpreis gesamt</td><td>${formatMoney(rentalTotal)}</td></tr>
+            <tr><td>Lieferung / Aufbau / Abholung</td><td>${formatMoney(deliveryFee)}</td></tr>
+            <tr><td>Zwischensumme ohne Kaution</td><td><strong>${formatMoney(totalWithoutDeposit)}</strong></td></tr>
+            <tr class="deposit-row"><td>Kaution gesamt</td><td>${formatMoney(depositTotal)}</td></tr>
+            <tr class="total-row"><td>Gesamt inkl. Kaution</td><td>${formatMoney(totalWithDeposit)}</td></tr>
+          </table>
+
+          <p class="note">
+            Die Kaution dient als Sicherheit für beschädigte, fehlende oder stark verschmutzte Mietartikel.
+            Nach vollständiger und ordnungsgemäßer Rückgabe wird die Kaution zurückgezahlt oder mit offenen Forderungen verrechnet.
+          </p>
+
+          <h2>5. Nachricht / Zusatzangaben</h2>
+          <pre>${safe(inquiry.message)}</pre>
+
+          <h2>6. Mietbedingungen</h2>
+          <div class="terms">
+            <div class="term-box"><strong>Mietdauer und Rückgabe</strong>Die konkrete Mietdauer, Übergabe, Lieferung, Abholung und Rückgabe werden individuell abgestimmt. Der Mieter verpflichtet sich, alle Mietartikel vollständig und pünktlich zurückzugeben.</div>
+            <div class="term-box"><strong>Zustand der Mietartikel</strong>Die Mietartikel sind sorgfältig zu behandeln und im vereinbarten Zustand zurückzugeben. Normale Gebrauchsspuren sind ausgenommen.</div>
+            <div class="term-box"><strong>Beschädigung und Verlust</strong>Beschädigte oder fehlende Artikel können zum Reparaturwert, Wiederbeschaffungswert oder Zeitwert berechnet werden.</div>
+            <div class="term-box"><strong>Reinigung</strong>Stark verschmutzte Artikel können mit zusätzlichen Reinigungskosten berechnet werden. Offene Beträge können mit der Kaution verrechnet werden.</div>
+            <div class="term-box"><strong>Lieferung, Aufbau und Abholung</strong>Lieferung, Aufbau, Abholung und zusätzliche Serviceleistungen erfolgen nur, wenn sie vereinbart oder im Angebot enthalten sind.</div>
+            <div class="term-box"><strong>Zahlung und Bestätigung</strong>Eine Buchung gilt erst nach schriftlicher Bestätigung durch den Vermieter als verbindlich. Zahlung, Kaution und Fälligkeit richten sich nach der individuellen Vereinbarung.</div>
           </div>
-        </div>
 
-        <h1>Mietvertrag</h1>
-        <p>
-          Dieser Vertrag regelt die Vermietung von Event-Equipment, Zubehör und optionalen Serviceleistungen.
-          Die Buchung wird verbindlich, sobald sie durch den Vermieter bestätigt wurde.
-        </p>
+          <h2>7. Besondere Vereinbarung / interne Notiz</h2>
+          <pre>${safe(inquiry.adminNote)}</pre>
 
-        <h2>1. Vermieter</h2>
-        <table>
-          <tr><th>Firma</th><td>Edis Gastrobetriebe GmbH & Co. KG / Feiermiete</td></tr>
-          <tr><th>Adresse</th><td>Goerzallee 299, 14167 Berlin</td></tr>
-          <tr><th>Leistung</th><td>Vermietung von Event-Equipment, Gastro-Küche, Catering-Koordination und Eventservice</td></tr>
-        </table>
+          <div class="signatures">
+            <div class="signature-line">Ort, Datum / Vermieter<br>Edis Gastrobetriebe GmbH & Co. KG / Feiermiete</div>
+            <div class="signature-line">Ort, Datum / Mieter</div>
+          </div>
 
-        <h2>2. Mieter / Kunde</h2>
-        <table>
-          <tr><th>Name</th><td>${safe(inquiry.customerName)}</td></tr>
-          <tr><th>Firma</th><td>${safe(inquiry.companyName)}</td></tr>
-          <tr><th>E-Mail</th><td>${safe(inquiry.email)}</td></tr>
-          <tr><th>Telefon</th><td>${safe(inquiry.phone)}</td></tr>
-          <tr><th>Eventdatum</th><td>${formatDate(inquiry.eventDate)}</td></tr>
-          <tr><th>Ort / Lieferadresse</th><td>${safe(inquiry.deliveryAddress)}</td></tr>
-        </table>
-
-        <h2>3. Mietartikel / Leistungsumfang</h2>
-        <table>
-          <thead>
-            <tr>
-              <th>Artikel</th>
-              <th>Kategorie</th>
-              <th>Menge</th>
-              <th>Mietpreis</th>
-              <th>Kaution</th>
-              <th>Summe</th>
-            </tr>
-          </thead>
-          <tbody>
-            ${itemRows(inquiry.items || [])}
-          </tbody>
-        </table>
-
-        <h2>4. Nachricht / Zusatzangaben</h2>
-        <pre>${safe(inquiry.message)}</pre>
-
-        <h2>5. Kostenübersicht</h2>
-        <table>
-          <tr><th>Position</th><th>Betrag</th></tr>
-          <tr><td>Mietpreis gesamt</td><td>${formatMoney(rentalTotal)}</td></tr>
-          <tr><td>Lieferung / Aufbau / Abholung</td><td>${formatMoney(deliveryFee)}</td></tr>
-          <tr><td>Zwischensumme ohne Kaution</td><td><strong>${formatMoney(totalWithoutDeposit)}</strong></td></tr>
-          <tr><td>Kaution</td><td>${formatMoney(depositTotal)}</td></tr>
-          <tr><td>Gesamt inkl. Kaution</td><td><strong>${formatMoney(totalWithDeposit)}</strong></td></tr>
-        </table>
-
-        <p class="note">
-          Die Kaution dient als Sicherheit für beschädigte, fehlende oder stark verschmutzte Mietartikel.
-          Nach vollständiger und ordnungsgemäßer Rückgabe wird die Kaution zurückgezahlt oder verrechnet.
-        </p>
-
-        <h2>6. Mietdauer, Übergabe und Rückgabe</h2>
-        <p>Die konkrete Mietdauer, Übergabe, Lieferung, Abholung und Rückgabe werden individuell abgestimmt.</p>
-        <p>Der Mieter verpflichtet sich, die Mietartikel vollständig, sauber und im vereinbarten Zustand zurückzugeben.</p>
-
-        <h2>7. Beschädigung, Verlust und Reinigung</h2>
-        <p>Beschädigte oder fehlende Artikel können zum Wiederbeschaffungswert oder Reparaturwert berechnet werden.</p>
-        <p>Stark verschmutzte Artikel können mit zusätzlichen Reinigungskosten berechnet werden.</p>
-        <p>Der Vermieter ist berechtigt, offene Beträge mit der Kaution zu verrechnen.</p>
-
-        <h2>8. Zahlung und Bestätigung</h2>
-        <p>Die Zahlung erfolgt nach individueller Vereinbarung. Eine Buchung gilt erst nach schriftlicher Bestätigung durch den Vermieter als verbindlich.</p>
-
-        <h2>9. Interne Notiz / besondere Vereinbarung</h2>
-        <pre>${safe(inquiry.adminNote)}</pre>
-
-        <div class="signatures">
-          <div class="line">Ort, Datum / Vermieter</div>
-          <div class="line">Ort, Datum / Mieter</div>
-        </div>
-
-        <p class="small">Hinweis: Diese Vertragsansicht kann über den Browser als PDF gespeichert werden.</p>
+          <p class="footer-note">
+            Hinweis: Diese Vertragsansicht ist eine Arbeits- und Druckansicht. Rechtliche Formulierungen sollten bei Bedarf juristisch geprüft werden.
+            Die Datei kann über den Browser mit „Drucken / PDF speichern“ als PDF gespeichert werden.
+          </p>
+        </main>
       </body>
     </html>
   `;

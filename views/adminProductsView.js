@@ -14,6 +14,47 @@ function formatEuroDisplay(cents) {
   });
 }
 
+
+function renderImageLibraryOptions(selectedValue = "") {
+  const images = [
+    "/public/images/gluehweinbehaelter.jpg",
+    "/public/images/stehtisch.jpg",
+    "/public/images/bierzeltgarnitur.jpg",
+    "/public/images/pavillon-6x3.jpg",
+    "/public/images/buffet-table.jpg",
+    "/public/images/chafing-dish.jpg",
+    "/public/images/drinks-dispenser.jpg",
+    "/public/images/getraenkespender.jpg",
+    "/public/images/cutlery-set.jpg",
+    "/public/images/hot-drink-dispenser.jpg",
+    "/public/images/table-photo.jpg",
+    "/public/images/equipment-photo.jpg",
+    "/public/images/photo-coming-soon.jpg"
+  ];
+
+  return images.map((imagePath) => {
+    const label = imagePath.replace("/public/images/", "");
+    return `<option value="${imagePath}" ${selectedValue === imagePath ? "selected" : ""}>${label}</option>`;
+  }).join("");
+}
+
+function renderImagePickerScript() {
+  return `
+    <script>
+      document.addEventListener("change", function(event) {
+        if (!event.target.matches("[data-image-library-select]")) return;
+
+        const form = event.target.closest("form");
+        const input = form ? form.querySelector('input[name="imageUrl"]') : null;
+
+        if (input && event.target.value) {
+          input.value = event.target.value;
+        }
+      });
+    </script>
+  `;
+}
+
 function renderCategoryOptions(categories = [], selectedCategoryId = null) {
   return categories.map((category) => {
     const selected = Number(selectedCategoryId) === Number(category.id) ? "selected" : "";
@@ -230,6 +271,14 @@ export function renderNewProductForm({ categories = [] }) {
               <input name="imageUrl" placeholder="z. B. /public/images/equipment/stehtisch.jpg" />
             </div>
 
+            <div class="form-row">
+              <label>Bild aus Mediathek ausw?hlen</label>
+              <select data-image-library-select onchange="this.closest('form').querySelector('input[name=imageUrl]').value=this.value">
+                <option value="">Bitte ausw?hlen</option>
+                ${renderImageLibraryOptions()}
+              </select>
+            </div>
+
             <div class="form-row full">
               <label>Beschreibung</label>
               <textarea name="description" rows="5" placeholder="Kurze Beschreibung für Kunden"></textarea>
@@ -298,6 +347,22 @@ export function renderEditProductForm({ product, categories = [] }) {
               <input name="imageUrl" value="${product.imageUrl || ""}" />
             </div>
 
+            <div class="form-row">
+              <label>Bild aus Mediathek ausw?hlen</label>
+              <select data-image-library-select onchange="this.closest('form').querySelector('input[name=imageUrl]').value=this.value">
+                <option value="">Bitte ausw?hlen</option>
+                ${renderImageLibraryOptions(product.imageUrl || "")}
+              </select>
+            </div>
+
+            ${product.imageUrl ? `
+              <div class="form-row full">
+                <label>Aktuelle Bildvorschau</label>
+                <img src="${product.imageUrl}" alt="${product.name || "Produktbild"}" style="max-width:260px;border-radius:14px;border:1px solid #ddd;" />
+              </div>
+            ` : ""}
+            </div>
+
             <div class="form-row full">
               <label>Beschreibung</label>
               <textarea name="description" rows="5">${product.description || ""}</textarea>
@@ -336,7 +401,7 @@ export function renderAdminInquiries({ inquiries = [] }) {
         <td class="message-box">${display(inquiry.message)}</td>
         <td>${date}</td>
         <td class="actions-cell">
-          <a class="small-button" href="/admin/inquiries/${inquiry.id}">?ffnen</a>
+          <a class="small-button" href="/admin/inquiries/${inquiry.id}">&Ouml;ffnen</a>
           <a class="small-button secondary" href="/admin/inquiries/${inquiry.id}/contract" target="_blank">Vertrag</a>
         </td>
       </tr>
