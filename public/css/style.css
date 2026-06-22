@@ -4506,3 +4506,57 @@ body.fm-cart-open .fm-cart-panel {
     grid-row: auto;
   }
 }
+
+/* ADMIN INQUIRY ITEMS */
+.admin-table-wrap {
+  overflow-x: auto;
+}
+
+.admin-items-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 16px;
+}
+
+.admin-items-table th,
+.admin-items-table td {
+  border-bottom: 1px solid #eee;
+  padding: 14px 12px;
+  text-align: left;
+  vertical-align: top;
+}
+
+.admin-items-table th {
+  background: #f7f3ee;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+}
+
+.admin-totals-box {
+  display: flex;
+  gap: 18px;
+  margin-top: 18px;
+  flex-wrap: wrap;
+}
+
+.admin-totals-box div {
+  background: #f7f3ee;
+  border: 1px solid #e8e2d8;
+  padding: 16px 20px;
+  min-width: 220px;
+}
+
+.admin-totals-box span {
+  display: block;
+  color: #777;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  margin-bottom: 5px;
+}
+
+.admin-totals-box strong {
+  font-size: 22px;
+}

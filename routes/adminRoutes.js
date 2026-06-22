@@ -180,7 +180,10 @@ adminRoutes.get("/inquiries/:id", async (req, res) => {
   const id = Number(req.params.id);
 
   const inquiry = await prisma.inquiry.findUnique({
-    where: { id }
+    where: { id },
+    include: {
+      items: true
+    }
   });
 
   if (!inquiry) {
@@ -211,7 +214,10 @@ adminRoutes.get("/inquiries/:id/contract", async (req, res) => {
   const id = Number(req.params.id);
 
   const inquiry = await prisma.inquiry.findUnique({
-    where: { id }
+    where: { id },
+    include: {
+      items: true
+    }
   });
 
   if (!inquiry) {
@@ -220,5 +226,6 @@ adminRoutes.get("/inquiries/:id/contract", async (req, res) => {
 
   res.send(renderInquiryContract(inquiry));
 });
+
 
 
