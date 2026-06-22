@@ -93,17 +93,17 @@
 
                 <div class="form-row">
                   <label>Eventdatum *</label>
-                  <input name="eventDate" placeholder="z. B. 24.08.2026" />
+                  <input name="eventDate" type="date" required />
                 </div>
 
                 <div class="form-row">
                   <label>Ort / Lieferadresse *</label>
-                  <input name="location" required required required placeholder="z. B. Berlin, Brandenburg oder genaue Adresse" />
+                  <input name="location" required placeholder="z. B. Berlin, Brandenburg oder genaue Adresse" />
                 </div>
 
                 <div class="form-row">
-                  <label>Personenanzahl</label>
-                  <input name="guestCount" placeholder="z. B. 40 Personen" />
+                  <label>Personenanzahl *</label>
+                  <input name="guestCount" placeholder="z. B. 40 Personen" required />
                 </div>
 
                 <div class="form-row">
@@ -141,7 +141,7 @@
 
                 <div class="form-row">
                   <label>Nachricht *</label>
-                  <textarea name="message" required required required rows="6" placeholder="Was brauchst du? Mietdauer, Uhrzeit, Ausstattung, Küche, Catering, Aufbau, Besonderheiten usw."></textarea>
+                  <textarea name="message" required rows="6" placeholder="Was brauchst du? Mietdauer, Uhrzeit, Ausstattung, Küche, Catering, Aufbau, Besonderheiten usw."></textarea>
                 </div>
 
                 <button class="button primary" type="submit">Anfrage senden</button>
