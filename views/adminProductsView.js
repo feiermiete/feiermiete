@@ -335,6 +335,10 @@ export function renderAdminInquiries({ inquiries = [] }) {
         <td>${display(inquiry.deliveryAddress)}</td>
         <td class="message-box">${display(inquiry.message)}</td>
         <td>${date}</td>
+        <td class="actions-cell">
+          <a class="small-button" href="/admin/inquiries/${inquiry.id}">?ffnen</a>
+          <a class="small-button secondary" href="/admin/inquiries/${inquiry.id}/contract" target="_blank">Vertrag</a>
+        </td>
       </tr>
     `;
   }).join("");
