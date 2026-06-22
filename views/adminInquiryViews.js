@@ -74,6 +74,277 @@ function renderAdminLayout(title, content) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>${title} - Feiermiete Admin</title>
         <link rel="stylesheet" href="/public/css/style.css" />
+
+        <style>
+          .admin-shell {
+            display: grid;
+            grid-template-columns: 260px 1fr;
+            min-height: 100vh;
+            background: #f3eee7;
+          }
+
+          .admin-sidebar {
+            background: #111;
+            color: #fff;
+            padding: 34px 24px;
+          }
+
+          .admin-brand strong {
+            display: block;
+            color: #d40016;
+            font-size: 28px;
+            font-weight: 900;
+          }
+
+          .admin-brand span {
+            display: block;
+            margin-top: 6px;
+            text-transform: uppercase;
+            letter-spacing: .16em;
+            font-size: 11px;
+            color: #bbb;
+          }
+
+          .admin-sidebar nav {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-top: 44px;
+          }
+
+          .admin-sidebar a,
+          .admin-sidebar button {
+            color: #fff;
+            background: transparent;
+            border: 0;
+            padding: 0;
+            text-align: left;
+            font-weight: 800;
+            text-decoration: none;
+            cursor: pointer;
+            font-size: 15px;
+          }
+
+          .admin-sidebar form {
+            margin-top: 50px;
+          }
+
+          .admin-sidebar button {
+            color: #ffb8b8;
+          }
+
+          .admin-main {
+            padding: 42px;
+            max-width: 1400px;
+            width: 100%;
+          }
+
+          .admin-page-head {
+            display: flex;
+            justify-content: space-between;
+            gap: 24px;
+            align-items: flex-start;
+            margin-bottom: 28px;
+          }
+
+          .admin-kicker {
+            margin: 0 0 8px;
+            color: #d40016;
+            text-transform: uppercase;
+            letter-spacing: .16em;
+            font-size: 12px;
+            font-weight: 900;
+          }
+
+          .admin-page-head h1 {
+            margin: 0;
+            font-size: clamp(42px, 6vw, 76px);
+            line-height: .95;
+            letter-spacing: -3px;
+          }
+
+          .admin-page-head p {
+            margin-top: 14px;
+            color: #555;
+          }
+
+          .admin-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+          }
+
+          .admin-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: #d40016;
+            color: #fff;
+            padding: 12px 18px;
+            border-radius: 999px;
+            border: 0;
+            font-weight: 900;
+            text-decoration: none;
+            cursor: pointer;
+          }
+
+          .admin-button.secondary {
+            background: #111;
+          }
+
+          .admin-detail-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 22px;
+            margin-bottom: 22px;
+          }
+
+          .admin-card {
+            background: #fff;
+            border-radius: 24px;
+            padding: 26px;
+            box-shadow: 0 18px 50px rgba(0,0,0,.06);
+            margin-bottom: 22px;
+          }
+
+          .admin-card h2 {
+            margin: 0 0 18px;
+            font-size: 30px;
+            letter-spacing: -1px;
+          }
+
+          .admin-info-list {
+            display: grid;
+            gap: 14px;
+          }
+
+          .admin-info-list div {
+            border-bottom: 1px solid #eee;
+            padding-bottom: 12px;
+          }
+
+          .admin-info-list span {
+            display: block;
+            color: #777;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: .13em;
+            font-weight: 900;
+            margin-bottom: 4px;
+          }
+
+          .admin-info-list strong {
+            font-size: 16px;
+          }
+
+          .admin-message-box {
+            white-space: pre-wrap;
+            background: #f8f5f0;
+            border: 1px solid #e7ded2;
+            padding: 18px;
+            border-radius: 14px;
+            font-family: Arial, sans-serif;
+            min-height: 180px;
+          }
+
+          .admin-table-wrap {
+            overflow-x: auto;
+          }
+
+          .admin-items-table {
+            width: 100%;
+            border-collapse: collapse;
+          }
+
+          .admin-items-table th,
+          .admin-items-table td {
+            padding: 14px 12px;
+            border-bottom: 1px solid #eee;
+            text-align: left;
+            vertical-align: top;
+          }
+
+          .admin-items-table th {
+            color: #555;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: .12em;
+          }
+
+          .admin-totals-box {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(180px, 1fr));
+            gap: 16px;
+            margin-top: 18px;
+          }
+
+          .admin-totals-box div {
+            background: #f8f5f0;
+            border-radius: 16px;
+            padding: 18px;
+          }
+
+          .admin-totals-box span {
+            display: block;
+            color: #666;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: .12em;
+            font-weight: 900;
+            margin-bottom: 6px;
+          }
+
+          .admin-totals-box strong {
+            font-size: 24px;
+          }
+
+          .admin-form .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+          }
+
+          .form-row.full {
+            grid-column: 1 / -1;
+          }
+
+          .form-row label {
+            display: block;
+            font-weight: 900;
+            margin-bottom: 7px;
+          }
+
+          .form-row input,
+          .form-row select,
+          .form-row textarea {
+            width: 100%;
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            padding: 12px 14px;
+            font: inherit;
+            background: #fff;
+          }
+
+          @media (max-width: 900px) {
+            .admin-shell {
+              grid-template-columns: 1fr;
+            }
+
+            .admin-sidebar {
+              position: static;
+            }
+
+            .admin-detail-grid,
+            .admin-form .form-grid {
+              grid-template-columns: 1fr;
+            }
+
+            .admin-main {
+              padding: 24px;
+            }
+          }
+        </style>
+
       </head>
       <body>
         <div class="admin-shell">
