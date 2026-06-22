@@ -94,8 +94,12 @@ export function renderEquipmentPage({ products = [] }) {
               <strong>ab ${price}</strong>
             </div>
             <div>
-              <span>Verfügbarkeit</span>
-              <strong>auf Anfrage</strong>
+              <span>Kaution</span>
+              <strong>${product.depositCents && product.depositCents > 0 ? formatPrice(product.depositCents) : "auf Anfrage"}</strong>
+            </div>
+            <div>
+              <span>Verfügbar</span>
+              <strong>${product.stockQuantity && product.stockQuantity > 0 ? product.stockQuantity + " Stück" : "auf Anfrage"}</strong>
             </div>
           </div>
 
@@ -446,6 +450,8 @@ export function renderServicesPage() {
     `
   });
 }
+
+
 
 
 

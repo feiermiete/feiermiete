@@ -289,6 +289,11 @@ export function renderEditProductForm({ product, categories = [] }) {
             </div>
 
             <div class="form-row">
+              <label>Menge verfügbar</label>
+              <input name="stockQuantity" type="number" step="1" min="0" value="${product.stockQuantity || 0}" />
+            </div>
+
+            <div class="form-row">
               <label>Bild-URL</label>
               <input name="imageUrl" value="${product.imageUrl || ""}" />
             </div>
@@ -607,4 +612,5 @@ export function renderInquiryContract(inquiry) {
     </html>
   `;
 }
+
 

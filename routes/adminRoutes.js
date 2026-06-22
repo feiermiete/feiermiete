@@ -85,6 +85,7 @@ adminRoutes.post("/products", async (req, res) => {
       description: req.body.description || "",
       priceCents: euroToCents(req.body.priceEuro),
       depositCents: euroToCents(req.body.depositEuro),
+      stockQuantity: Number(req.body.stockQuantity || 0),
       imageUrl: req.body.imageUrl || "",
       categoryId: Number(req.body.categoryId),
       active: req.body.active === "on"
@@ -124,6 +125,7 @@ adminRoutes.post("/products/:id/update", async (req, res) => {
       description: req.body.description || "",
       priceCents: euroToCents(req.body.priceEuro),
       depositCents: euroToCents(req.body.depositEuro),
+      stockQuantity: Number(req.body.stockQuantity || 0),
       imageUrl: req.body.imageUrl || "",
       categoryId: Number(req.body.categoryId),
       active: req.body.active === "on"
@@ -218,4 +220,5 @@ adminRoutes.get("/inquiries/:id/contract", async (req, res) => {
 
   res.send(renderInquiryContract(inquiry));
 });
+
 

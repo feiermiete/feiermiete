@@ -17,14 +17,15 @@ model Category {
 }
 
 model Product {
-  id           Int     @id @default(autoincrement())
-  name         String
-  slug         String  @unique
-  description  String?
-  priceCents   Int
-  depositCents Int?
-  imageUrl     String?
-  isActive     Boolean @default(true)
+  stockQuantity Int     @default(0)
+  id            Int     @id @default(autoincrement())
+  name          String
+  slug          String  @unique
+  description   String?
+  priceCents    Int
+  depositCents  Int?
+  imageUrl      String?
+  isActive      Boolean @default(true)
 
   categoryId Int?
   category   Category? @relation(fields: [categoryId], references: [id])
