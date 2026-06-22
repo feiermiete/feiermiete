@@ -366,3 +366,245 @@ export function renderAdminInquiries({ inquiries = [] }) {
 }
 
 
+
+export function renderAdminInquiryDetail(inquiry) {
+  const euro = (cents) => {
+    const value = Number(cents || 0) / 100;
+    return value.toFixed(2);
+  };
+
+  const safe = (value) => value || "";
+
+  return renderAdminLayout("Anfrage bearbeiten", `
+    <div class="admin-page-head">
+      <div>
+        <p class="admin-kicker">Anfrage</p>
+        <h1>Anfrage #${inquiry.id}</h1>
+        <p>Hier kannst du die Anfrage prüfen, kalkulieren und für einen Vertrag vorbereiten.</p>
+      </div>
+      <div class="admin-actions">
+        <a class="admin-button secondary" href="/admin/inquiries">Zurück</a>
+        <a class="admin-button" href="/admin/inquiries/${inquiry.id}/contract" target="_blank">Vertrag ansehen</a>
+      </div>
+    </div>
+
+    <div class="admin-detail-grid">
+      <section class="admin-card">
+        <h2>Kundendaten</h2>
+
+        <div class="admin-info-list">
+          <div><span>Name</span><strong>${safe(inquiry.name)}</strong></div>
+          <div><span>E-Mail</span><strong>${safe(inquiry.email)}</strong></div>
+          <div><span>Telefon</span><strong>${safe(inquiry.phone)}</strong></div>
+          <div><span>Eventdatum</span><strong>${safe(inquiry.eventDate)}</strong></div>
+          <div><span>Ort</span><strong>${safe(inquiry.location)}</strong></div>
+          <div><span>Status</span><strong>${safe(inquiry.status || "OPEN")}</strong></div>
+        </div>
+      </section>
+
+      <section class="admin-card">
+        <h2>Nachricht / Artikel</h2>
+        <pre class="admin-message-box">${safe(inquiry.message)}</pre>
+      </section>
+    </div>
+
+    <form class="admin-card admin-form" method="POST" action="/admin/inquiries/${inquiry.id}/update">
+      <h2>Anfrage bearbeiten</h2>
+
+      <div class="form-grid">
+        <div class="form-row">
+          <label>Status</label>
+          <select name="status">
+            ${["OPEN", "ANGEBOT", "GEBUCHT", "ABGELEHNT", "ERLEDIGT"].map((status) => `
+              <option value="${status}" ${inquiry.status === status ? "selected" : ""}>${status}</option>
+            `).join("")}
+          </select>
+        </div>
+
+        <div class="form-row">
+          <label>Mietpreis gesamt in Euro</label>
+          <input name="rentalTotalEuro" type="number" step="0.01" value="${euro(inquiry.rentalTotalCents)}" />
+        </div>
+
+        <div class="form-row">
+          <label>Kaution gesamt in Euro</label>
+          <input name="depositTotalEuro" type="number" step="0.01" value="${euro(inquiry.depositTotalCents)}" />
+        </div>
+
+        <div class="form-row">
+          <label>Lieferkosten in Euro</label>
+          <input name="deliveryFeeEuro" type="number" step="0.01" value="${euro(inquiry.deliveryFeeCents)}" />
+        </div>
+
+        <div class="form-row full">
+          <label>Interne Notiz</label>
+          <textarea name="adminNote" rows="6">${safe(inquiry.adminNote)}</textarea>
+        </div>
+      </div>
+
+      <button class="admin-button" type="submit">Anfrage speichern</button>
+    </form>
+  `);
+}
+
+export function renderInquiryContract(inquiry) {
+  const formatMoney = (cents) => {
+    const value = Number(cents || 0) / 100;
+    return value.toLocaleString("de-DE", { style: "currency", currency: "EUR" });
+  };
+
+  const safe = (value) => value || "________________";
+
+  const total =
+    Number(inquiry.rentalTotalCents || 0) +
+    Number(inquiry.deliveryFeeCents || 0) +
+    Number(inquiry.depositTotalCents || 0);
+
+  return `
+    <!doctype html>
+    <html lang="de">
+      <head>
+        <meta charset="utf-8" />
+        <title>Mietvertrag Anfrage ${inquiry.id}</title>
+        <style>
+          body {
+            font-family: Arial, sans-serif;
+            color: #111;
+            margin: 0;
+            padding: 40px;
+            line-height: 1.45;
+          }
+
+          h1 {
+            font-size: 34px;
+            margin: 0 0 8px;
+          }
+
+          h2 {
+            font-size: 20px;
+            margin-top: 34px;
+            border-bottom: 2px solid #111;
+            padding-bottom: 8px;
+          }
+
+          .top {
+            display: flex;
+            justify-content: space-between;
+            gap: 40px;
+            margin-bottom: 40px;
+          }
+
+          .brand {
+            color: #c70012;
+            font-weight: 900;
+            font-size: 28px;
+          }
+
+          table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 14px;
+          }
+
+          td, th {
+            border: 1px solid #ddd;
+            padding: 10px;
+            vertical-align: top;
+          }
+
+          th {
+            background: #f5f5f5;
+            text-align: left;
+          }
+
+          pre {
+            white-space: pre-wrap;
+            font-family: Arial, sans-serif;
+            background: #f7f3ee;
+            padding: 16px;
+          }
+
+          .signatures {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            margin-top: 70px;
+          }
+
+          .line {
+            border-top: 1px solid #111;
+            padding-top: 8px;
+          }
+
+          @media print {
+            button {
+              display: none;
+            }
+
+            body {
+              padding: 28px;
+            }
+          }
+        </style>
+      </head>
+      <body>
+        <button onclick="window.print()">Als PDF speichern / Drucken</button>
+
+        <div class="top">
+          <div>
+            <div class="brand">Feiermiete</div>
+            <p>Equipment für Feiern & Events</p>
+          </div>
+          <div>
+            <strong>Mietvertrag / Auftragsbestätigung</strong><br>
+            Anfrage-Nr.: ${inquiry.id}<br>
+            Status: ${safe(inquiry.status)}
+          </div>
+        </div>
+
+        <h1>Mietvertrag</h1>
+        <p>Zwischen dem Vermieter und dem unten genannten Mieter wird folgender Mietvertrag vorbereitet.</p>
+
+        <h2>1. Mieter</h2>
+        <table>
+          <tr><th>Name</th><td>${safe(inquiry.name)}</td></tr>
+          <tr><th>E-Mail</th><td>${safe(inquiry.email)}</td></tr>
+          <tr><th>Telefon</th><td>${safe(inquiry.phone)}</td></tr>
+          <tr><th>Eventdatum</th><td>${safe(inquiry.eventDate)}</td></tr>
+          <tr><th>Ort</th><td>${safe(inquiry.location)}</td></tr>
+        </table>
+
+        <h2>2. Mietartikel / Anfrage</h2>
+        <pre>${safe(inquiry.message)}</pre>
+
+        <h2>3. Kosten</h2>
+        <table>
+          <tr><th>Mietpreis gesamt</th><td>${formatMoney(inquiry.rentalTotalCents)}</td></tr>
+          <tr><th>Lieferkosten</th><td>${formatMoney(inquiry.deliveryFeeCents)}</td></tr>
+          <tr><th>Kaution</th><td>${formatMoney(inquiry.depositTotalCents)}</td></tr>
+          <tr><th>Gesamt inkl. Kaution</th><td><strong>${formatMoney(total)}</strong></td></tr>
+        </table>
+
+        <h2>4. Bedingungen</h2>
+        <p>
+          Die Mietartikel bleiben Eigentum des Vermieters. Der Mieter verpflichtet sich,
+          die Artikel sorgfältig zu behandeln und vollständig sowie in vereinbartem Zustand zurückzugeben.
+          Beschädigte, fehlende oder stark verschmutzte Artikel können mit der Kaution verrechnet werden.
+        </p>
+        <p>
+          Lieferung, Aufbau, Rückgabe und Abholung erfolgen nach individueller Absprache.
+          Die Buchung gilt erst nach schriftlicher Bestätigung durch den Vermieter als verbindlich.
+        </p>
+
+        <h2>5. Interne Notiz</h2>
+        <pre>${safe(inquiry.adminNote)}</pre>
+
+        <div class="signatures">
+          <div class="line">Ort, Datum / Vermieter</div>
+          <div class="line">Ort, Datum / Mieter</div>
+        </div>
+      </body>
+    </html>
+  `;
+}
+
