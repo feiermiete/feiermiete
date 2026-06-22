@@ -85,14 +85,14 @@ function renderAdminLayout(title, content) {
 
           .admin-shell {
             display: grid;
-            grid-template-columns: 310px minmax(0, 1fr);
+            grid-template-columns: 260px minmax(0, 1fr);
             min-height: 100vh;
           }
 
           .admin-sidebar {
             background: #111;
             color: #fff;
-            padding: 34px 28px;
+            padding: 34px 24px;
           }
 
           .admin-brand strong {
@@ -328,6 +328,22 @@ function renderAdminLayout(title, content) {
             padding: 12px 14px;
             font: inherit;
             background: #fff;
+          }
+
+          /* clean inquiry sidebar */
+          .admin-sidebar nav {
+            align-items: flex-start;
+          }
+
+          .admin-sidebar nav a {
+            display: block;
+            width: 100%;
+            text-align: left;
+            white-space: nowrap;
+            text-transform: none;
+            letter-spacing: 0;
+            font-size: 15px;
+            line-height: 1.25;
           }
 
           @media (max-width: 900px) {
