@@ -1,5 +1,6 @@
 import express from "express";
 import { prisma } from "../lib/prisma.js";
+import { sendMailjetTestEmail } from "../utils/mailjet.js";
 import { requireAdmin } from "../middleware/requireAdmin.js";
 import {
   renderAdminDashboard,
@@ -228,4 +229,40 @@ adminRoutes.get("/inquiries/:id/contract", async (req, res) => {
 });
 
 
+
+
+
+adminRoutes.get("/test-mailjet", async (req, res) => {
+  try {
+    const result = await sendMailjetTestEmail();
+
+    res.type("html").send(`
+      <!doctype html>
+      <html lang="de">
+        <head>
+          <meta charset="utf-8" />
+          <title>Mailjet Test</title>
+          <style>
+            body { font-family: Arial, sans-serif; padding: 30px; line-height: 1.5; }
+            pre { background: #f3f3f3; padding: 20px; white-space: pre-wrap; }
+            .ok { color: green; font-weight: bold; }
+            .bad { color: red; font-weight: bold; }
+          </style>
+        </head>
+        <body>
+          <h1>Mailjet Test</h1>
+          <p class="${result.ok ? "ok" : "bad"}">Status: ${result.ok ? "OK / gesendet" : "FEHLER / nicht gesendet"}</p>
+          <pre>${JSON.stringify(result, null, 2)}</pre>
+          <p><a href="/admin">Zur?ck zum Admin</a></p>
+        </body>
+      </html>
+    `);
+  } catch (error) {
+    res.status(500).type("html").send(`
+      <h1>Mailjet Test Fehler</h1>
+      <pre>${String(error.stack || error.message || error)}</pre>
+      <p><a href="/admin">Zur?ck zum Admin</a></p>
+    `);
+  }
+});
 

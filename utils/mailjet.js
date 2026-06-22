@@ -159,3 +159,75 @@ ${inquiry.message || "-"}
 
   console.log(`Mailjet Anfrage-Mail gesendet für Anfrage #${inquiry.id}`);
 }
+
+
+export async function sendMailjetTestEmail() {
+  const apiKey = process.env.MAILJET_API_KEY;
+  const secretKey = process.env.MAILJET_SECRET_KEY;
+  const fromEmail = process.env.MAIL_FROM_EMAIL;
+  const fromName = process.env.MAIL_FROM_NAME || "Feiermiete";
+  const toEmail = process.env.MAIL_TO_EMAIL;
+
+  const config = {
+    MAILJET_API_KEY: apiKey ? "gesetzt" : "FEHLT",
+    MAILJET_SECRET_KEY: secretKey ? "gesetzt" : "FEHLT",
+    MAIL_FROM_EMAIL: fromEmail || "FEHLT",
+    MAIL_FROM_NAME: fromName || "FEHLT",
+    MAIL_TO_EMAIL: toEmail || "FEHLT"
+  };
+
+  if (!apiKey || !secretKey || !fromEmail || !toEmail) {
+    return {
+      ok: false,
+      status: "missing_config",
+      config
+    };
+  }
+
+  const auth = Buffer.from(`${apiKey}:${secretKey}`).toString("base64");
+
+  const response = await fetch("https://api.mailjet.com/v3.1/send", {
+    method: "POST",
+    headers: {
+      "Authorization": `Basic ${auth}`,
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      Messages: [
+        {
+          From: {
+            Email: fromEmail,
+            Name: fromName
+          },
+          To: [
+            {
+              Email: toEmail,
+              Name: "Feiermiete Test"
+            }
+          ],
+          Subject: "Feiermiete Mailjet Test",
+          TextPart: "Das ist eine Test-Mail von Feiermiete ?ber Mailjet.",
+          HTMLPart: "<h2>Feiermiete Mailjet Test</h2><p>Wenn du diese Mail siehst, funktioniert Mailjet.</p>"
+        }
+      ]
+    })
+  });
+
+  const bodyText = await response.text();
+
+  let body;
+  try {
+    body = JSON.parse(bodyText);
+  } catch {
+    body = bodyText;
+  }
+
+  return {
+    ok: response.ok,
+    statusCode: response.status,
+    statusText: response.statusText,
+    config,
+    mailjetResponse: body
+  };
+}
+
