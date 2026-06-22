@@ -1,14 +1,17 @@
-﻿{
-    "name":  "feiermiete",
-    "version":  "1.0.0",
-    "type":  "module",
-    "scripts":  {
-                    "start":  "npx prisma db push \u0026\u0026 node server.js"
-                },
-    "dependencies":  {
-                         "@prisma/client":  "^6.19.3",
-                         "cookie-parser":  "^1.4.7",
-                         "express":  "^4.19.2",
-                         "prisma":  "^6.19.3"
-                     }
+{
+  "name": "feiermiete",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "start": "npx prisma db push && node server.js",
+    "dev": "node server.js",
+    "prisma:generate": "prisma generate"
+  },
+  "dependencies": {
+    "@prisma/client": "6.19.0",
+    "cookie-parser": "1.4.7",
+    "express": "5.1.0",
+    "prisma": "6.19.0"
+  },
+  "devDependencies": {}
 }
