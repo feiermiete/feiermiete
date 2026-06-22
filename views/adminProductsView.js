@@ -172,7 +172,7 @@ export function renderAdminProducts({ products = [] }) {
             </tr>
           </thead>
           <tbody>
-            ${rows.length ? rows.join("") : `<tr><td colspan="5">Noch keine Produkte vorhanden.</td></tr>`}
+            ${Array.isArray(rows) ? rows.join("") : (rows || `<tr><td colspan="5">Noch keine Produkte vorhanden.</td></tr>`)}
           </tbody>
         </table>
       </div>
@@ -363,7 +363,7 @@ export function renderAdminInquiries({ inquiries = [] }) {
             </tr>
           </thead>
           <tbody>
-            ${rows.length ? rows : `<tr><td colspan="6">Noch keine Anfragen vorhanden.</td></tr>`}
+            ${rows || `<tr><td colspan="6">Noch keine Anfragen vorhanden.</td></tr>`}
           </tbody>
         </table>
       </div>
