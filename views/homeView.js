@@ -323,36 +323,51 @@ export function renderHomePage({ products = [] }) {
 
               <div class="fm-package-grid">
                 <article>
-                  <strong>Basic</strong>
-                  <h3>Nur Equipment</h3>
-                  <p>Für Selbstabholer oder einfache Events mit klaren Artikeln.</p>
+                  <strong>Gartenfeier</strong>
+                  <h3>Gartenfeier-Paket</h3>
+                  <p>F?r Geburtstage, Familienfeiern und kleine Outdoor-Events in Berlin & Brandenburg.</p>
                   <ul>
-                    <li>Einzelartikel</li>
-                    <li>Mietdauer nach Absprache</li>
-                    <li>Kaution je nach Artikel</li>
+                    <li>Stehtische und Bierzeltgarnituren</li>
+                    <li>Pavillon und Getr?nkespender m?glich</li>
+                    <li>Lieferung und Abholung nach Absprache</li>
                   </ul>
+                  <a href="/anfrage">Paket anfragen</a>
                 </article>
 
                 <article>
-                  <strong>Plus</strong>
-                  <h3>Equipment mit Lieferung</h3>
-                  <p>Für Events, bei denen Artikel geliefert und später abgeholt werden sollen.</p>
+                  <strong>Winterevent</strong>
+                  <h3>Gl?hwein-Event-Paket</h3>
+                  <p>Ideal f?r Firmenhof, Weihnachtsfeier, Wintermarkt oder Team-Event.</p>
                   <ul>
-                    <li>Lieferung möglich</li>
-                    <li>Aufbau nach Absprache</li>
-                    <li>Rückgabe organisiert</li>
+                    <li>Gl?hweinbeh?lter und Stehtische</li>
+                    <li>Becher, Ausstattung und Zubeh?r m?glich</li>
+                    <li>Optional mit Lieferung und Aufbau</li>
                   </ul>
+                  <a href="/anfrage">Paket anfragen</a>
                 </article>
 
                 <article>
-                  <strong>Komplett</strong>
-                  <h3>Eventlösung</h3>
-                  <p>Für Feiern mit Equipment, Küche, Catering-Koordination und Service.</p>
+                  <strong>Buffet</strong>
+                  <h3>Buffet-Aufbau-Paket</h3>
+                  <p>F?r Buffets, Caterings, Business-Lunches und Veranstaltungen mit Speisenausgabe.</p>
                   <ul>
-                    <li>Alles aus einer Hand</li>
-                    <li>individuelles Angebot</li>
-                    <li>ein Ansprechpartner</li>
+                    <li>Chafing Dishes und Warmhaltung</li>
+                    <li>Geschirr, Besteck und Servierzubeh?r</li>
+                    <li>Buffet-Aufbau nach Absprache</li>
                   </ul>
+                  <a href="/anfrage">Paket anfragen</a>
+                </article>
+
+                <article>
+                  <strong>K?che</strong>
+                  <h3>Produktionsk?che-Paket</h3>
+                  <p>F?r Caterer, Pop-ups, Food-Start-ups oder gr??ere Vorproduktionen.</p>
+                  <ul>
+                    <li>Gastro-K?che stundenweise oder tageweise</li>
+                    <li>Vorbereitung, Produktion und Kommissionierung</li>
+                    <li>Optional mit Equipment und Logistik</li>
+                  </ul>
+                  <a href="/anfrage">Paket anfragen</a>
                 </article>
               </div>
             </div>
