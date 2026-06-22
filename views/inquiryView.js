@@ -88,7 +88,7 @@
 
                 <div class="form-row">
                   <label>Telefon</label>
-                  <input name="phone" placeholder="Telefonnummer" />
+                  <input name="phone" placeholder="Telefonnummer" required />
                 </div>
 
                 <div class="form-row">
@@ -98,7 +98,7 @@
 
                 <div class="form-row">
                   <label>Ort / Lieferadresse</label>
-                  <input name="location" placeholder="z. B. Berlin, Brandenburg oder genaue Adresse" />
+                  <input name="location" required placeholder="z. B. Berlin, Brandenburg oder genaue Adresse" />
                 </div>
 
                 <div class="form-row">
@@ -108,7 +108,7 @@
 
                 <div class="form-row">
                   <label>Art der Anfrage</label>
-                  <select name="serviceType">
+                  <select name="serviceType" required>
                     <option value="">Bitte auswählen</option>
                     <option value="Equipment mieten">Equipment mieten</option>
                     <option value="Produktionsküche mieten">Produktionsküche mieten</option>
@@ -131,7 +131,7 @@
 
                 <div class="form-row">
                   <label>Lieferung gewünscht?</label>
-                  <select name="deliveryNeeded">
+                  <select name="deliveryNeeded" required>
                     <option value="">Bitte auswählen</option>
                     <option value="Ja">Ja</option>
                     <option value="Nein, Selbstabholung">Nein, Selbstabholung</option>
@@ -141,7 +141,7 @@
 
                 <div class="form-row">
                   <label>Nachricht</label>
-                  <textarea name="message" rows="6" placeholder="Was brauchst du? Mietdauer, Uhrzeit, Ausstattung, Küche, Catering, Aufbau, Besonderheiten usw."></textarea>
+                  <textarea name="message" required rows="6" placeholder="Was brauchst du? Mietdauer, Uhrzeit, Ausstattung, Küche, Catering, Aufbau, Besonderheiten usw."></textarea>
                 </div>
 
                 <button class="button primary" type="submit">Anfrage senden</button>

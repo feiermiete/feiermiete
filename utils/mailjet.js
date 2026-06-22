@@ -231,3 +231,109 @@ export async function sendMailjetTestEmail() {
   };
 }
 
+
+
+export async function sendCustomerInquiryConfirmation(inquiry, items = []) {
+  const apiKey = process.env.MAILJET_API_KEY;
+  const secretKey = process.env.MAILJET_SECRET_KEY;
+  const fromEmail = process.env.MAIL_FROM_EMAIL;
+  const fromName = process.env.MAIL_FROM_NAME || "Feiermiete";
+
+  if (!apiKey || !secretKey || !fromEmail || !inquiry.email) {
+    console.warn("Kunden-Best?tigung kann nicht gesendet werden: Mailjet oder Kunden-E-Mail fehlt.");
+    return { ok: false, status: "skipped", reason: "missing_config_or_email" };
+  }
+
+  const eventDate = inquiry.eventDate
+    ? new Date(inquiry.eventDate).toLocaleDateString("de-DE")
+    : "-";
+
+  const auth = Buffer.from(`${apiKey}:${secretKey}`).toString("base64");
+
+  const textPart = `
+Hallo ${inquiry.customerName || ""},
+
+vielen Dank f?r deine Anfrage bei Feiermiete.
+
+Wir haben deine Anfrage erhalten und pr?fen jetzt Verf?gbarkeit, Mietdauer, Lieferung, Aufbau, Kaution und m?gliche Kombinationen.
+
+Anfrage-Nr.: ${inquiry.id}
+Eventdatum: ${eventDate}
+Ort / Lieferadresse: ${inquiry.deliveryAddress || "-"}
+
+Angefragte Artikel:
+${buildItemsText(items)}
+
+Deine Nachricht:
+${inquiry.message || "-"}
+
+Wir melden uns schnellstm?glich mit einem passenden Angebot.
+
+Viele Gr??e
+Feiermiete
+`.trim();
+
+  const htmlPart = `
+    <h2>Danke f?r deine Anfrage bei Feiermiete</h2>
+    <p>Hallo ${escapeHtml(inquiry.customerName || "")},</p>
+
+    <p>
+      wir haben deine Anfrage erhalten und pr?fen jetzt Verf?gbarkeit, Mietdauer,
+      Lieferung, Aufbau, Kaution und m?gliche Kombinationen.
+    </p>
+
+    <p>
+      <strong>Anfrage-Nr.:</strong> ${inquiry.id}<br>
+      <strong>Eventdatum:</strong> ${escapeHtml(eventDate)}<br>
+      <strong>Ort / Lieferadresse:</strong> ${escapeHtml(inquiry.deliveryAddress || "-")}
+    </p>
+
+    <h3>Angefragte Artikel</h3>
+    ${buildItemsHtml(items)}
+
+    <h3>Deine Nachricht</h3>
+    <pre style="font-family:Arial,sans-serif;white-space:pre-wrap;">${escapeHtml(inquiry.message || "-")}</pre>
+
+    <p>Wir melden uns schnellstm?glich mit einem passenden Angebot.</p>
+
+    <p>Viele Gr??e<br><strong>Feiermiete</strong></p>
+  `;
+
+  const response = await fetch("https://api.mailjet.com/v3.1/send", {
+    method: "POST",
+    headers: {
+      "Authorization": `Basic ${auth}`,
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      Messages: [
+        {
+          From: {
+            Email: fromEmail,
+            Name: fromName
+          },
+          To: [
+            {
+              Email: inquiry.email,
+              Name: inquiry.customerName || "Kunde"
+            }
+          ],
+          Subject: `Deine Feiermiete-Anfrage #${inquiry.id}`,
+          TextPart: textPart,
+          HTMLPart: htmlPart
+        }
+      ]
+    })
+  });
+
+  const result = await response.json().catch(() => ({}));
+
+  if (!response.ok) {
+    console.error("Mailjet Kundenmail Fehler:", result);
+    throw new Error(`Mailjet Kundenmail fehlgeschlagen: ${response.status}`);
+  }
+
+  console.log(`Mailjet Kunden-Best?tigung gesendet f?r Anfrage #${inquiry.id}`);
+  return { ok: true, status: "sent" };
+}
+

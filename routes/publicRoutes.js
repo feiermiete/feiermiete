@@ -1,6 +1,6 @@
 ﻿import express from "express";
 import { prisma } from "../lib/prisma.js";
-import { sendInquiryNotification } from "../utils/mailjet.js";
+import { sendInquiryNotification, sendCustomerInquiryConfirmation } from "../utils/mailjet.js";
 import { renderHomePage } from "../views/homeView.js";
 import { renderInquiryPage } from "../views/inquiryView.js";
 import {
@@ -104,7 +104,17 @@ publicRoutes.post("/anfrage", async (req, res) => {
     cartItems = [];
   }
 
+  const cartSummary = cartItems.length
+    ? cartItems.map((item) => {
+        const quantity = Number(item.quantity || 1);
+        const price = item.price ? ` | Mietpreis: ${item.price}` : "";
+        const deposit = item.deposit ? ` | Kaution: ${item.deposit}` : "";
+        return `${quantity} x ${item.name || "Artikel"}${price}${deposit}`;
+      }).join("\n")
+    : "";
+
   const selectedDetails = [
+    cartSummary ? `Angefragte Artikel:\n${cartSummary}` : null,
     product ? `Wunschartikel / Leistung: ${product}` : null,
     serviceType ? `Art der Anfrage: ${serviceType}` : null,
     guestCount ? `Personenanzahl: ${guestCount}` : null,
@@ -165,6 +175,7 @@ publicRoutes.post("/anfrage", async (req, res) => {
     });
 
     const mailResult = await sendInquiryNotification(inquiry, savedItems);
+    await sendCustomerInquiryConfirmation(inquiry, savedItems);
     mailStatus = mailResult?.status || "sent";
     console.log(`[INQUIRY] Mailjet-Mail f?r Anfrage #${inquiry.id} Status: ${mailStatus}`);
   } catch (mailError) {
