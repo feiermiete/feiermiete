@@ -1,4 +1,4 @@
-﻿import express from "express";
+import express from "express";
 import { prisma } from "../lib/prisma.js";
 import { requireAdmin } from "../middleware/requireAdmin.js";
 import {
@@ -65,7 +65,7 @@ adminRoutes.get("/products", async (req, res) => {
     }
   });
 
-  res.send(renderAdminProducts(products));
+  res.send(renderAdminProducts({ products }));
 });
 
 adminRoutes.get("/products/new", async (req, res) => {
@@ -88,7 +88,7 @@ adminRoutes.post("/products", async (req, res) => {
       stockQuantity: Number(req.body.stockQuantity || 0),
       imageUrl: req.body.imageUrl || "",
       categoryId: Number(req.body.categoryId),
-      active: req.body.active === "on"
+      isActive: req.body.isActive === "on"
     }
   });
 
@@ -128,7 +128,7 @@ adminRoutes.post("/products/:id/update", async (req, res) => {
       stockQuantity: Number(req.body.stockQuantity || 0),
       imageUrl: req.body.imageUrl || "",
       categoryId: Number(req.body.categoryId),
-      active: req.body.active === "on"
+      isActive: req.body.isActive === "on"
     }
   });
 
@@ -149,7 +149,7 @@ adminRoutes.post("/products/:id/toggle", async (req, res) => {
   await prisma.product.update({
     where: { id },
     data: {
-      active: !product.active
+      isActive: !product.isActive
     }
   });
 
@@ -173,7 +173,7 @@ adminRoutes.get("/inquiries", async (req, res) => {
     }
   });
 
-  res.send(renderAdminInquiries(inquiries));
+  res.send(renderAdminInquiries({ inquiries }));
 });
 
 adminRoutes.get("/inquiries/:id", async (req, res) => {

@@ -65,8 +65,17 @@ model InquiryItem {
   inquiryId Int
   inquiry   Inquiry @relation(fields: [inquiryId], references: [id], onDelete: Cascade)
 
-  productId Int
-  product   Product @relation(fields: [productId], references: [id])
+  productId Int?
+  product   Product? @relation(fields: [productId], references: [id])
+
+  name        String
+  category    String?
+  priceText   String?
+  depositText String?
+  stockText   String?
+
+  priceCents   Int @default(0)
+  depositCents Int @default(0)
 
   createdAt DateTime @default(now())
 }
