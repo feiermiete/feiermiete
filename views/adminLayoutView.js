@@ -362,7 +362,211 @@
               padding: 22px;
             }
           }
-        </style>
+        
+          /* inquiry detail css final */
+          .admin-page-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 24px;
+            margin-bottom: 28px;
+          }
+
+          .admin-kicker {
+            margin: 0 0 8px;
+            color: #d40016;
+            text-transform: uppercase;
+            letter-spacing: .16em;
+            font-size: 12px;
+            font-weight: 900;
+          }
+
+          .admin-page-head h1 {
+            margin: 0;
+            font-size: clamp(44px, 5vw, 64px);
+            line-height: .95;
+            letter-spacing: -2px;
+          }
+
+          .admin-page-head p {
+            margin-top: 14px;
+            color: #555;
+          }
+
+          .admin-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+          }
+
+          .admin-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: #d40016;
+            color: #fff;
+            padding: 12px 18px;
+            border-radius: 999px;
+            border: 0;
+            font-weight: 900;
+            text-decoration: none;
+            cursor: pointer;
+          }
+
+          .admin-button.secondary {
+            background: #111;
+          }
+
+          .admin-detail-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 22px;
+            margin-bottom: 22px;
+          }
+
+          .admin-card {
+            background: #fff;
+            border-radius: 24px;
+            padding: 26px;
+            box-shadow: 0 18px 50px rgba(0,0,0,.06);
+            margin-bottom: 22px;
+          }
+
+          .admin-card h2 {
+            margin: 0 0 18px;
+            font-size: 30px;
+            letter-spacing: -1px;
+          }
+
+          .admin-info-list {
+            display: grid;
+            gap: 14px;
+          }
+
+          .admin-info-list div {
+            border-bottom: 1px solid #eee;
+            padding-bottom: 12px;
+          }
+
+          .admin-info-list span {
+            display: block;
+            color: #777;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: .13em;
+            font-weight: 900;
+            margin-bottom: 4px;
+          }
+
+          .admin-info-list strong {
+            display: block;
+            font-size: 16px;
+          }
+
+          .admin-message-box {
+            white-space: pre-wrap;
+            background: #f8f5f0;
+            border: 1px solid #e7ded2;
+            padding: 18px;
+            border-radius: 14px;
+            font-family: Arial, sans-serif;
+            min-height: 180px;
+          }
+
+          .admin-table-wrap {
+            overflow-x: auto;
+          }
+
+          .admin-items-table {
+            width: 100%;
+            border-collapse: collapse;
+          }
+
+          .admin-items-table th,
+          .admin-items-table td {
+            padding: 14px 12px;
+            border-bottom: 1px solid #eee;
+            text-align: left;
+            vertical-align: top;
+          }
+
+          .admin-items-table th {
+            color: #555;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: .12em;
+          }
+
+          .admin-totals-box {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(180px, 1fr));
+            gap: 16px;
+            margin-top: 18px;
+          }
+
+          .admin-totals-box div {
+            background: #f8f5f0;
+            border-radius: 16px;
+            padding: 18px;
+          }
+
+          .admin-totals-box span {
+            display: block;
+            color: #666;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: .12em;
+            font-weight: 900;
+            margin-bottom: 6px;
+          }
+
+          .admin-totals-box strong {
+            font-size: 24px;
+          }
+
+          .admin-form .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+          }
+
+          .form-row.full {
+            grid-column: 1 / -1;
+          }
+
+          .form-row label {
+            display: block;
+            font-weight: 900;
+            margin-bottom: 7px;
+          }
+
+          .form-row input,
+          .form-row select,
+          .form-row textarea {
+            width: 100%;
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            padding: 12px 14px;
+            font: inherit;
+            background: #fff;
+          }
+
+          @media (max-width: 900px) {
+            .admin-page-head,
+            .admin-detail-grid {
+              display: block;
+            }
+
+            .admin-actions {
+              margin-top: 18px;
+            }
+
+            .admin-form .form-grid {
+              grid-template-columns: 1fr;
+            }
+          }
+
+</style>
       </head>
       <body>
         <div class="admin-shell">
