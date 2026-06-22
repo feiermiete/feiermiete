@@ -10,6 +10,20 @@ import {
 } from "../views/adminProductsView.js";
 
 export const adminRoutes = express.Router();
+adminRoutes.get("/", async (req, res) => {
+  res.redirect("/admin/inquiries");
+});
+
+adminRoutes.get("/inquiries", async (req, res) => {
+  const inquiries = await prisma.inquiry.findMany({
+    orderBy: {
+      createdAt: "desc"
+    }
+  });
+
+  res.send(renderAdminInquiries(inquiries));
+});
+
 function euroToCents(value) {
   const number = Number(String(value || "0").replace(",", "."));
   if (Number.isNaN(number)) return 0;
@@ -59,8 +73,4 @@ adminRoutes.get("/inquiries/:id/contract", async (req, res) => {
   }
 
   res.send(renderInquiryContract(inquiry));
-});
-
-adminRoutes.get("/", async (req, res) => {
-  res.redirect("/admin/inquiries");
 });
