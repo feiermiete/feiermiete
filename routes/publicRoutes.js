@@ -164,7 +164,7 @@ publicRoutes.post("/anfrage", async (req, res) => {
     });
   }
 
-  console.log(`[INQUIRY] Artikelpositionen f&uuml;r Anfrage #${inquiry.id} gespeichert. Mailjet wird versucht.`);
+  console.log(`[INQUIRY] Artikelpositionen f?r Anfrage #${inquiry.id} gespeichert. Mailjet wird versucht.`);
 
   let mailStatus = "not_attempted";
 
@@ -177,7 +177,7 @@ publicRoutes.post("/anfrage", async (req, res) => {
     const mailResult = await sendInquiryNotification(inquiry, savedItems);
     await sendCustomerInquiryConfirmation(inquiry, savedItems);
     mailStatus = mailResult?.status || "sent";
-    console.log(`[INQUIRY] Mailjet-Mail f&uuml;r Anfrage #${inquiry.id} Status: ${mailStatus}`);
+    console.log(`[INQUIRY] Mailjet-Mail f?r Anfrage #${inquiry.id} Status: ${mailStatus}`);
   } catch (mailError) {
     mailStatus = "error";
     console.error("Anfrage wurde gespeichert, aber Mailjet-Mail konnte nicht gesendet werden:", mailError);

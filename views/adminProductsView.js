@@ -272,9 +272,9 @@ export function renderNewProductForm({ categories = [] }) {
             </div>
 
             <div class="form-row">
-              <label>Bild aus Mediathek ausw&auml;hlen</label>
+              <label>Bild aus Mediathek ausw?hlen</label>
               <select data-image-library-select onchange="this.closest('form').querySelector('input[name=imageUrl]').value=this.value">
-                <option value="">Bitte ausw&auml;hlen</option>
+                <option value="">Bitte ausw?hlen</option>
                 ${renderImageLibraryOptions()}
               </select>
             </div>
@@ -348,9 +348,9 @@ export function renderEditProductForm({ product, categories = [] }) {
             </div>
 
             <div class="form-row">
-              <label>Bild aus Mediathek ausw&auml;hlen</label>
+              <label>Bild aus Mediathek ausw?hlen</label>
               <select data-image-library-select onchange="this.closest('form').querySelector('input[name=imageUrl]').value=this.value">
-                <option value="">Bitte ausw&auml;hlen</option>
+                <option value="">Bitte ausw?hlen</option>
                 ${renderImageLibraryOptions(product.imageUrl || "")}
               </select>
             </div>
@@ -401,7 +401,7 @@ export function renderAdminInquiries({ inquiries = [] }) {
         <td class="message-box">${display(inquiry.message)}</td>
         <td>${date}</td>
         <td class="actions-cell">
-          <a class="small-button" href="/admin/inquiries/${inquiry.id}">&Ouml;ffnen</a>
+          <a class="small-button" href="/admin/inquiries/${inquiry.id}">?ffnen</a>
           <a class="small-button secondary" href="/admin/inquiries/${inquiry.id}/contract" target="_blank">Vertrag</a>
         </td>
       </tr>
