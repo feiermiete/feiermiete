@@ -156,20 +156,24 @@ publicRoutes.post("/anfrage", async (req, res) => {
 
   console.log(`[INQUIRY] Artikelpositionen f?r Anfrage #${inquiry.id} gespeichert. Mailjet wird versucht.`);
 
+  let mailStatus = "not_attempted";
+
   try {
     const savedItems = await prisma.inquiryItem.findMany({
       where: { inquiryId: inquiry.id },
       orderBy: { id: "asc" }
     });
 
-    await sendInquiryNotification(inquiry, savedItems);
-    console.log(`[INQUIRY] Mailjet-Mail f?r Anfrage #${inquiry.id} erfolgreich abgeschlossen.`);
+    const mailResult = await sendInquiryNotification(inquiry, savedItems);
+    mailStatus = mailResult?.status || "sent";
+    console.log(`[INQUIRY] Mailjet-Mail f?r Anfrage #${inquiry.id} Status: ${mailStatus}`);
   } catch (mailError) {
+    mailStatus = "error";
     console.error("Anfrage wurde gespeichert, aber Mailjet-Mail konnte nicht gesendet werden:", mailError);
   }
 
-  console.log(`[INQUIRY] Anfrage #${inquiry.id} abgeschlossen. Redirect auf Erfolg.`);
-  res.redirect("/anfrage?success=1");
+  console.log(`[INQUIRY] Anfrage #${inquiry.id} abgeschlossen. Redirect auf Erfolg. Mailstatus: ${mailStatus}`);
+  res.redirect(`/anfrage?success=1&mail=${encodeURIComponent(mailStatus)}`);
 });
 
 function renderLegalPage({ title, content }) {
