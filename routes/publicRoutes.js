@@ -119,6 +119,7 @@ publicRoutes.post("/anfrage", async (req, res) => {
     product ? `Wunschartikel / Leistung: ${product}` : null,
     serviceType ? `Art der Anfrage: ${serviceType}` : null,
     guestCount ? `Personenanzahl: ${guestCount}` : null,
+    rentalDuration ? `Mietdauer / Zeitraum: ${rentalDuration}` : null,
     deliveryNeeded ? `Lieferung gewünscht: ${deliveryNeeded}` : null,
     message ? `Nachricht: ${message}` : null
   ].filter(Boolean).join("\n\n");
