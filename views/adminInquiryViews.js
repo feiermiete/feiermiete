@@ -85,14 +85,14 @@ function renderAdminLayout(title, content) {
 
           .admin-shell {
             display: grid;
-            grid-template-columns: 260px 1fr;
+            grid-template-columns: 310px minmax(0, 1fr);
             min-height: 100vh;
           }
 
           .admin-sidebar {
             background: #111;
             color: #fff;
-            padding: 34px 24px;
+            padding: 34px 28px;
           }
 
           .admin-brand strong {
@@ -128,7 +128,7 @@ function renderAdminLayout(title, content) {
             font-weight: 800;
             text-decoration: none;
             cursor: pointer;
-            font-size: 15px;
+            font-size: 14px;
           }
 
           .admin-sidebar form {
