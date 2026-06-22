@@ -243,27 +243,44 @@ function renderLegalPage({ title, content }) {
   `;
 }
 
+
+
 publicRoutes.get("/impressum", (req, res) => {
   res.send(renderLegalPage({
     title: "Impressum",
     content: `
-      <p><strong>Angaben gemäß § 5 TMG</strong></p>
+      <p><strong>Angaben nach den gesetzlichen Informationspflichten</strong></p>
+
       <p>
         Feiermiete<br>
         Edis Gastrobetriebe GmbH & Co. KG<br>
         Goerzallee 299<br>
-        14167 Berlin
+        14167 Berlin<br>
+        Deutschland
       </p>
+
       <p>
         E-Mail: info@feiermiete.de<br>
-        Telefon: wird ergänzt
+        Telefon: wird erg?nzt
       </p>
+
       <p>
-        Vertreten durch: Edis Mutluer<br>
-        Registergericht und Registernummer werden ergänzt.
+        Vertreten durch die pers?nlich haftende Gesellschafterin:<br>
+        Edis Beteiligungs GmbH
       </p>
+
+      <p>
+        Registergericht, Registernummer und Umsatzsteuer-ID werden erg?nzt, sofern vorhanden.
+      </p>
+
+      <p>
+        Verantwortlich f?r den Inhalt dieser Website:<br>
+        Edis Gastrobetriebe GmbH & Co. KG, Goerzallee 299, 14167 Berlin
+      </p>
+
       <p class="muted">
-        Hinweis: Dieses Impressum ist ein Platzhalter und sollte vor Veröffentlichung rechtlich geprüft und vollständig ergänzt werden.
+        Hinweis: Dieses Impressum ist als Arbeitsfassung hinterlegt und sollte vor Ver?ffentlichung vollst?ndig
+        mit Registerdaten, Telefonnummer, Umsatzsteuerangaben und rechtlicher Pr?fung finalisiert werden.
       </p>
     `
   }));
@@ -271,20 +288,53 @@ publicRoutes.get("/impressum", (req, res) => {
 
 publicRoutes.get("/datenschutz", (req, res) => {
   res.send(renderLegalPage({
-    title: "Datenschutzerklärung",
+    title: "Datenschutzerkl?rung",
     content: `
       <p>
         Der Schutz personenbezogener Daten ist uns wichtig. Personenbezogene Daten werden nur verarbeitet,
-        soweit dies zur Bearbeitung von Anfragen, zur Angebotserstellung und zur Kommunikation erforderlich ist.
+        soweit dies zur Bearbeitung von Anfragen, zur Angebotserstellung, zur Vertragsabwicklung und zur Kommunikation erforderlich ist.
       </p>
+
+      <h2>1. Verantwortlicher</h2>
       <p>
-        Wenn du über das Anfrageformular Kontakt aufnimmst, speichern wir die angegebenen Daten zur Bearbeitung deiner Anfrage.
+        Verantwortlich f?r die Datenverarbeitung ist:<br>
+        Edis Gastrobetriebe GmbH & Co. KG<br>
+        Goerzallee 299<br>
+        14167 Berlin<br>
+        E-Mail: info@feiermiete.de
       </p>
+
+      <h2>2. Anfrageformular</h2>
       <p>
-        Verantwortlich für die Datenverarbeitung ist die Edis Gastrobetriebe GmbH & Co. KG, Goerzallee 299, 14167 Berlin.
+        Wenn du ?ber das Anfrageformular Kontakt aufnimmst, verarbeiten wir die von dir angegebenen Daten,
+        insbesondere Name, Firma, E-Mail-Adresse, Telefonnummer, Eventdatum, Lieferadresse, Personenanzahl,
+        Mietdauer, ausgew?hlte Artikel und deine Nachricht. Diese Daten nutzen wir zur Bearbeitung deiner Anfrage,
+        zur Angebotserstellung und zur weiteren Abstimmung.
       </p>
+
+      <h2>3. E-Mail-Kommunikation</h2>
+      <p>
+        F?r den Versand von internen Anfragebenachrichtigungen und Kundenbest?tigungen kann ein externer
+        E-Mail-Dienstleister eingesetzt werden. Dabei werden die f?r den E-Mail-Versand notwendigen Daten verarbeitet,
+        insbesondere E-Mail-Adresse, Name, Anfrageinhalt und technische Versandinformationen.
+      </p>
+
+      <h2>4. Speicherung</h2>
+      <p>
+        Anfragen und zugeh?rige Daten werden gespeichert, solange dies f?r Bearbeitung, Angebotserstellung,
+        Vertragsabwicklung, Nachweiszwecke oder gesetzliche Aufbewahrungspflichten erforderlich ist.
+      </p>
+
+      <h2>5. Rechte betroffener Personen</h2>
+      <p>
+        Du hast im Rahmen der gesetzlichen Voraussetzungen das Recht auf Auskunft, Berichtigung, L?schung,
+        Einschr?nkung der Verarbeitung, Daten?bertragbarkeit sowie Widerspruch gegen bestimmte Verarbeitungen.
+        Anfragen hierzu k?nnen an info@feiermiete.de gesendet werden.
+      </p>
+
       <p class="muted">
-        Hinweis: Diese Datenschutzerklärung ist ein Platzhalter und sollte vor Veröffentlichung rechtlich geprüft werden.
+        Hinweis: Diese Datenschutzerkl?rung ist eine Arbeitsfassung und sollte vor Ver?ffentlichung rechtlich gepr?ft
+        und an die tats?chlich eingesetzten Dienste, Cookies, Tracking-Tools und Hosting-Strukturen angepasst werden.
       </p>
     `
   }));
@@ -292,25 +342,65 @@ publicRoutes.get("/datenschutz", (req, res) => {
 
 publicRoutes.get("/agb", (req, res) => {
   res.send(renderLegalPage({
-    title: "Allgemeine Geschäftsbedingungen",
+    title: "Allgemeine Gesch?ftsbedingungen",
     content: `
       <p>
-        Unsere Leistungen erfolgen auf Grundlage individueller Angebote. Mietpreise, Kautionen, Lieferkosten,
-        Aufbauleistungen und Rückgabebedingungen werden im jeweiligen Angebot ausgewiesen.
+        Diese Allgemeinen Gesch?ftsbedingungen gelten f?r Mietartikel, Event-Equipment, K?chenvermietung,
+        Lieferung, Aufbau, Abholung, Catering-Koordination und erg?nzende Serviceleistungen von Feiermiete,
+        soweit keine abweichende individuelle Vereinbarung getroffen wurde.
       </p>
+
+      <h2>1. Anfrage und Angebot</h2>
       <p>
-        Die vermieteten Gegenstände sind sorgfältig zu behandeln und zum vereinbarten Zeitpunkt zurückzugeben.
-        Beschädigungen, Verlust oder starke Verschmutzungen können gesondert berechnet werden.
+        Die Darstellung von Artikeln und Leistungen auf der Website stellt kein verbindliches Angebot dar.
+        Eine Buchung kommt erst zustande, wenn eine Anfrage gepr?ft und durch Feiermiete schriftlich best?tigt wurde.
       </p>
+
+      <h2>2. Mietpreise, Kaution und Zahlung</h2>
       <p>
-        Für Produktionsküche, Catering-Koordination und Eventservice gelten individuelle Absprachen.
+        Mietpreise, Kautionen, Lieferkosten, Aufbauleistungen und R?ckgabebedingungen werden im jeweiligen Angebot
+        oder Vertrag ausgewiesen. Die Kaution dient als Sicherheit f?r besch?digte, fehlende oder stark verschmutzte Artikel.
       </p>
+
+      <h2>3. Mietdauer, ?bergabe und R?ckgabe</h2>
+      <p>
+        Die konkrete Mietdauer, ?bergabe, Lieferung, Abholung und R?ckgabe werden individuell abgestimmt.
+        Mietartikel sind vollst?ndig, p?nktlich und im vereinbarten Zustand zur?ckzugeben.
+      </p>
+
+      <h2>4. Besch?digung, Verlust und Reinigung</h2>
+      <p>
+        Besch?digte, fehlende oder stark verschmutzte Mietartikel k?nnen mit Reparaturkosten, Reinigungskosten,
+        Wiederbeschaffungswert oder Zeitwert berechnet werden. Offene Betr?ge k?nnen mit der Kaution verrechnet werden.
+      </p>
+
+      <h2>5. Lieferung, Aufbau und Abholung</h2>
+      <p>
+        Lieferung, Aufbau und Abholung erfolgen nur, wenn sie ausdr?cklich vereinbart wurden.
+        Wartezeiten, erschwerte Zug?nge, fehlende Parkm?glichkeiten oder nachtr?gliche ?nderungen k?nnen zus?tzliche Kosten verursachen.
+      </p>
+
+      <h2>6. Stornierung und ?nderungen</h2>
+      <p>
+        ?nderungen oder Stornierungen sind so fr?h wie m?glich mitzuteilen. Bereits entstandene Kosten,
+        reservierte Artikel, Personal-, Logistik- oder Vorbereitungskosten k?nnen je nach Zeitpunkt und Aufwand berechnet werden.
+      </p>
+
+      <h2>7. Produktionsk?che, Catering und Services</h2>
+      <p>
+        F?r Produktionsk?che, Catering-Koordination und Eventservice gelten individuelle Absprachen,
+        insbesondere zu Nutzungszeit, Reinigung, ?bergabe, Haftung, Ausstattung, Personal und Zusatzleistungen.
+      </p>
+
       <p class="muted">
-        Hinweis: Diese AGB sind ein Platzhalter und sollten vor Veröffentlichung rechtlich geprüft werden.
+        Hinweis: Diese AGB sind eine Arbeitsfassung und sollten vor Ver?ffentlichung rechtlich gepr?ft und an den
+        tats?chlichen Miet-, Liefer-, Kautions- und Stornoablauf angepasst werden.
       </p>
     `
   }));
 });
+
+
 
 
 
