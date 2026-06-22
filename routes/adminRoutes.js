@@ -6,10 +6,12 @@ import {
   renderAdminProducts,
   renderNewProductForm,
   renderEditProductForm,
-  renderAdminInquiries,
+  renderAdminInquiries
+} from "../views/adminProductsView.js";
+import {
   renderAdminInquiryDetail,
   renderInquiryContract
-} from "../views/adminProductsView.js";
+} from "../views/adminInquiryViews.js";
 
 export const adminRoutes = express.Router();
 
@@ -216,3 +218,4 @@ adminRoutes.get("/inquiries/:id/contract", async (req, res) => {
 
   res.send(renderInquiryContract(inquiry));
 });
+
