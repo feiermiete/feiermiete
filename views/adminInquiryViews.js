@@ -66,7 +66,7 @@ function calculateItemsDeposit(items = []) {
   }, 0);
 }
 
-export function renderAdminInquiryDetail(inquiry) {
+export function renderAdminInquiryDetail(inquiry, options = {}) {
   const itemsRentalTotal = calculateItemsRental(inquiry.items || []);
   const itemsDepositTotal = calculateItemsDeposit(inquiry.items || []);
 
@@ -86,6 +86,8 @@ export function renderAdminInquiryDetail(inquiry) {
         <a class="admin-button" href="/admin/inquiries/${inquiry.id}/contract" target="_blank">Vertrag öffnen</a>
       </div>
     </div>
+
+    ${options.saved ? `<div class="admin-success-message">Anfrage wurde erfolgreich gespeichert.</div>` : ""}
 
     <div class="admin-detail-grid">
       <section class="admin-card">

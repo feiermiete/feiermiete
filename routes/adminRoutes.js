@@ -191,7 +191,7 @@ adminRoutes.get("/inquiries/:id", async (req, res) => {
     return res.status(404).send("Anfrage nicht gefunden");
   }
 
-  res.send(renderAdminInquiryDetail(inquiry));
+  res.send(renderAdminInquiryDetail(inquiry, { saved: req.query.saved === "1" }));
 });
 
 
@@ -222,7 +222,7 @@ adminRoutes.post("/inquiries/:id/update", async (req, res) => {
     }
   });
 
-  res.redirect(`/admin/inquiries/${id}`);
+  res.redirect(`/admin/inquiries/${id}?saved=1`);
 });
 
 adminRoutes.get("/inquiries/:id/contract", async (req, res) => {

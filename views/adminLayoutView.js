@@ -566,7 +566,17 @@
             }
           }
 
-</style>
+          .admin-success-message {
+            background: #e7f7ed;
+            border: 1px solid #b8e4c7;
+            color: #146b32;
+            padding: 14px 18px;
+            border-radius: 16px;
+            font-weight: 800;
+            margin-bottom: 22px;
+          }
+
+        </style>
       </head>
       <body>
         <div class="admin-shell">
