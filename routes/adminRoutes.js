@@ -60,3 +60,7 @@ adminRoutes.get("/inquiries/:id/contract", async (req, res) => {
 
   res.send(renderInquiryContract(inquiry));
 });
+
+adminRoutes.get("/", async (req, res) => {
+  res.redirect("/admin/inquiries");
+});
