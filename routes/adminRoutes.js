@@ -194,6 +194,14 @@ adminRoutes.get("/inquiries/:id", async (req, res) => {
   res.send(renderAdminInquiryDetail(inquiry));
 });
 
+
+function parseAdminDate(value) {
+  if (!value) return null;
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return null;
+  return date;
+}
+
 adminRoutes.post("/inquiries/:id/update", async (req, res) => {
   const id = Number(req.params.id);
 
