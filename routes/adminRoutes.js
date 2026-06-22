@@ -200,6 +200,12 @@ adminRoutes.post("/inquiries/:id/update", async (req, res) => {
   await prisma.inquiry.update({
     where: { id },
     data: {
+      customerName: req.body.customerName || "",
+      companyName: req.body.companyName || null,
+      email: req.body.email || "",
+      phone: req.body.phone || null,
+      eventDate: parseAdminDate(req.body.eventDate),
+      deliveryAddress: req.body.deliveryAddress || null,
       status: req.body.status || "OPEN",
       adminNote: req.body.adminNote || "",
       rentalTotalCents: euroToCents(req.body.rentalTotalEuro),

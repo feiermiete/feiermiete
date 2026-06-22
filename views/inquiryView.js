@@ -98,7 +98,7 @@
 
                 <div class="form-row">
                   <label>Ort / Lieferadresse *</label>
-                  <input name="location" required required placeholder="z. B. Berlin, Brandenburg oder genaue Adresse" />
+                  <input name="location" required required required placeholder="z. B. Berlin, Brandenburg oder genaue Adresse" />
                 </div>
 
                 <div class="form-row">
@@ -141,7 +141,7 @@
 
                 <div class="form-row">
                   <label>Nachricht *</label>
-                  <textarea name="message" required required rows="6" placeholder="Was brauchst du? Mietdauer, Uhrzeit, Ausstattung, Küche, Catering, Aufbau, Besonderheiten usw."></textarea>
+                  <textarea name="message" required required required rows="6" placeholder="Was brauchst du? Mietdauer, Uhrzeit, Ausstattung, Küche, Catering, Aufbau, Besonderheiten usw."></textarea>
                 </div>
 
                 <button class="button primary" type="submit">Anfrage senden</button>

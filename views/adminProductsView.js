@@ -272,9 +272,9 @@ export function renderNewProductForm({ categories = [] }) {
             </div>
 
             <div class="form-row">
-              <label>Bild aus Mediathek ausw?hlen</label>
+              <label>Bild aus Mediathek ausw&auml;hlen</label>
               <select data-image-library-select onchange="this.closest('form').querySelector('input[name=imageUrl]').value=this.value">
-                <option value="">Bitte ausw?hlen</option>
+                <option value="">Bitte ausw&auml;hlen</option>
                 ${renderImageLibraryOptions()}
               </select>
             </div>
@@ -348,9 +348,9 @@ export function renderEditProductForm({ product, categories = [] }) {
             </div>
 
             <div class="form-row">
-              <label>Bild aus Mediathek ausw?hlen</label>
+              <label>Bild aus Mediathek ausw&auml;hlen</label>
               <select data-image-library-select onchange="this.closest('form').querySelector('input[name=imageUrl]').value=this.value">
-                <option value="">Bitte ausw?hlen</option>
+                <option value="">Bitte ausw&auml;hlen</option>
                 ${renderImageLibraryOptions(product.imageUrl || "")}
               </select>
             </div>
