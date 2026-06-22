@@ -16,6 +16,19 @@ function safe(value) {
   return value || "";
 }
 
+function formatStatus(status) {
+  const labels = {
+    NEW: "Neu",
+    OPEN: "Offen",
+    ANGEBOT: "Angebot erstellt",
+    GEBUCHT: "Gebucht",
+    ABGELEHNT: "Abgelehnt",
+    ERLEDIGT: "Erledigt"
+  };
+
+  return labels[status] || status || "Neu";
+}
+
 function formatDate(value) {
   if (!value) return "";
   try {
@@ -100,7 +113,7 @@ export function renderAdminInquiryDetail(inquiry, options = {}) {
           <div><span>Telefon</span><strong>${safe(inquiry.phone)}</strong></div>
           <div><span>Eventdatum</span><strong>${formatDate(inquiry.eventDate)}</strong></div>
           <div><span>Ort / Lieferadresse</span><strong>${safe(inquiry.deliveryAddress)}</strong></div>
-          <div><span>Status</span><strong>${safe(inquiry.status || "NEW")}</strong></div>
+          <div><span>Status</span><strong>${safe(formatStatus(inquiry.status || "NEW"))}</strong></div>
         </div>
       </section>
 
@@ -185,7 +198,7 @@ export function renderAdminInquiryDetail(inquiry, options = {}) {
           <label>Status</label>
           <select name="status">
             ${["NEW", "OPEN", "ANGEBOT", "GEBUCHT", "ABGELEHNT", "ERLEDIGT"].map((status) => `
-              <option value="${status}" ${inquiry.status === status ? "selected" : ""}>${status}</option>
+              <option value="${status}" ${inquiry.status === status ? "selected" : ""}>${formatStatus(status)}</option>
             `).join("")}
           </select>
         </div>
@@ -458,7 +471,7 @@ export function renderInquiryContract(inquiry) {
               <div><strong>Vertrags-Nr.:</strong> ${contractNumber}</div>
               <div><strong>Anfrage-Nr.:</strong> ${inquiry.id}</div>
               <div><strong>Erstellt am:</strong> ${today}</div>
-              <div><strong>Status:</strong> ${safe(inquiry.status || "NEW")}</div>
+              <div><strong>Status:</strong> ${safe(formatStatus(inquiry.status || "NEW"))}</div>
             </div>
           </section>
 
@@ -524,6 +537,12 @@ export function renderInquiryContract(inquiry) {
           <p class="note">
             Die Kaution dient als Sicherheit für beschädigte, fehlende oder stark verschmutzte Mietartikel.
             Nach vollständiger und ordnungsgemäßer Rückgabe wird die Kaution zurückgezahlt oder mit offenen Forderungen verrechnet.
+          </p>
+
+          <h2>Zahlungs- und Kautionshinweis</h2>
+          <p class="note">
+            Mietpreis, Lieferkosten und Kaution sind sp?testens zu dem individuell vereinbarten Zeitpunkt f?llig.
+            Die Herausgabe der Mietartikel kann von der vorherigen Zahlung des Mietpreises und/oder der Kaution abh?ngig gemacht werden.
           </p>
 
           <h2>5. Nachricht / Zusatzangaben</h2>
