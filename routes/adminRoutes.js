@@ -76,7 +76,7 @@ adminRoutes.get("/products/new", async (req, res) => {
     }
   });
 
-  res.send(renderNewProductForm(categories));
+  res.send(renderNewProductForm({ categories }));
 });
 
 adminRoutes.post("/products", async (req, res) => {
@@ -113,7 +113,7 @@ adminRoutes.get("/products/:id/edit", async (req, res) => {
     return res.status(404).send("Produkt nicht gefunden");
   }
 
-  res.send(renderEditProductForm(product, categories));
+  res.send(renderEditProductForm({ product, categories }));
 });
 
 adminRoutes.post("/products/:id/update", async (req, res) => {
