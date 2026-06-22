@@ -4368,3 +4368,141 @@ body.fm-cart-open .fm-cart-panel {
     grid-template-columns: 1fr;
   }
 }
+
+/* REQUEST CART WITH QUANTITY */
+.cart-qty-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin: 18px 0 12px;
+}
+
+.cart-qty-box label {
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: #777;
+}
+
+.cart-qty-box > div {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ddd;
+  background: #fff;
+}
+
+.cart-qty-box button {
+  width: 36px;
+  height: 36px;
+  border: 0;
+  background: #111;
+  color: #fff;
+  font-size: 20px;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.cart-qty-input {
+  width: 58px;
+  height: 36px;
+  border: 0;
+  text-align: center;
+  font-weight: 900;
+  font-size: 15px;
+}
+
+.floating-request-cart {
+  position: fixed;
+  right: 28px;
+  bottom: 28px;
+  z-index: 9999;
+  background: #111;
+  color: #fff;
+  text-decoration: none;
+  padding: 16px 18px;
+  display: none;
+  align-items: center;
+  gap: 14px;
+  box-shadow: 0 20px 45px rgba(0,0,0,.25);
+  font-weight: 900;
+}
+
+.floating-request-cart strong {
+  background: #d40016;
+  color: #fff;
+  min-width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+}
+
+.inquiry-cart-preview {
+  background: #f7f3ee;
+  border: 1px solid #e7ded3;
+  padding: 22px;
+  margin-bottom: 24px;
+}
+
+.inquiry-cart-preview h3 {
+  margin: 0 0 8px;
+  font-size: 24px;
+}
+
+.inquiry-cart-preview p {
+  margin: 0 0 16px;
+  color: #555;
+}
+
+.inquiry-cart-items {
+  display: grid;
+  gap: 10px;
+}
+
+.inquiry-cart-item {
+  background: #fff;
+  border: 1px solid #eee;
+  padding: 14px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 8px 16px;
+  align-items: center;
+}
+
+.inquiry-cart-item strong {
+  font-size: 16px;
+}
+
+.inquiry-cart-item span {
+  color: #555;
+  font-size: 14px;
+}
+
+.inquiry-cart-item button {
+  grid-row: 1 / span 2;
+  border: 0;
+  background: #111;
+  color: #fff;
+  padding: 10px 14px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+@media (max-width: 700px) {
+  .floating-request-cart {
+    right: 16px;
+    bottom: 16px;
+  }
+
+  .inquiry-cart-item {
+    grid-template-columns: 1fr;
+  }
+
+  .inquiry-cart-item button {
+    grid-row: auto;
+  }
+}

@@ -1,254 +1,230 @@
 ﻿(function () {
-  const KEY = "feiermiete_anfrage_artikel";
+  const CART_KEY = "feiermiete_request_cart";
 
-  function readCart() {
+  function moneyText(text) {
+    return String(text || "").replace(/\s+/g, " ").trim();
+  }
+
+  function getCart() {
     try {
-      return JSON.parse(localStorage.getItem(KEY)) || [];
+      return JSON.parse(localStorage.getItem(CART_KEY) || "[]");
     } catch {
       return [];
     }
   }
 
-  function writeCart(cart) {
-    localStorage.setItem(KEY, JSON.stringify(cart));
-    renderCart();
+  function saveCart(cart) {
+    localStorage.setItem(CART_KEY, JSON.stringify(cart));
+    updateFloatingCart();
   }
 
-  function getCardFromButton(button) {
-    return button.closest(".shop-card") || button.closest(".compact-product") || button.closest(".home-product-card");
+  function updateFloatingCart() {
+    const cart = getCart();
+    const totalQty = cart.reduce((sum, item) => sum + Number(item.quantity || 0), 0);
+
+    let button = document.querySelector(".floating-request-cart");
+
+    if (!button) {
+      button = document.createElement("a");
+      button.className = "floating-request-cart";
+      button.href = "/anfrage";
+      button.innerHTML = '<span>Anfragekorb</span><strong>0</strong>';
+      document.body.appendChild(button);
+    }
+
+    const badge = button.querySelector("strong");
+    if (badge) badge.textContent = String(totalQty);
+
+    button.style.display = totalQty > 0 ? "flex" : "none";
   }
 
-  function getProduct(button) {
-    const card = getCardFromButton(button);
-    if (!card) return null;
+  function getInfoFromCard(card) {
+    const title =
+      card.querySelector("h2")?.textContent ||
+      card.querySelector("h3")?.textContent ||
+      card.querySelector("strong")?.textContent ||
+      "Artikel";
 
-    const name = card.querySelector("h3")?.innerText?.trim() || "Mietartikel";
     const category =
-      card.querySelector(".shop-card-category")?.innerText?.trim() ||
-      card.querySelector(".home-product-category")?.innerText?.trim() ||
-      card.querySelector(".small-red")?.innerText?.trim() ||
+      card.querySelector(".product-category")?.textContent ||
+      card.querySelector(".shop-card-category")?.textContent ||
+      card.querySelector(".section-kicker")?.textContent ||
       "";
 
-    const price =
-      Array.from(card.querySelectorAll("strong"))
-        .map((el) => el.innerText.trim())
-        .find((text) => text.includes("€")) || "Preis auf Anfrage";
+    let price = "";
+    let deposit = "";
+    let stock = "";
 
-    const image = card.querySelector("img")?.getAttribute("src") || "";
+    card.querySelectorAll(".shop-card-info div").forEach((row) => {
+      const label = row.querySelector("span")?.textContent?.toLowerCase() || "";
+      const value = row.querySelector("strong")?.textContent || "";
+
+      if (label.includes("mietpreis")) price = value;
+      if (label.includes("kaution")) deposit = value;
+      if (label.includes("verfügbar")) stock = value;
+    });
 
     return {
-      id: name.toLowerCase().replace(/[^a-z0-9äöüß]+/gi, "-"),
-      name,
-      category,
-      price,
-      image,
-      quantity: 1
+      name: moneyText(title),
+      category: moneyText(category),
+      price: moneyText(price),
+      deposit: moneyText(deposit),
+      stock: moneyText(stock)
     };
   }
 
-  function addProduct(product) {
-    const cart = readCart();
-    const existing = cart.find((item) => item.id === product.id);
+  function addQuantityControls() {
+    document.querySelectorAll(".shop-card").forEach((card) => {
+      const button = card.querySelector(".shop-card-button");
+      if (!button) return;
 
-    if (existing) {
-      existing.quantity += 1;
-    } else {
-      cart.push(product);
-    }
+      button.textContent = "Zum Anfragekorb";
 
-    writeCart(cart);
-    document.body.classList.add("fm-cart-open");
+      if (!card.querySelector(".cart-qty-box")) {
+        const qtyBox = document.createElement("div");
+        qtyBox.className = "cart-qty-box";
+        qtyBox.innerHTML = `
+          <label>Menge</label>
+          <div>
+            <button type="button" class="qty-minus">−</button>
+            <input class="cart-qty-input" type="number" min="1" value="1" />
+            <button type="button" class="qty-plus">+</button>
+          </div>
+        `;
+
+        button.parentNode.insertBefore(qtyBox, button);
+      }
+    });
   }
 
-  function removeProduct(id) {
-    writeCart(readCart().filter((item) => item.id !== id));
+  function bindEvents() {
+    document.addEventListener("click", function (event) {
+      const minus = event.target.closest(".qty-minus");
+      const plus = event.target.closest(".qty-plus");
+
+      if (minus || plus) {
+        const box = event.target.closest(".cart-qty-box");
+        const input = box?.querySelector(".cart-qty-input");
+        if (!input) return;
+
+        let value = Number(input.value || 1);
+
+        if (minus) value = Math.max(1, value - 1);
+        if (plus) value = value + 1;
+
+        input.value = value;
+        return;
+      }
+
+      const button = event.target.closest(".shop-card-button");
+      if (!button) return;
+
+      const card = button.closest(".shop-card");
+      if (!card) return;
+
+      event.preventDefault();
+
+      const info = getInfoFromCard(card);
+      const qtyInput = card.querySelector(".cart-qty-input");
+      const quantity = Math.max(1, Number(qtyInput?.value || 1));
+
+      const cart = getCart();
+      const existing = cart.find((item) => item.name === info.name);
+
+      if (existing) {
+        existing.quantity = Number(existing.quantity || 0) + quantity;
+      } else {
+        cart.push({
+          ...info,
+          quantity
+        });
+      }
+
+      saveCart(cart);
+
+      button.textContent = "Hinzugefügt ✓";
+      setTimeout(() => {
+        button.textContent = "Zum Anfragekorb";
+      }, 1000);
+    });
+
+    document.addEventListener("click", function (event) {
+      const remove = event.target.closest("[data-remove-cart-item]");
+      if (!remove) return;
+
+      const index = Number(remove.getAttribute("data-remove-cart-item"));
+      const cart = getCart();
+      cart.splice(index, 1);
+      saveCart(cart);
+      renderInquiryCartBox();
+    });
   }
 
-  function changeQty(id, amount) {
-    const cart = readCart();
-    const item = cart.find((entry) => entry.id === id);
-    if (!item) return;
-
-    item.quantity += amount;
-
-    if (item.quantity <= 0) {
-      removeProduct(id);
-      return;
-    }
-
-    writeCart(cart);
-  }
-
-  function countCart() {
-    return readCart().reduce((sum, item) => sum + item.quantity, 0);
-  }
-
-  function cartText() {
-    const cart = readCart();
+  function buildCartText() {
+    const cart = getCart();
 
     if (!cart.length) return "";
 
-    return [
-      "Gewünschte Mietartikel:",
-      "",
-      ...cart.map((item) => `- ${item.quantity}x ${item.name} | ${item.category || "Mietartikel"} | ${item.price}`)
-    ].join("\n");
+    let text = "Anfragekorb:\n\n";
+
+    cart.forEach((item) => {
+      text += `${item.quantity} x ${item.name}\n`;
+
+      if (item.price) text += `Mietpreis: ${item.price}\n`;
+      if (item.deposit) text += `Kaution: ${item.deposit}\n`;
+      if (item.stock) text += `Verfügbar laut Website: ${item.stock}\n`;
+
+      text += "\n";
+    });
+
+    return text.trim();
   }
 
-  function renderCart() {
-    let root = document.querySelector("#fm-cart-root");
+  function renderInquiryCartBox() {
+    const cart = getCart();
+    const form = document.querySelector("form");
+    const textarea = document.querySelector('textarea[name="message"], textarea[name="nachricht"]');
 
-    if (!root) {
-      root = document.createElement("div");
-      root.id = "fm-cart-root";
-      document.body.appendChild(root);
+    if (!form || !textarea) return;
+
+    let box = document.querySelector(".inquiry-cart-preview");
+
+    if (!box) {
+      box = document.createElement("div");
+      box.className = "inquiry-cart-preview";
+      form.insertBefore(box, form.firstChild);
     }
 
-    const cart = readCart();
-    const count = countCart();
+    if (!cart.length) {
+      box.innerHTML = "";
+      return;
+    }
 
-    root.innerHTML = `
-      <button class="fm-cart-button" type="button">
-        Anfragekorb <b>${count}</b>
-      </button>
-
-      <div class="fm-cart-backdrop"></div>
-
-      <aside class="fm-cart-panel">
-        <div class="fm-cart-header">
-          <div>
-            <span>Feiermiete</span>
-            <h3>Anfragekorb</h3>
+    box.innerHTML = `
+      <h3>Dein Anfragekorb</h3>
+      <p>Diese Artikel werden mit deiner Anfrage übermittelt.</p>
+      <div class="inquiry-cart-items">
+        ${cart.map((item, index) => `
+          <div class="inquiry-cart-item">
+            <strong>${item.quantity} x ${item.name}</strong>
+            <span>${item.price || ""}${item.deposit ? " · Kaution: " + item.deposit : ""}</span>
+            <button type="button" data-remove-cart-item="${index}">Entfernen</button>
           </div>
-          <button class="fm-cart-x" type="button">×</button>
-        </div>
-
-        <div class="fm-cart-items">
-          ${
-            cart.length
-              ? cart.map((item) => `
-                <div class="fm-cart-line">
-                  ${item.image ? `<img src="${item.image}" alt="">` : ""}
-                  <div>
-                    <strong>${item.name}</strong>
-                    <span>${item.category || "Mietartikel"}</span>
-                    <small>${item.price}</small>
-
-                    <div class="fm-cart-controls">
-                      <button type="button" data-minus="${item.id}">−</button>
-                      <b>${item.quantity}</b>
-                      <button type="button" data-plus="${item.id}">+</button>
-                      <button type="button" data-remove="${item.id}">Entfernen</button>
-                    </div>
-                  </div>
-                </div>
-              `).join("")
-              : `<p class="fm-cart-empty">Noch keine Artikel im Anfragekorb.</p>`
-          }
-        </div>
-
-        <div class="fm-cart-bottom">
-          <p>Alle Artikel werden zusammen in eine Anfrage übernommen.</p>
-          <a href="/anfrage" class="fm-cart-submit">Gemeinsame Anfrage stellen</a>
-        </div>
-      </aside>
+        `).join("")}
+      </div>
     `;
 
-    root.querySelector(".fm-cart-button")?.addEventListener("click", () => {
-      document.body.classList.add("fm-cart-open");
-    });
+    const cartText = buildCartText();
 
-    root.querySelector(".fm-cart-backdrop")?.addEventListener("click", () => {
-      document.body.classList.remove("fm-cart-open");
-    });
-
-    root.querySelector(".fm-cart-x")?.addEventListener("click", () => {
-      document.body.classList.remove("fm-cart-open");
-    });
-
-    root.querySelectorAll("[data-remove]").forEach((button) => {
-      button.addEventListener("click", () => removeProduct(button.dataset.remove));
-    });
-
-    root.querySelectorAll("[data-plus]").forEach((button) => {
-      button.addEventListener("click", () => changeQty(button.dataset.plus, 1));
-    });
-
-    root.querySelectorAll("[data-minus]").forEach((button) => {
-      button.addEventListener("click", () => changeQty(button.dataset.minus, -1));
-    });
-  }
-
-  function convertProductButtons() {
-    document.querySelectorAll(".shop-card a, .shop-card-button, .compact-product a, .home-product-card a").forEach((button) => {
-      const text = button.innerText.trim().toLowerCase();
-
-      if (
-        text.includes("artikel anfragen") ||
-        text.includes("anfragen") ||
-        text.includes("zum warenkorb")
-      ) {
-        button.innerText = "Zum Anfragekorb";
-        button.href = "#";
-        button.classList.add("fm-add-cart-button");
-      }
-    });
-  }
-
-  function fillInquiryForm() {
-    const summary = cartText();
-    if (!summary) return;
-
-    const form = document.querySelector("form");
-    if (!form) return;
-
-    const textarea = form.querySelector('textarea[name="message"], textarea[name="nachricht"], textarea');
-
-    let summaryBox = document.querySelector(".fm-selected-products");
-
-    if (!summaryBox) {
-      summaryBox = document.createElement("div");
-      summaryBox.className = "fm-selected-products";
-      summaryBox.innerHTML = `
-        <div class="small-red">Ausgewählte Artikel</div>
-        <h3>Diese Artikel werden mit angefragt:</h3>
-        <pre></pre>
-      `;
-      form.prepend(summaryBox);
+    if (cartText && !textarea.value.includes("Anfragekorb:")) {
+      textarea.value = cartText + "\n\n" + textarea.value;
     }
-
-    summaryBox.querySelector("pre").innerText = summary;
-
-    if (textarea && !textarea.value.includes("Gewünschte Mietartikel:")) {
-      textarea.value = summary + "\n\nWeitere Nachricht:\n";
-    }
-
-    form.addEventListener("submit", function () {
-      const latestSummary = cartText();
-      const messageField = form.querySelector('textarea[name="message"], textarea[name="nachricht"], textarea');
-
-      if (messageField && latestSummary && !messageField.value.includes("Gewünschte Mietartikel:")) {
-        messageField.value = latestSummary + "\n\nWeitere Nachricht:\n" + messageField.value;
-      }
-    });
   }
-
-  document.addEventListener("click", function (event) {
-    const button = event.target.closest(".fm-add-cart-button");
-
-    if (!button) return;
-
-    event.preventDefault();
-
-    const product = getProduct(button);
-    if (!product) return;
-
-    addProduct(product);
-  });
 
   document.addEventListener("DOMContentLoaded", function () {
-    renderCart();
-    convertProductButtons();
-    fillInquiryForm();
+    addQuantityControls();
+    bindEvents();
+    updateFloatingCart();
+    renderInquiryCartBox();
   });
 })();
