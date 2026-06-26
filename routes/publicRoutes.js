@@ -66,6 +66,30 @@ publicRoutes.get("/services", (req, res) => {
   res.send(renderServicesPage());
 });
 
+
+publicRoutes.get("/event-equipment-mieten-berlin", (req, res) => {
+  res.send(renderSeoLandingPage({
+    title: "Event-Equipment mieten in Berlin",
+    kicker: "Event-Equipment Berlin",
+    headline: "Event-Equipment mieten f&uuml;r Feiern, Firmenveranstaltungen und Buffets.",
+    intro: "Feiermiete bietet Mietartikel f&uuml;r private Feiern, Firmenveranstaltungen, Gartenfeiern, Buffets und Caterings in Berlin und Brandenburg.",
+    image: "/public/images/equipment-photo.jpg",
+    bullets: [
+      { title: "Equipment nach Bedarf", text: "Stehtische, Pavillons, Bierzeltgarnituren, Chafing Dishes, Geschirr und Getr&auml;nkespender." },
+      { title: "Lieferung m&ouml;glich", text: "Auf Wunsch mit Lieferung, Abholung und abgestimmtem Zeitfenster." },
+      { title: "Private und gewerbliche Events", text: "Geeignet f&uuml;r Geburtstage, Firmenfeiern, Sommerfeste, Buffets und Caterings." },
+      { title: "Unverbindliches Angebot", text: "Wir pr&uuml;fen Verf&uuml;gbarkeit, Mietdauer, Kaution und Logistik individuell." }
+    ],
+    sections: [
+      {
+        kicker: "Sortiment",
+        title: "Welche Artikel k&ouml;nnen gemietet werden?",
+        text: "Je nach Anlass k&ouml;nnen einzelne Mietartikel oder komplette Zusammenstellungen angefragt werden. Besonders gefragt sind Stehtische, Pavillons, Buffetartikel, Geschirr, Besteck und Getr&auml;nke-Equipment."
+      }
+    ]
+  }));
+});
+
 publicRoutes.get("/anfrage", async (req, res) => {
   const products = await prisma.product.findMany({
     where: { isActive: true },
