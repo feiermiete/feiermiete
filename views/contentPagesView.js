@@ -457,3 +457,78 @@ export function renderServicesPage() {
 
 
 
+
+
+export function renderSeoLandingPage({
+  title,
+  kicker,
+  headline,
+  intro,
+  image,
+  bullets = [],
+  sections = [],
+  ctaLabel = "Anfrage senden"
+}) {
+  const bulletCards = bullets.map((item) => {
+    return `<div><strong>${item.title}</strong><span>${item.text}</span></div>`;
+  }).join("");
+
+  const detailSections = sections.map((section) => {
+    return `
+      <section class="subpage-section">
+        <div class="wide-inner text-block">
+          <div class="section-kicker">${section.kicker}</div>
+          <h2>${section.title}</h2>
+          <p>${section.text}</p>
+        </div>
+      </section>
+    `;
+  }).join("");
+
+  return renderPage({
+    title,
+    active: "equipment",
+    content: `
+      <main>
+        <section class="visual-hero">
+          <div class="wide-inner visual-hero-grid">
+            <div>
+              <div class="section-kicker">${kicker}</div>
+              <h1>${headline}</h1>
+              <p>${intro}</p>
+              <div class="hero-actions">
+                <a class="button primary" href="/anfrage">${ctaLabel}</a>
+                <a class="button secondary" href="/equipment">Equipment ansehen</a>
+              </div>
+            </div>
+
+            <div class="visual-hero-image">
+              <img src="${image}" alt="${title}" />
+            </div>
+          </div>
+        </section>
+
+        <section class="subpage-section cream">
+          <div class="wide-inner">
+            <div class="category-grid premium-categories">
+              ${bulletCards}
+            </div>
+          </div>
+        </section>
+
+        ${detailSections}
+
+        <section class="final-cta">
+          <div class="wide-inner final-cta-inner">
+            <div>
+              <div class="section-kicker">Unverbindlich anfragen</div>
+              <h2>Du planst ein Event in Berlin oder Brandenburg?</h2>
+              <p>Schick uns Datum, Ort, Personenanzahl und gew?nschte Leistung. Wir pr?fen Verf?gbarkeit, Lieferung, Aufbau und Kaution.</p>
+            </div>
+            <a class="button primary light" href="/anfrage">Jetzt Anfrage senden</a>
+          </div>
+        </section>
+      </main>
+    `
+  });
+}
