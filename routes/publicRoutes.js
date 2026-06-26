@@ -7,7 +7,8 @@ import {
   renderEquipmentPage,
   renderKitchenPage,
   renderCateringPage,
-  renderServicesPage
+  renderServicesPage,
+  renderSeoLandingPage
 } from "../views/contentPagesView.js";
 
 export const publicRoutes = express.Router();
