@@ -1,16 +1,20 @@
 ﻿function getProductImage(product) {
   const name = (product.name || "").toLowerCase();
 
-  if (name.includes("buffet")) return "/public/images/catering-photo.jpg";
+  if (name.includes("stehtisch")) return "/public/images/stehtisch.jpg";
+  if (name.includes("pavillon")) return "/public/images/pavillon-6x3.jpg";
+  if (name.includes("bierzelt")) return "/public/images/bierzeltgarnitur.jpg";
+  if (name.includes("glühwein") || name.includes("gluehwein")) return "/public/images/gluehweinbehaelter.jpg";
+  if (name.includes("getränkespender") || name.includes("getraenkespender")) return "/public/images/getraenkespender.jpg";
+  if (name.includes("chafing")) return "/public/images/chafing-dish.jpg";
+  if (name.includes("buffet")) return "/public/images/buffet-table.jpg";
   if (name.includes("geschirr") || name.includes("besteck")) return "/public/images/cutlery-set.jpg";
-  if (name.includes("glühwein") || name.includes("gluehwein")) return "/public/images/drinks-dispenser.jpg";
-  if (name.includes("getränkespender") || name.includes("getraenkespender")) return "/public/images/drinks-dispenser.jpg";
-  if (name.includes("chafing")) return "/public/images/catering-photo.jpg";
-  if (name.includes("stehtisch")) return "/public/images/equipment-photo.jpg";
-  if (name.includes("pavillon")) return "/public/images/equipment-photo.jpg";
+  if (name.includes("glas") || name.includes("gläser") || name.includes("glaeser")) return "/public/images/glassware-photo.jpg";
+  if (name.includes("küche") || name.includes("kueche")) return "/public/images/gastro-kitchen.jpg";
 
-  return "/public/images/equipment-photo.jpg";
+  return product.imageUrl || "/public/images/photo-coming-soon.jpg";
 }
+
 function formatPrice(product) {
   if (!product.priceCents) return "auf Anfrage";
   return (product.priceCents / 100).toLocaleString("de-DE", {
@@ -104,10 +108,10 @@ function renderFooter() {
 
 export function renderHomePage({ products = [] }) {
   const fallbackProducts = [
-    { name: "Chafing Dish", category: { name: "Buffet & Warmhalten" }, description: "Warmhaltebehälter für Buffets, Catering und Events.", priceCents: 950, imageUrl: "/public/images/catering-photo.jpg" },
-    { name: "Stehtisch", category: { name: "Tische & Sitzmöbel" }, description: "Klapptisch für Empfang, Gartenfeier oder Firmenveranstaltung.", priceCents: 1200, imageUrl: "/public/images/equipment-photo.jpg" },
-    { name: "Geschirr-Set", category: { name: "Geschirr & Besteck" }, description: "Teller, Besteck, Gläser und Serviermaterial für dein Event.", priceCents: 250, imageUrl: "/public/images/gastro-kitchen.jpg" },
-    { name: "Getränkespender", category: { name: "Getränke-Equipment" }, description: "Für Wasser, Limonade, Eistee oder Infused Water.", priceCents: 1000, imageUrl: "/public/images/catering-photo.jpg" }
+    { name: "Chafing Dish", category: { name: "Buffet & Warmhalten" }, description: "Warmhaltebehälter für Buffets, Catering und Events.", priceCents: 950, imageUrl: "/public/images/chafing-dish.jpg" },
+    { name: "Stehtisch", category: { name: "Tische & Sitzmöbel" }, description: "Klapptisch für Empfang, Gartenfeier oder Firmenveranstaltung.", priceCents: 1200, imageUrl: "/public/images/stehtisch.jpg" },
+    { name: "Geschirr-Set", category: { name: "Geschirr & Besteck" }, description: "Teller, Besteck, Gläser und Serviermaterial für dein Event.", priceCents: 250, imageUrl: "/public/images/cutlery-set.jpg" },
+    { name: "Getränkespender", category: { name: "Getränke-Equipment" }, description: "Für Wasser, Limonade, Eistee oder Infused Water.", priceCents: 1000, imageUrl: "/public/images/getraenkespender.jpg" }
   ];
 
   const visibleProducts = products.length ? products.slice(0, 4) : fallbackProducts;
@@ -325,10 +329,11 @@ export function renderHomePage({ products = [] }) {
                 <article>
                   <strong>Gartenfeier</strong>
                   <h3>Gartenfeier-Paket</h3>
-                  <p>F?r Geburtstage, Familienfeiern und kleine Outdoor-Events in Berlin & Brandenburg.</p>
+                  <p>Für Geburtstage, Familienfeiern und kleine Outdoor-Events in Berlin & Brandenburg.</p>
                   <ul>
                     <li>Stehtische und Bierzeltgarnituren</li>
-                    <li>Pavillon und Getr?nkespender m?glich</li>
+                    <li>Pavillon und Getränkespender möglich</li>
+
                     <li>Lieferung und Abholung nach Absprache</li>
                   </ul>
                   <a href="/anfrage">Paket anfragen</a>
@@ -336,11 +341,12 @@ export function renderHomePage({ products = [] }) {
 
                 <article>
                   <strong>Winterevent</strong>
-                  <h3>Gl?hwein-Event-Paket</h3>
-                  <p>Ideal f?r Firmenhof, Weihnachtsfeier, Wintermarkt oder Team-Event.</p>
+                  <h3>Glühwein-Event-Paket</h3>
+                  <p>Ideal für Firmenhof, Weihnachtsfeier, Wintermarkt oder Team-Event.</p>
                   <ul>
-                    <li>Gl?hweinbeh?lter und Stehtische</li>
-                    <li>Becher, Ausstattung und Zubeh?r m?glich</li>
+                    <li>Glühweinbehälter und Stehtische</li>
+                    <li>Becher, Ausstattung und Zubehör möglich</li>
+
                     <li>Optional mit Lieferung und Aufbau</li>
                   </ul>
                   <a href="/anfrage">Paket anfragen</a>
@@ -349,21 +355,23 @@ export function renderHomePage({ products = [] }) {
                 <article>
                   <strong>Buffet</strong>
                   <h3>Buffet-Aufbau-Paket</h3>
-                  <p>F?r Buffets, Caterings, Business-Lunches und Veranstaltungen mit Speisenausgabe.</p>
+                  <p>Für Buffets, Caterings, Business-Lunches und Veranstaltungen mit Speisenausgabe.</p>
                   <ul>
                     <li>Chafing Dishes und Warmhaltung</li>
-                    <li>Geschirr, Besteck und Servierzubeh?r</li>
+                    <li>Geschirr, Besteck und Servierzubehör</li>
+
                     <li>Buffet-Aufbau nach Absprache</li>
                   </ul>
                   <a href="/anfrage">Paket anfragen</a>
                 </article>
 
                 <article>
-                  <strong>K?che</strong>
-                  <h3>Produktionsk?che-Paket</h3>
-                  <p>F?r Caterer, Pop-ups, Food-Start-ups oder gr??ere Vorproduktionen.</p>
+                  <strong>Küche</strong>
+                  <h3>Produktionsküche-Paket</h3>
+                  <p>Für Caterer, Pop-ups, Food-Start-ups oder größere Vorproduktionen.</p>
                   <ul>
-                    <li>Gastro-K?che stundenweise oder tageweise</li>
+                    <li>Gastro-Küche stundenweise oder tageweise</li>
+
                     <li>Vorbereitung, Produktion und Kommissionierung</li>
                     <li>Optional mit Equipment und Logistik</li>
                   </ul>

@@ -81,7 +81,7 @@ export function renderEquipmentPage({ products = [] }) {
     return `
       <article class="shop-card">
         <div class="shop-card-image">
-          <img src="${product.imageUrl || "/public/images/equipment-photo.jpg"}" alt="${product.name}" />
+          <img src="${product.imageUrl || "/public/images/photo-coming-soon.jpg"}" alt="${product.name}" />
         </div>
         <div class="shop-card-body">
           <div class="shop-card-category">${product.category?.name || "Mietartikel"}</div>
