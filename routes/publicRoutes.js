@@ -91,6 +91,79 @@ publicRoutes.get("/event-equipment-mieten-berlin", (req, res) => {
   }));
 });
 
+
+publicRoutes.get("/chafing-dish-mieten-berlin", (req, res) => {
+  res.send(renderSeoLandingPage({
+    title: "Chafing Dish mieten in Berlin",
+    kicker: "Buffet und Warmhalten",
+    headline: "Chafing Dishes mieten f&uuml;r Buffets, Catering und warme Speisen.",
+    intro: "Chafing Dishes eignen sich f&uuml;r warme Buffets, Business-Lunches, Caterings und Veranstaltungen, bei denen Speisen warmgehalten werden sollen.",
+    image: "/public/images/chafing-dish.jpg",
+    bullets: [
+      { title: "Ideal f&uuml;r Buffets", text: "Geeignet f&uuml;r warme Speisen, Beilagen, Business-Lunches und Eventbuffets." },
+      { title: "Mit Zubeh&ouml;r", text: "Auf Wunsch mit Buffet-Equipment, Geschirr, Besteck und Serviermaterial." },
+      { title: "Lieferung m&ouml;glich", text: "Lieferung, Abholung und Zeitfenster k&ouml;nnen individuell abgestimmt werden." },
+      { title: "Kombinierbar", text: "Praktisch mit Buffet-Tischen, Getr&auml;nkespendern und Catering-Koordination." }
+    ],
+    sections: [
+      {
+        kicker: "Einsatz",
+        title: "Wof&uuml;r eignen sich Chafing Dishes?",
+        text: "Chafing Dishes werden genutzt, um warme Speisen bei Buffets und Caterings praktisch warmzuhalten. Sie sind besonders sinnvoll bei Firmenveranstaltungen, Familienfeiern und gr&ouml;&szlig;eren Buffets."
+      }
+    ]
+  }));
+});
+
+
+publicRoutes.get("/gluehweinbehaelter-mieten-berlin", (req, res) => {
+  res.send(renderSeoLandingPage({
+    title: "Gl?hweinbeh?lter mieten in Berlin",
+    kicker: "Winterevent und Ausschank",
+    headline: "Gl&uuml;hweinbeh&auml;lter mieten f&uuml;r Weihnachtsfeiern, Winterevents und Ausschank.",
+    intro: "Gl&uuml;hweinbeh&auml;lter sind ideal f&uuml;r Weihnachtsfeiern, Firmenhof-Events, Winterm&auml;rkte und Ausschankstationen in Berlin und Brandenburg.",
+    image: "/public/images/gluehweinbehaelter.jpg",
+    bullets: [
+      { title: "F&uuml;r Winterevents", text: "Ideal f&uuml;r Gl&uuml;hwein, Punsch, Tee oder hei&szlig;e Getr&auml;nke." },
+      { title: "Einfach anfragen", text: "Datum, Ort, Mietdauer und Menge senden, wir pr&uuml;fen die Verf&uuml;gbarkeit." },
+      { title: "Mit Equipment kombinieren", text: "Passend mit Stehtischen, Bechern, Pavillon oder Getr&auml;nkestation." },
+      { title: "Lieferung m&ouml;glich", text: "Auf Wunsch mit Lieferung und Abholung nach Absprache." }
+    ],
+    sections: [
+      {
+        kicker: "Paketidee",
+        title: "Gl&uuml;hwein-Event als Komplettpaket",
+        text: "F&uuml;r Winterevents kann der Gl&uuml;hweinbeh&auml;lter mit Stehtischen, Pavillon, Bechern und weiterem Zubeh&ouml;r kombiniert werden."
+      }
+    ]
+  }));
+});
+
+
+publicRoutes.get("/produktionskueche-mieten-berlin", (req, res) => {
+  res.send(renderSeoLandingPage({
+    title: "Produktionsk?che mieten in Berlin",
+    kicker: "Gastro-K&uuml;che Berlin",
+    headline: "Produktionsk&uuml;che mieten f&uuml;r Catering, Pop-ups und Vorproduktion.",
+    intro: "Die Gastro-K&uuml;che kann f&uuml;r Vorbereitung, Produktion, Kommissionierung oder Eventabwicklung angefragt werden. Ideal f&uuml;r Caterer, Food-Start-ups und Pop-up-Konzepte.",
+    image: "/public/images/gastro-kitchen.jpg",
+    ctaLabel: "K&uuml;che anfragen",
+    bullets: [
+      { title: "Stundenweise oder tageweise", text: "Flexible Anfrage je nach Produktionsaufwand und Zeitraum." },
+      { title: "F&uuml;r Caterer und Food-Konzepte", text: "Geeignet f&uuml;r Vorbereitung, Eventproduktion, Pop-ups und gr&ouml;&szlig;ere Mengen." },
+      { title: "Optional mit Equipment", text: "Chafing Dishes, Transportboxen, Buffetartikel und Logistik k&ouml;nnen erg&auml;nzt werden." },
+      { title: "Individuelle Abstimmung", text: "Nutzung, Zeiten, Ablauf und Anforderungen werden vorab gekl&auml;rt." }
+    ],
+    sections: [
+      {
+        kicker: "Nutzung",
+        title: "Wann lohnt sich eine Produktionsk&uuml;che?",
+        text: "Eine Produktionsk&uuml;che ist sinnvoll, wenn Speisen vorbereitet, Mengen produziert, Buffets kommissioniert oder Pop-up-Abl&auml;ufe vorbereitet werden sollen."
+      }
+    ]
+  }));
+});
+
 publicRoutes.get("/anfrage", async (req, res) => {
   const products = await prisma.product.findMany({
     where: { isActive: true },
