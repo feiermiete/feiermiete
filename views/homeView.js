@@ -108,10 +108,34 @@ function renderFooter() {
 
 export function renderHomePage({ products = [] }) {
   const fallbackProducts = [
-    { name: "Chafing Dish", category: { name: "Buffet & Warmhalten" }, description: "Warmhaltebehälter für Buffets, Catering und Events.", priceCents: 950, imageUrl: "/public/images/chafing-dish.jpg" },
-    { name: "Stehtisch", category: { name: "Tische & Sitzmöbel" }, description: "Klapptisch für Empfang, Gartenfeier oder Firmenveranstaltung.", priceCents: 1200, imageUrl: "/public/images/stehtisch.jpg" },
-    { name: "Geschirr-Set", category: { name: "Geschirr & Besteck" }, description: "Teller, Besteck, Gläser und Serviermaterial für dein Event.", priceCents: 250, imageUrl: "/public/images/cutlery-set.jpg" },
-    { name: "Getränkespender", category: { name: "Getränke-Equipment" }, description: "Für Wasser, Limonade, Eistee oder Infused Water.", priceCents: 1000, imageUrl: "/public/images/getraenkespender.jpg" }
+    {
+      name: "Chafing Dish",
+      category: { name: "Buffet & Warmhalten" },
+      description: "Warmhaltebeh?lter f?r Buffets, Caterings und Veranstaltungen. Geeignet f?r warme Speisen, Business-Lunches und Eventbuffets.",
+      priceCents: 950,
+      imageUrl: "/public/images/chafing-dish.jpg"
+    },
+    {
+      name: "Stehtisch",
+      category: { name: "Tische & Sitzm?bel" },
+      description: "Stabiler Stehtisch f?r Empfang, Gartenfeier, Firmenfeier oder Buffetbereich. Ideal f?r Getr?nke, Snacks und lockere Gespr?che.",
+      priceCents: 1200,
+      imageUrl: "/public/images/stehtisch.jpg"
+    },
+    {
+      name: "Geschirr-Set",
+      category: { name: "Geschirr & Besteck" },
+      description: "Teller, Besteck, Gl?ser und Serviermaterial f?r Feiern, Buffets und Caterings. Praktisch kombinierbar mit Lieferung und R?ckgabe.",
+      priceCents: 250,
+      imageUrl: "/public/images/cutlery-set.jpg"
+    },
+    {
+      name: "Getr?nkespender",
+      category: { name: "Getr?nke-Equipment" },
+      description: "Praktischer Getr?nkespender f?r Wasser, Limonade, Eistee oder Infused Water. Ideal f?r Buffets, Sommerfeste und Selbstbedienung.",
+      priceCents: 1000,
+      imageUrl: "/public/images/getraenkespender.jpg"
+    }
   ];
 
   const visibleProducts = products.length ? products.slice(0, 4) : fallbackProducts;
