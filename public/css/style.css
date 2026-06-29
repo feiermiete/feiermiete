@@ -4717,3 +4717,114 @@ body.fm-cart-open .fm-cart-panel {
     grid-template-columns: 1fr;
   }
 }
+
+
+/* SEO Landing Optimierung */
+.text-block {
+  max-width: 980px;
+}
+
+.text-block p {
+  max-width: 920px;
+  font-size: 18px;
+  line-height: 1.65;
+  color: rgba(30, 30, 30, 0.82);
+}
+
+.subpage-section {
+  padding: 76px 0;
+}
+
+.subpage-section.cream {
+  padding: 76px 0;
+}
+
+.visual-hero {
+  padding: 82px 0 72px;
+}
+
+.visual-hero h1 {
+  max-width: 900px;
+}
+
+.visual-hero p {
+  max-width: 820px;
+  font-size: 19px;
+  line-height: 1.6;
+}
+
+.category-grid.premium-categories {
+  margin-top: 28px;
+}
+
+.category-grid.premium-categories div {
+  min-height: 145px;
+}
+
+.category-grid.premium-categories strong {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.category-grid.premium-categories span {
+  display: block;
+  line-height: 1.55;
+}
+
+.faq-list {
+  max-width: 980px;
+  display: grid;
+  gap: 14px;
+}
+
+.faq-list details {
+  background: #fff;
+  border: 1px solid rgba(40, 30, 20, 0.12);
+  border-radius: 18px;
+  padding: 20px 24px;
+  box-shadow: 0 10px 30px rgba(30, 20, 10, 0.05);
+}
+
+.faq-list summary {
+  cursor: pointer;
+  font-weight: 800;
+  font-size: 18px;
+}
+
+.faq-list p {
+  margin-top: 12px;
+  line-height: 1.6;
+  color: rgba(30, 30, 30, 0.78);
+}
+
+.fm-seo-links {
+  padding: 76px 0;
+}
+
+.fm-seo-link-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+@media (max-width: 900px) {
+  .subpage-section,
+  .subpage-section.cream,
+  .visual-hero,
+  .fm-seo-links {
+    padding: 54px 0;
+  }
+
+  .fm-seo-link-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 560px) {
+  .fm-seo-link-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .visual-hero p,
+  .text-block p {
+    font-size: 16px;
+  }
+}

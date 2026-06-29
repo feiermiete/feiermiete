@@ -569,6 +569,10 @@ export function renderSeoLandingPage({
               Danach pr&uuml;fen wir, welche Ausstattung verf&uuml;gbar ist, ob Lieferung und Abholung sinnvoll sind und welche Kaution anf&auml;llt.
               Anschlie&szlig;end erh&auml;ltst du ein individuelles Angebot. Die Buchung wird erst verbindlich, wenn sie schriftlich best&auml;tigt wurde.
             </p>
+            <p>
+              Besonders wichtig sind genaue Angaben zum Aufbauort, zur gew&uuml;nschten Lieferzeit, zur R&uuml;ckgabe und dazu, ob die Artikel selbst abgeholt
+              oder geliefert werden sollen. So kann direkt eingesch&auml;tzt werden, welche Kombination aus Mietartikeln, Service und Logistik sinnvoll ist.
+            </p>
           </div>
         </section>
 
@@ -580,6 +584,11 @@ export function renderSeoLandingPage({
               Feiermiete richtet sich an private Feiern, Firmenveranstaltungen, Caterings, Pop-ups, Sommerfeste, Weihnachtsfeiern,
               Gartenfeiern und Buffets in Berlin und Brandenburg. Je nach Umfang k&ouml;nnen einzelne Mietartikel, komplette Pakete,
               Lieferung, Aufbau, Abholung oder erg&auml;nzende Serviceleistungen angefragt werden.
+            </p>
+            <p>
+              Die Ausstattung kann f&uuml;r kleine private Feiern genauso geplant werden wie f&uuml;r Firmenveranstaltungen, Office-Events,
+              Outdoor-Fl&auml;chen, Buffetbereiche oder Catering-Produktionen. Ziel ist immer eine praktische L&ouml;sung, die zum Ort,
+              zur Personenanzahl und zum Ablauf passt.
             </p>
           </div>
         </section>
