@@ -280,3 +280,23 @@ adminRoutes.get("/test-mailjet", async (req, res) => {
   }
 });
 
+
+
+function makeSlug(value, fallback = "artikel") {
+  const base = String(value || fallback)
+    .toLowerCase()
+    .trim()
+    .replace(/?/g, "ae")
+    .replace(/?/g, "oe")
+    .replace(/?/g, "ue")
+    .replace(/?/g, "ss")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+
+  return base || fallback;
+}
+
+function normalizeCategoryId(value) {
+  const id = Number(value);
+  return Number.isFinite(id) && id > 0 ? id : null;
+}
