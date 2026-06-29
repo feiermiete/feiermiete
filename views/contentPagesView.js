@@ -461,6 +461,7 @@ export function renderServicesPage() {
 
 
 
+
 export function renderSeoLandingPage({
   title,
   kicker,
@@ -477,17 +478,17 @@ export function renderSeoLandingPage({
     return `<div><strong>${item.title}</strong><span>${item.text}</span></div>`;
   }).join("");
 
-  const detailSections = sections.map((section) => {
-    return `
-      <section class="subpage-section">
-        <div class="wide-inner text-block">
-          <div class="section-kicker">${section.kicker}</div>
-          <h2>${section.title}</h2>
-          <p>${section.text}</p>
-        </div>
-      </section>
-    `;
-  }).join("");
+  const firstSection = sections[0] || {
+    kicker: "Einsatz",
+    title: "Wof&uuml;r ist diese Leistung geeignet?",
+    text: "Diese Leistung eignet sich f&uuml;r private Feiern, Firmenveranstaltungen, Buffets, Caterings und Events in Berlin und Brandenburg."
+  };
+
+  const secondSection = sections[1] || {
+    kicker: "Planung",
+    title: "Was sollte bei der Anfrage angegeben werden?",
+    text: "Wichtig sind Datum, Ort, Uhrzeit, Mietdauer, Personenanzahl, gew&uuml;nschte Artikel und ob Lieferung, Aufbau oder Abholung ben&ouml;tigt werden."
+  };
 
   const faqItems = (faq.length ? faq : [
     {
@@ -521,8 +522,7 @@ export function renderSeoLandingPage({
     { href: "/chafing-dish-mieten-berlin", label: "Chafing Dish mieten Berlin" },
     { href: "/pavillon-6x3-mieten-berlin", label: "Pavillon mieten Berlin" },
     { href: "/getraenkespender-mieten-berlin", label: "Getr&auml;nkespender mieten Berlin" },
-    { href: "/produktionskueche-mieten-berlin", label: "Produktionsk&uuml;che mieten Berlin" },
-    { href: "/equipment", label: "Gesamtes Equipment ansehen" }
+    { href: "/produktionskueche-mieten-berlin", label: "Produktionsk&uuml;che mieten Berlin" }
   ]).map((link) => {
     return `<a href="${link.href}">${link.label}</a>`;
   }).join("");
@@ -531,10 +531,10 @@ export function renderSeoLandingPage({
     title,
     active: "equipment",
     content: `
-      <main>
-        <section class="visual-hero">
-          <div class="wide-inner visual-hero-grid">
-            <div>
+      <main class="seo-page">
+        <section class="seo-hero">
+          <div class="wide-inner seo-hero-grid">
+            <div class="seo-hero-copy">
               <div class="section-kicker">${kicker}</div>
               <h1>${headline}</h1>
               <p>${intro}</p>
@@ -544,8 +544,12 @@ export function renderSeoLandingPage({
               </div>
             </div>
 
-            <div class="visual-hero-image">
+            <div class="seo-hero-media">
               <img src="${image}" alt="${title}" />
+              <div class="seo-floating-card">
+                <strong>Feiermiete</strong>
+                <span>Equipment ? Lieferung ? Aufbau ? Anfrage</span>
+              </div>
             </div>
           </div>
         </section>
@@ -559,69 +563,59 @@ export function renderSeoLandingPage({
           </div>
         </section>
 
-        <section class="subpage-section cream">
+        <section class="seo-split-section">
+          <div class="wide-inner seo-split-card">
+            <div>
+              <div class="section-kicker">${firstSection.kicker}</div>
+              <h2>${firstSection.title}</h2>
+            </div>
+            <div>
+              <p>${firstSection.text}</p>
+              <p>
+                Bei Feiermiete wird nicht nur ein einzelner Artikel betrachtet. Entscheidend ist, ob Ausstattung, Personenanzahl,
+                Ort, Mietdauer, Lieferung, Aufbau und R&uuml;ckgabe zusammenpassen. So entsteht eine praktische L&ouml;sung f&uuml;r dein Event.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section class="seo-card-section">
           <div class="wide-inner">
-            <div class="section-kicker">Vorteile</div>
-            <h2>Was du bei Feiermiete anfragen kannst</h2>
+            <div class="seo-section-head">
+              <div class="section-kicker">Vorteile</div>
+              <h2>Was du anfragen kannst</h2>
+              <p>Je nach Anlass kannst du einzelne Mietartikel oder eine passende Kombination aus Equipment, Service und Logistik anfragen.</p>
+            </div>
+
             <div class="category-grid premium-categories">
               ${bulletCards}
             </div>
           </div>
         </section>
 
-        <section class="subpage-section">
-          <div class="wide-inner text-block">
-            <div class="section-kicker">Warum Feiermiete?</div>
-            <h2>Praktisch geplant statt einzeln zusammengesucht</h2>
-            <p>
-              Bei Feiermiete geht es nicht nur um einzelne Mietartikel. Wichtig ist, dass Ausstattung, Personenanzahl,
-              Ort, Mietdauer, Lieferung, Aufbau und R&uuml;ckgabe zusammenpassen. Deshalb kannst du nicht nur einen Artikel,
-              sondern auch eine sinnvolle Kombination aus Equipment, Service und Logistik anfragen.
-            </p>
-            <p>
-              Das ist besonders hilfreich, wenn du ein Buffet, eine Gartenfeier, eine Firmenveranstaltung, ein Winterevent,
-              eine Hochzeit oder ein Catering planst und nicht sicher bist, welche Artikel wirklich gebraucht werden.
-            </p>
+        <section class="seo-split-section cream">
+          <div class="wide-inner seo-split-card">
+            <div>
+              <div class="section-kicker">${secondSection.kicker}</div>
+              <h2>${secondSection.title}</h2>
+            </div>
+            <div>
+              <p>${secondSection.text}</p>
+              <p>
+                Je genauer die Angaben sind, desto schneller kann ein sinnvolles Angebot erstellt werden.
+                Besonders hilfreich sind Fotos vom Aufbauort, genaue Lieferzeiten und die Info, ob die Artikel selbst abgeholt werden sollen.
+              </p>
+            </div>
           </div>
         </section>
 
-        <section class="subpage-section">
-          <div class="wide-inner text-block">
-            <div class="section-kicker">Ablauf</div>
-            <h2>So l&auml;uft die Anfrage ab</h2>
-            <p>
-              Du beschreibst kurz dein Event: Datum, Uhrzeit, Ort, Personenanzahl, Mietdauer und gew&uuml;nschte Artikel.
-              Danach pr&uuml;fen wir, welche Ausstattung verf&uuml;gbar ist, ob Lieferung und Abholung sinnvoll sind und welche Kaution anf&auml;llt.
-              Anschlie&szlig;end erh&auml;ltst du ein individuelles Angebot. Die Buchung wird erst verbindlich, wenn sie schriftlich best&auml;tigt wurde.
-            </p>
-            <p>
-              Besonders wichtig sind genaue Angaben zum Aufbauort, zur gew&uuml;nschten Lieferzeit, zur R&uuml;ckgabe und dazu, ob die Artikel selbst abgeholt
-              oder geliefert werden sollen. So kann direkt eingesch&auml;tzt werden, welche Kombination aus Mietartikeln, Service und Logistik sinnvoll ist.
-            </p>
-          </div>
-        </section>
-
-        <section class="subpage-section cream">
-          <div class="wide-inner text-block">
-            <div class="section-kicker">Berlin & Brandenburg</div>
-            <h2>Liefergebiet und Einsatzbereiche</h2>
-            <p>
-              Feiermiete richtet sich an private Feiern, Firmenveranstaltungen, Caterings, Pop-ups, Sommerfeste, Weihnachtsfeiern,
-              Gartenfeiern und Buffets in Berlin und Brandenburg. Je nach Umfang k&ouml;nnen einzelne Mietartikel, komplette Pakete,
-              Lieferung, Aufbau, Abholung oder erg&auml;nzende Serviceleistungen angefragt werden.
-            </p>
-            <p>
-              Die Ausstattung kann f&uuml;r kleine private Feiern genauso geplant werden wie f&uuml;r Firmenveranstaltungen, Office-Events,
-              Outdoor-Fl&auml;chen, Buffetbereiche oder Catering-Produktionen. Ziel ist immer eine praktische L&ouml;sung, die zum Ort,
-              zur Personenanzahl und zum Ablauf passt.
-            </p>
-          </div>
-        </section>
-
-        <section class="subpage-section cream">
+        <section class="seo-card-section">
           <div class="wide-inner">
-            <div class="section-kicker">Auf einen Blick</div>
-            <h2>Typische Einsatzbereiche</h2>
+            <div class="seo-section-head">
+              <div class="section-kicker">Auf einen Blick</div>
+              <h2>Typische Einsatzbereiche</h2>
+            </div>
+
             <div class="category-grid premium-categories">
               <div><strong>Private Feiern</strong><span>Geburtstage, Gartenfeiern, Hochzeiten, Familienfeiern und Feiern zuhause.</span></div>
               <div><strong>Firmenveranstaltungen</strong><span>Sommerfeste, Team-Events, Weihnachtsfeiern, Office-Events und Empf&auml;nge.</span></div>
@@ -631,12 +625,27 @@ export function renderSeoLandingPage({
           </div>
         </section>
 
-        ${detailSections}
-
-        <section class="subpage-section">
+        <section class="seo-process-section">
           <div class="wide-inner">
-            <div class="section-kicker">H&auml;ufige Fragen</div>
-            <h2>Fragen zur Miete</h2>
+            <div class="seo-section-head">
+              <div class="section-kicker">Ablauf</div>
+              <h2>So funktioniert die Anfrage</h2>
+            </div>
+
+            <div class="seo-process-grid">
+              <div><span>01</span><strong>Anfrage senden</strong><p>Datum, Ort, Personenanzahl, Mietdauer und gew&uuml;nschte Artikel angeben.</p></div>
+              <div><span>02</span><strong>Verf&uuml;gbarkeit pr&uuml;fen</strong><p>Wir pr&uuml;fen Artikel, Lieferung, Aufbau, Abholung, Kaution und Zeitfenster.</p></div>
+              <div><span>03</span><strong>Angebot erhalten</strong><p>Du bekommst ein individuelles Angebot. Verbindlich wird es erst nach Best&auml;tigung.</p></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="seo-faq-section">
+          <div class="wide-inner">
+            <div class="seo-section-head">
+              <div class="section-kicker">H&auml;ufige Fragen</div>
+              <h2>Fragen zur Miete</h2>
+            </div>
             <div class="faq-list">
               ${faqItems}
             </div>
