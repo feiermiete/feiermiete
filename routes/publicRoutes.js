@@ -35,6 +35,67 @@ function parseEventDate(value) {
   return null;
 }
 
+
+const publicSeoUrls = [
+  "",
+  "equipment",
+  "kueche-mieten",
+  "catering",
+  "services",
+  "anfrage",
+  "event-equipment-mieten-berlin",
+  "equipmentverleih-berlin",
+  "party-equipment-mieten-berlin",
+  "catering-equipment-mieten-berlin",
+  "stehtisch-mieten-berlin",
+  "bierzeltgarnitur-mieten-berlin",
+  "pavillon-6x3-mieten-berlin",
+  "chafing-dish-mieten-berlin",
+  "getraenkespender-mieten-berlin",
+  "gluehweinbehaelter-mieten-berlin",
+  "geschirr-mieten-berlin",
+  "besteck-mieten-berlin",
+  "glaeser-mieten-berlin",
+  "buffet-tisch-mieten-berlin",
+  "produktionskueche-mieten-berlin",
+  "equipment-hochzeit-mieten-berlin",
+  "equipment-geburtstag-mieten-berlin",
+  "equipment-firmenfeier-mieten-berlin",
+  "equipment-sommerfest-mieten-berlin",
+  "equipment-weihnachtsfeier-mieten-berlin",
+  "equipment-gartenfeier-mieten-berlin",
+  "equipment-lieferung-aufbau-berlin",
+  "eventservice-berlin",
+  "buffet-aufbau-berlin"
+];
+
+publicRoutes.get("/sitemap.xml", (req, res) => {
+  const baseUrl = "https://feiermiete-production.up.railway.app";
+  const urls = publicSeoUrls.map((url) => {
+    const loc = url ? `${baseUrl}/${url}` : baseUrl;
+    return `
+  <url>
+    <loc>${loc}</loc>
+    <changefreq>weekly</changefreq>
+    <priority>${url ? "0.7" : "1.0"}</priority>
+  </url>`;
+  }).join("");
+
+  res.type("application/xml");
+  res.send(`<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${urls}
+</urlset>`);
+});
+
+publicRoutes.get("/robots.txt", (req, res) => {
+  res.type("text/plain");
+  res.send(`User-agent: *
+Allow: /
+
+Sitemap: https://feiermiete-production.up.railway.app/sitemap.xml
+`);
+});
+
 publicRoutes.get("/", async (req, res) => {
   const products = await prisma.product.findMany({
     where: { isActive: true },
