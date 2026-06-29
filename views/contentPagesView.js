@@ -472,7 +472,8 @@ export function renderSeoLandingPage({
   sections = [],
   ctaLabel = "Anfrage senden",
   faq = [],
-  relatedLinks = []
+  relatedLinks = [],
+  canonicalPath = ""
 }) {
   const bulletCards = bullets.map((item) => {
     return `<div><strong>${item.title}</strong><span>${item.text}</span></div>`;
@@ -530,6 +531,8 @@ export function renderSeoLandingPage({
   return renderPage({
     title,
     active: "equipment",
+    description: intro.replace(/<[^>]*>/g, "").replace(/&uuml;/g, "?").replace(/&auml;/g, "?").replace(/&ouml;/g, "?").replace(/&szlig;/g, "?").slice(0, 155),
+    canonicalPath,
     content: `
       <main class="seo-page">
         <section class="seo-hero">

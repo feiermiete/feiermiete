@@ -160,6 +160,7 @@ publicRoutes.get("/chafing-dish-mieten-berlin", (req, res) => {
     headline: "Chafing Dishes mieten f&uuml;r Buffets, Catering und warme Speisen.",
     intro: "Chafing Dishes eignen sich f&uuml;r warme Buffets, Business-Lunches, Caterings und Veranstaltungen, bei denen Speisen warmgehalten werden sollen.",
     image: "/public/images/chafing-dish.jpg",
+    canonicalPath: req.path,
     bullets: [
       { title: "Ideal f&uuml;r Buffets", text: "Geeignet f&uuml;r warme Speisen, Beilagen, Business-Lunches und Eventbuffets." },
       { title: "Mit Zubeh&ouml;r", text: "Auf Wunsch mit Buffet-Equipment, Geschirr, Besteck und Serviermaterial." },
@@ -184,6 +185,7 @@ publicRoutes.get("/gluehweinbehaelter-mieten-berlin", (req, res) => {
     headline: "Gl&uuml;hweinbeh&auml;lter mieten f&uuml;r Weihnachtsfeiern, Winterevents und Ausschank.",
     intro: "Gl&uuml;hweinbeh&auml;lter sind ideal f&uuml;r Weihnachtsfeiern, Firmenhof-Events, Winterm&auml;rkte und Ausschankstationen in Berlin und Brandenburg.",
     image: "/public/images/gluehweinbehaelter.jpg",
+    canonicalPath: req.path,
     bullets: [
       { title: "F&uuml;r Winterevents", text: "Ideal f&uuml;r Gl&uuml;hwein, Punsch, Tee oder hei&szlig;e Getr&auml;nke." },
       { title: "Einfach anfragen", text: "Datum, Ort, Mietdauer und Menge senden, wir pr&uuml;fen die Verf&uuml;gbarkeit." },
@@ -235,6 +237,7 @@ publicRoutes.get("/event-equipment-mieten-berlin", (req, res) => {
     headline: "Event-Equipment mieten f&uuml;r Feiern, Firmenveranstaltungen und Buffets.",
     intro: "Feiermiete bietet Mietartikel f&uuml;r private Feiern, Firmenveranstaltungen, Gartenfeiern, Buffets und Caterings in Berlin und Brandenburg.",
     image: "/public/images/equipment-photo.jpg",
+    canonicalPath: req.path,
     bullets: [
       {
             "title": "Individuell anfragen",
@@ -328,6 +331,7 @@ publicRoutes.get("/equipmentverleih-berlin", (req, res) => {
     headline: "Equipmentverleih in Berlin f&uuml;r private und gewerbliche Veranstaltungen.",
     intro: "Ob kleine Feier, Firmenveranstaltung oder Buffet: Feiermiete stellt passendes Equipment f&uuml;r Events in Berlin und Brandenburg zusammen.",
     image: "/public/images/equipment-photo.jpg",
+    canonicalPath: req.path,
     bullets: [
       {
             "title": "Individuell anfragen",
@@ -421,6 +425,7 @@ publicRoutes.get("/party-equipment-mieten-berlin", (req, res) => {
     headline: "Party-Equipment mieten f&uuml;r Geburtstage, Gartenfeiern und private Events.",
     intro: "Feiermiete hilft bei der passenden Ausstattung f&uuml;r private Feiern, Geburtstage, Gartenpartys und kleinere Veranstaltungen.",
     image: "/public/images/hero-event.jpg",
+    canonicalPath: req.path,
     bullets: [
       {
             "title": "Individuell anfragen",
@@ -514,6 +519,7 @@ publicRoutes.get("/catering-equipment-mieten-berlin", (req, res) => {
     headline: "Catering-Equipment mieten f&uuml;r Buffets, Lunches und Eventverpflegung.",
     intro: "F&uuml;r Caterings, Buffets und Business-Lunches kannst du passendes Equipment wie Chafing Dishes, Geschirr, Besteck, Buffet-Tische und Getr&auml;nkespender anfragen.",
     image: "/public/images/catering-photo.jpg",
+    canonicalPath: req.path,
     bullets: [
       {
             "title": "Individuell anfragen",
@@ -607,6 +613,7 @@ publicRoutes.get("/stehtisch-mieten-berlin", (req, res) => {
     headline: "Stehtische mieten f&uuml;r Empfang, Firmenfeier, Gartenfeier und Buffetbereich.",
     intro: "Stehtische sind praktisch f&uuml;r Empf&auml;nge, Sommerfeste, Firmenfeiern, private Feiern und lockere Buffetbereiche.",
     image: "/public/images/stehtisch.jpg",
+    canonicalPath: req.path,
     bullets: [
       {
             "title": "Individuell anfragen",
@@ -700,6 +707,7 @@ publicRoutes.get("/bierzeltgarnitur-mieten-berlin", (req, res) => {
     headline: "Bierzeltgarnituren mieten f&uuml;r Gartenfeiern, Sommerfeste und Vereinsveranstaltungen.",
     intro: "Bierzeltgarnituren schaffen schnell Sitzpl&auml;tze f&uuml;r private Feiern, Firmenfeste, Outdoor-Events und lockere Veranstaltungen.",
     image: "/public/images/bierzeltgarnitur.jpg",
+    canonicalPath: req.path,
     bullets: [
       {
             "title": "Individuell anfragen",
@@ -793,6 +801,7 @@ publicRoutes.get("/pavillon-6x3-mieten-berlin", (req, res) => {
     headline: "Pavillon 6x3 mieten f&uuml;r Gartenfeiern, Outdoor-Events und Verkaufsfl&auml;chen.",
     intro: "Ein Pavillon ist praktisch als Wetterschutz, Buffetbereich, Ausschankstation oder &uuml;berdachte Fl&auml;che bei Outdoor-Events.",
     image: "/public/images/pavillon-6x3.jpg",
+    canonicalPath: req.path,
     bullets: [
       {
             "title": "Individuell anfragen",
@@ -886,6 +895,7 @@ publicRoutes.get("/chafing-dish-mieten-berlin", (req, res) => {
     headline: "Chafing Dishes mieten f&uuml;r Buffets, Catering und warme Speisen.",
     intro: "Chafing Dishes eignen sich f&uuml;r warme Buffets, Business-Lunches, Caterings und Veranstaltungen, bei denen Speisen warmgehalten werden sollen.",
     image: "/public/images/chafing-dish.jpg",
+    canonicalPath: req.path,
     bullets: [
       {
             "title": "Individuell anfragen",
@@ -979,6 +989,7 @@ publicRoutes.get("/getraenkespender-mieten-berlin", (req, res) => {
     headline: "Getr&auml;nkespender mieten f&uuml;r Buffets, Sommerfeste und Selbstbedienung.",
     intro: "Getr&auml;nkespender sind ideal f&uuml;r Wasser, Limonade, Eistee, Infused Water und einfache Selbstbedienungsstationen.",
     image: "/public/images/getraenkespender.jpg",
+    canonicalPath: req.path,
     bullets: [
       {
             "title": "Individuell anfragen",
@@ -1072,6 +1083,7 @@ publicRoutes.get("/gluehweinbehaelter-mieten-berlin", (req, res) => {
     headline: "Gl&uuml;hweinbeh&auml;lter mieten f&uuml;r Weihnachtsfeiern, Winterevents und Ausschank.",
     intro: "Gl&uuml;hweinbeh&auml;lter sind ideal f&uuml;r Weihnachtsfeiern, Firmenhof-Events, Winterm&auml;rkte und Ausschankstationen in Berlin und Brandenburg.",
     image: "/public/images/gluehweinbehaelter.jpg",
+    canonicalPath: req.path,
     bullets: [
       {
             "title": "Individuell anfragen",
@@ -1165,6 +1177,7 @@ publicRoutes.get("/geschirr-mieten-berlin", (req, res) => {
     headline: "Geschirr mieten f&uuml;r Feiern, Buffets, Caterings und Firmenveranstaltungen.",
     intro: "F&uuml;r Buffets, Feiern und Caterings kannst du Teller, Schalen, Besteck, Gl&auml;ser und Serviermaterial passend zum Anlass anfragen.",
     image: "/public/images/cutlery-set.jpg",
+    canonicalPath: req.path,
     bullets: [
       {
             "title": "Individuell anfragen",
@@ -1258,6 +1271,7 @@ publicRoutes.get("/besteck-mieten-berlin", (req, res) => {
     headline: "Besteck mieten f&uuml;r Catering, Buffet und Eventverpflegung.",
     intro: "Besteck kann passend zu Geschirr, Buffet, Catering und Personenanzahl angefragt werden.",
     image: "/public/images/cutlery-set.jpg",
+    canonicalPath: req.path,
     bullets: [
       {
             "title": "Individuell anfragen",
@@ -1351,6 +1365,7 @@ publicRoutes.get("/glaeser-mieten-berlin", (req, res) => {
     headline: "Gl&auml;ser mieten f&uuml;r Feiern, Empf&auml;nge und Veranstaltungen.",
     intro: "Gl&auml;ser eignen sich f&uuml;r Empf&auml;nge, Feiern, Buffets, Getr&auml;nkestationen und Firmenveranstaltungen.",
     image: "/public/images/glassware-photo.jpg",
+    canonicalPath: req.path,
     bullets: [
       {
             "title": "Individuell anfragen",
@@ -1444,6 +1459,7 @@ publicRoutes.get("/buffet-tisch-mieten-berlin", (req, res) => {
     headline: "Buffet-Tische mieten f&uuml;r Catering, Speisenausgabe und Eventbuffets.",
     intro: "Buffet-Tische schaffen Fl&auml;che f&uuml;r Speisen, Getr&auml;nke, Serviermaterial und eine saubere Ausgabe.",
     image: "/public/images/buffet-table.jpg",
+    canonicalPath: req.path,
     bullets: [
       {
             "title": "Individuell anfragen",
@@ -1537,6 +1553,7 @@ publicRoutes.get("/produktionskueche-mieten-berlin", (req, res) => {
     headline: "Produktionsk&uuml;che mieten f&uuml;r Catering, Pop-ups und Vorproduktion.",
     intro: "Die Gastro-K&uuml;che kann f&uuml;r Vorbereitung, Produktion, Kommissionierung oder Eventabwicklung angefragt werden. Ideal f&uuml;r Caterer, Food-Start-ups und Pop-up-Konzepte.",
     image: "/public/images/gastro-kitchen.jpg",
+    canonicalPath: req.path,
     bullets: [
       {
             "title": "Individuell anfragen",
@@ -1630,6 +1647,7 @@ publicRoutes.get("/equipment-hochzeit-mieten-berlin", (req, res) => {
     headline: "Equipment f&uuml;r Hochzeit mieten in Berlin und Brandenburg.",
     intro: "F&uuml;r Hochzeiten k&ouml;nnen Tische, Stehtische, Geschirr, Gl&auml;ser, Buffet-Equipment, Pavillons und Getr&auml;nkestationen angefragt werden.",
     image: "/public/images/hero-event.jpg",
+    canonicalPath: req.path,
     bullets: [
       {
             "title": "Individuell anfragen",
@@ -1723,6 +1741,7 @@ publicRoutes.get("/equipment-geburtstag-mieten-berlin", (req, res) => {
     headline: "Equipment f&uuml;r Geburtstag mieten: Tische, Pavillon, Geschirr und Buffetartikel.",
     intro: "F&uuml;r Geburtstage und private Feiern kannst du passendes Party-Equipment in Berlin und Brandenburg anfragen.",
     image: "/public/images/hero-event.jpg",
+    canonicalPath: req.path,
     bullets: [
       {
             "title": "Individuell anfragen",
@@ -1816,6 +1835,7 @@ publicRoutes.get("/equipment-firmenfeier-mieten-berlin", (req, res) => {
     headline: "Equipment f&uuml;r Firmenfeiern, Sommerfeste und Team-Events mieten.",
     intro: "F&uuml;r Firmenfeiern k&ouml;nnen Mietartikel, Buffet-Equipment, Getr&auml;nkestationen, Lieferung und Aufbau kombiniert werden.",
     image: "/public/images/service-photo.jpg",
+    canonicalPath: req.path,
     bullets: [
       {
             "title": "Individuell anfragen",
@@ -1909,6 +1929,7 @@ publicRoutes.get("/equipment-sommerfest-mieten-berlin", (req, res) => {
     headline: "Equipment f&uuml;r Sommerfeste mieten: Pavillon, Stehtische, Getr&auml;nkespender und Sitzpl&auml;tze.",
     intro: "F&uuml;r Sommerfeste sind wetterfeste und flexible Mietartikel besonders wichtig.",
     image: "/public/images/hero-event.jpg",
+    canonicalPath: req.path,
     bullets: [
       {
             "title": "Individuell anfragen",
@@ -2002,6 +2023,7 @@ publicRoutes.get("/equipment-weihnachtsfeier-mieten-berlin", (req, res) => {
     headline: "Equipment f&uuml;r Weihnachtsfeiern und Winterevents mieten.",
     intro: "F&uuml;r Weihnachtsfeiern und Winterevents k&ouml;nnen Gl&uuml;hweinbeh&auml;lter, Stehtische, Pavillon, Ausschank und Buffetartikel kombiniert werden.",
     image: "/public/images/gluehweinbehaelter.jpg",
+    canonicalPath: req.path,
     bullets: [
       {
             "title": "Individuell anfragen",
@@ -2095,6 +2117,7 @@ publicRoutes.get("/equipment-gartenfeier-mieten-berlin", (req, res) => {
     headline: "Equipment f&uuml;r Gartenfeiern mieten: Pavillon, Bierzeltgarnituren und Getr&auml;nkespender.",
     intro: "F&uuml;r Gartenfeiern kannst du praktische Mietartikel wie Pavillon, Stehtische, Bierzeltgarnituren, Geschirr und Getr&auml;nkespender anfragen.",
     image: "/public/images/pavillon-6x3.jpg",
+    canonicalPath: req.path,
     bullets: [
       {
             "title": "Individuell anfragen",
@@ -2188,6 +2211,7 @@ publicRoutes.get("/equipment-lieferung-aufbau-berlin", (req, res) => {
     headline: "Equipment mit Lieferung, Aufbau und Abholung in Berlin anfragen.",
     intro: "Je nach Umfang kann Feiermiete Lieferung, Aufbau, Abholung und Zeitfenster f&uuml;r Mietartikel planen.",
     image: "/public/images/service-photo.jpg",
+    canonicalPath: req.path,
     bullets: [
       {
             "title": "Individuell anfragen",
@@ -2281,6 +2305,7 @@ publicRoutes.get("/eventservice-berlin", (req, res) => {
     headline: "Eventservice in Berlin f&uuml;r Equipment, Lieferung, Aufbau und Ablauf.",
     intro: "Feiermiete verbindet Mietartikel, Lieferung, Aufbau, Catering-Koordination und praktische Eventservices.",
     image: "/public/images/services.svg",
+    canonicalPath: req.path,
     bullets: [
       {
             "title": "Individuell anfragen",
@@ -2374,6 +2399,7 @@ publicRoutes.get("/buffet-aufbau-berlin", (req, res) => {
     headline: "Buffet-Aufbau in Berlin mit Chafing Dishes, Tischen, Geschirr und Getr&auml;nke-Equipment.",
     intro: "F&uuml;r Buffets k&ouml;nnen Chafing Dishes, Buffet-Tische, Geschirr, Besteck und Getr&auml;nkestationen kombiniert werden.",
     image: "/public/images/buffet-photo.jpg",
+    canonicalPath: req.path,
     bullets: [
       {
             "title": "Individuell anfragen",
