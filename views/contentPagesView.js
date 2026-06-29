@@ -618,6 +618,19 @@ export function renderSeoLandingPage({
           </div>
         </section>
 
+        <section class="subpage-section cream">
+          <div class="wide-inner">
+            <div class="section-kicker">Auf einen Blick</div>
+            <h2>Typische Einsatzbereiche</h2>
+            <div class="category-grid premium-categories">
+              <div><strong>Private Feiern</strong><span>Geburtstage, Gartenfeiern, Hochzeiten, Familienfeiern und Feiern zuhause.</span></div>
+              <div><strong>Firmenveranstaltungen</strong><span>Sommerfeste, Team-Events, Weihnachtsfeiern, Office-Events und Empf&auml;nge.</span></div>
+              <div><strong>Buffets & Catering</strong><span>Speisenausgabe, Warmhaltung, Getr&auml;nkestationen, Geschirr und Serviermaterial.</span></div>
+              <div><strong>Outdoor & Pop-up</strong><span>Pavillons, Stehtische, flexible Fl&auml;chen, Ausschank und tempor&auml;re Eventbereiche.</span></div>
+            </div>
+          </div>
+        </section>
+
         ${detailSections}
 
         <section class="subpage-section">
