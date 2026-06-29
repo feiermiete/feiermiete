@@ -265,18 +265,19 @@ export function renderAdminProducts({ products = [] }) {
   });
 }
 
+
 export function renderNewProductForm({ categories = [] }) {
   const categoryOptions = renderCategoryOptions(categories);
 
   return renderAdminLayout({
-    title: "Equipment hinzufügen",
+    title: "Equipment hinzuf?gen",
     content: `
       <div class="topbar">
         <div>
-          <h1>Equipment hinzufügen</h1>
+          <h1>Equipment hinzuf?gen</h1>
           <p class="muted">Neuen Mietartikel anlegen.</p>
         </div>
-        <a class="button black" href="/admin/products">Zur Liste</a>
+        <a class="button secondary" href="/admin/products">Zur Liste</a>
       </div>
 
       <div class="card">
@@ -290,7 +291,7 @@ export function renderNewProductForm({ categories = [] }) {
             <div class="form-row">
               <label>Slug / URL-Name</label>
               <input name="slug" placeholder="z. B. stehtisch" required />
-              <small class="muted">Wird f?r die interne URL und saubere Verwaltung genutzt. Kleinbuchstaben ohne Leerzeichen.</small>
+              <small class="muted">Kleinbuchstaben ohne Leerzeichen, z. B. stehtisch oder pavillon-6x3.</small>
             </div>
 
             <div class="form-row">
@@ -309,6 +310,13 @@ export function renderNewProductForm({ categories = [] }) {
             <div class="form-row">
               <label>Kaution in Euro</label>
               <input name="depositEuro" type="number" step="0.01" placeholder="z. B. 30.00" />
+              <small class="muted">Optional. Wird sp?ter im Angebot/Mietvertrag ber?cksichtigt.</small>
+            </div>
+
+            <div class="form-row">
+              <label>Menge verf?gbar</label>
+              <input name="stockQuantity" type="number" step="1" min="0" value="0" />
+              <small class="muted">Interner Bestand f?r Planung und Verf?gbarkeit.</small>
             </div>
 
             <div class="form-row">
@@ -319,21 +327,38 @@ export function renderNewProductForm({ categories = [] }) {
 
             <div class="form-row">
               <label>Bild aus Mediathek ausw?hlen</label>
-              <select data-image-library-select onchange="this.closest('form').querySelector('input[name=imageUrl]').value=this.value">
+              <select data-image-library-select>
                 <option value="">Bitte ausw?hlen</option>
                 ${renderImageLibraryOptions()}
               </select>
             </div>
 
             <div class="form-row full">
+              <label>Bildvorschau</label>
+              <div class="admin-image-preview" data-image-preview>
+                <span>Keine Bildvorschau</span>
+              </div>
+            </div>
+
+            <div class="form-row full">
               <label>Beschreibung</label>
-              <textarea name="description" rows="5" placeholder="Kurze Beschreibung für Kunden"></textarea>
+              <textarea name="description" rows="6" placeholder="Kurze Beschreibung f?r Kunden, z. B. Einsatzbereich, Vorteile und passende Kombinationen."></textarea>
+              <small class="muted">Diese Beschreibung erscheint auf der Website und sollte kundenverst?ndlich formuliert sein.</small>
+            </div>
+
+            <div class="form-row full checkbox-row">
+              <label>
+                <input type="checkbox" name="isActive" checked />
+                Artikel aktiv auf der Website anzeigen
+              </label>
             </div>
           </div>
 
           <button class="button" type="submit">Equipment speichern</button>
         </form>
       </div>
+
+      ${renderImagePickerScript()}
     `
   });
 }
