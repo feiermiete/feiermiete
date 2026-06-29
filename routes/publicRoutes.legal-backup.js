@@ -2670,73 +2670,38 @@ publicRoutes.get("/impressum", (req, res) => {
   res.send(renderLegalPage({
     title: "Impressum",
     content: `
-<h1>Impressum</h1>
-
-      <h2>Angaben gem&auml;&szlig; &sect; 5 DDG</h2>
+      <p><strong>Angaben nach den gesetzlichen Informationspflichten</strong></p>
 
       <p>
-        <strong>Edis Gastrobetriebe GmbH &amp; Co. KG</strong><br>
+        Feiermiete<br>
+        Edis Gastrobetriebe GmbH & Co. KG<br>
         Goerzallee 299<br>
         14167 Berlin<br>
         Deutschland
       </p>
 
       <p>
-        Telefon: <a href="tel:+4917623374012">0176 23374012</a><br>
-        E-Mail: <a href="mailto:info@feiermiete.de">info@feiermiete.de</a>
+        E-Mail: info@feiermiete.de<br>
+        Telefon: wird ergänzt
       </p>
 
-      <h2>Vertreten durch</h2>
       <p>
-        Edis Beteiligungs GmbH, diese vertreten durch den Gesch&auml;ftsf&uuml;hrer Edis Mutluer.
+        Vertreten durch die persönlich haftende Gesellschafterin:<br>
+        Edis Beteiligungs GmbH
       </p>
 
-      <h2>Registereintrag</h2>
       <p>
-        Edis Gastrobetriebe GmbH &amp; Co. KG<br>
-        Handelsregister: HRA 59626 B<br>
-        Registergericht: Amtsgericht Charlottenburg
+        Registergericht, Registernummer und Umsatzsteuer-ID werden ergänzt, sofern vorhanden.
       </p>
 
-      <h2>Pers&ouml;nlich haftende Gesellschafterin</h2>
       <p>
-        Edis Beteiligungs GmbH<br>
-        Handelsregister: HRB 237237 B<br>
-        Registergericht: Amtsgericht Charlottenburg<br>
-        Gesch&auml;ftsf&uuml;hrer: Edis Mutluer
+        Verantwortlich für den Inhalt dieser Website:<br>
+        Edis Gastrobetriebe GmbH & Co. KG, Goerzallee 299, 14167 Berlin
       </p>
 
-      <h2>Umsatzsteuer-ID</h2>
-      <p>
-        Umsatzsteuer-Identifikationsnummer gem&auml;&szlig; &sect; 27a Umsatzsteuergesetz:<br>
-        DE351408498
-      </p>
-
-      <h2>Verantwortlich f&uuml;r den Inhalt</h2>
-      <p>
-        Edis Mutluer<br>
-        Goerzallee 299<br>
-        14167 Berlin
-      </p>
-
-      <h2>Verbraucherstreitbeilegung</h2>
-      <p>
-        Wir sind nicht verpflichtet und nicht bereit, an einem Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.
-      </p>
-
-      <h2>Haftung f&uuml;r Inhalte</h2>
-      <p>
-        Die Inhalte dieser Website wurden mit gr&ouml;&szlig;ter Sorgfalt erstellt. F&uuml;r die Richtigkeit, Vollst&auml;ndigkeit und Aktualit&auml;t der Inhalte &uuml;bernehmen wir jedoch keine Gew&auml;hr. Als Diensteanbieter sind wir f&uuml;r eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich.
-      </p>
-
-      <h2>Haftung f&uuml;r Links</h2>
-      <p>
-        Diese Website kann Links zu externen Websites Dritter enthalten. Auf deren Inhalte haben wir keinen Einfluss. F&uuml;r fremde Inhalte &uuml;bernehmen wir keine Gew&auml;hr. F&uuml;r die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber verantwortlich.
-      </p>
-
-      <h2>Urheberrecht</h2>
-      <p>
-        Die auf dieser Website erstellten Inhalte, Texte, Bilder, Grafiken und Gestaltungen unterliegen dem deutschen Urheberrecht. Eine Verwendung, Vervielf&auml;ltigung oder Weitergabe au&szlig;erhalb der gesetzlichen Grenzen bedarf der vorherigen schriftlichen Zustimmung des jeweiligen Rechteinhabers.
+      <p class="muted">
+        Hinweis: Dieses Impressum ist als Arbeitsfassung hinterlegt und sollte vor Veröffentlichung vollständig
+        mit Registerdaten, Telefonnummer, Umsatzsteuerangaben und rechtlicher Prüfung finalisiert werden.
       </p>
     `
   }));
@@ -2744,119 +2709,53 @@ publicRoutes.get("/impressum", (req, res) => {
 
 publicRoutes.get("/datenschutz", (req, res) => {
   res.send(renderLegalPage({
-    title: "Datenschutzerkl&auml;rung",
+    title: "Datenschutzerklärung",
     content: `
-<h1>Datenschutzerkl&auml;rung</h1>
+      <p>
+        Der Schutz personenbezogener Daten ist uns wichtig. Personenbezogene Daten werden nur verarbeitet,
+        soweit dies zur Bearbeitung von Anfragen, zur Angebotserstellung, zur Vertragsabwicklung und zur Kommunikation erforderlich ist.
+      </p>
 
       <h2>1. Verantwortlicher</h2>
       <p>
-        Verantwortlich f&uuml;r die Datenverarbeitung auf dieser Website ist:
-      </p>
-      <p>
-        <strong>Edis Gastrobetriebe GmbH &amp; Co. KG</strong><br>
+        Verantwortlich für die Datenverarbeitung ist:<br>
+        Edis Gastrobetriebe GmbH & Co. KG<br>
         Goerzallee 299<br>
         14167 Berlin<br>
-        Deutschland
-      </p>
-      <p>
-        Telefon: <a href="tel:+4917623374012">0176 23374012</a><br>
-        E-Mail: <a href="mailto:info@feiermiete.de">info@feiermiete.de</a>
+        E-Mail: info@feiermiete.de
       </p>
 
-      <h2>2. Allgemeine Hinweise zur Datenverarbeitung</h2>
+      <h2>2. Anfrageformular</h2>
       <p>
-        Wir verarbeiten personenbezogene Daten nur, soweit dies zur Bereitstellung dieser Website, zur Bearbeitung von Anfragen, zur Erstellung von Angeboten, zur Durchf&uuml;hrung von Vertr&auml;gen oder zur Erf&uuml;llung gesetzlicher Pflichten erforderlich ist.
-      </p>
-      <p>
-        Personenbezogene Daten sind alle Informationen, mit denen eine Person direkt oder indirekt identifiziert werden kann, zum Beispiel Name, Firma, Adresse, Telefonnummer, E-Mail-Adresse, Lieferadresse, Veranstaltungsdaten oder Inhalte einer Anfrage.
-      </p>
-
-      <h2>3. Hosting und technische Bereitstellung</h2>
-      <p>
-        Diese Website wird technisch &uuml;ber einen externen Hosting-Anbieter betrieben. Dabei k&ouml;nnen technische Zugriffsdaten verarbeitet werden, zum Beispiel IP-Adresse, Datum und Uhrzeit des Zugriffs, aufgerufene Seiten, Browsertyp, Betriebssystem und technische Protokolldaten.
-      </p>
-      <p>
-        Die Verarbeitung erfolgt zur sicheren und stabilen Bereitstellung der Website, zur Fehleranalyse und zur Abwehr von Missbrauch. Rechtsgrundlage ist unser berechtigtes Interesse an einem sicheren und funktionsf&auml;higen Internetangebot gem&auml;&szlig; Art. 6 Abs. 1 lit. f DSGVO.
+        Wenn du über das Anfrageformular Kontakt aufnimmst, verarbeiten wir die von dir angegebenen Daten,
+        insbesondere Name, Firma, E-Mail-Adresse, Telefonnummer, Eventdatum, Lieferadresse, Personenanzahl,
+        Mietdauer, ausgewählte Artikel und deine Nachricht. Diese Daten nutzen wir zur Bearbeitung deiner Anfrage,
+        zur Angebotserstellung und zur weiteren Abstimmung.
       </p>
 
-      <h2>4. Anfrageformular und Kontaktaufnahme</h2>
+      <h2>3. E-Mail-Kommunikation</h2>
       <p>
-        Wenn du &uuml;ber das Anfrageformular oder per E-Mail Kontakt mit uns aufnimmst, verarbeiten wir die von dir angegebenen Daten. Dazu k&ouml;nnen insbesondere geh&ouml;ren:
-      </p>
-      <ul>
-        <li>Name</li>
-        <li>Firma</li>
-        <li>E-Mail-Adresse</li>
-        <li>Telefonnummer</li>
-        <li>Veranstaltungsdatum</li>
-        <li>Lieferadresse oder Veranstaltungsort</li>
-        <li>Personenanzahl</li>
-        <li>gew&uuml;nschte Mietartikel oder Leistungen</li>
-        <li>Mietdauer</li>
-        <li>Nachricht und weitere Angaben zur Anfrage</li>
-      </ul>
-      <p>
-        Diese Daten nutzen wir zur Bearbeitung deiner Anfrage, zur Erstellung eines Angebots, zur Abstimmung von Lieferung, Aufbau, Abholung, K&uuml;chennutzung, Catering oder Eventservice sowie zur Durchf&uuml;hrung vorvertraglicher und vertraglicher Ma&szlig;nahmen.
-      </p>
-      <p>
-        Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO, soweit die Verarbeitung zur Durchf&uuml;hrung vorvertraglicher Ma&szlig;nahmen oder eines Vertrags erforderlich ist. Soweit die Verarbeitung zur Organisation und Nachweisf&uuml;hrung erforderlich ist, erfolgt sie au&szlig;erdem auf Grundlage unseres berechtigten Interesses gem&auml;&szlig; Art. 6 Abs. 1 lit. f DSGVO.
+        Für den Versand von internen Anfragebenachrichtigungen und Kundenbestätigungen kann ein externer
+        E-Mail-Dienstleister eingesetzt werden. Dabei werden die für den E-Mail-Versand notwendigen Daten verarbeitet,
+        insbesondere E-Mail-Adresse, Name, Anfrageinhalt und technische Versandinformationen.
       </p>
 
-      <h2>5. Kunden- und Vertragsdaten</h2>
+      <h2>4. Speicherung</h2>
       <p>
-        Wenn ein Angebot angenommen wird oder ein Vertrag zustande kommt, verarbeiten wir die erforderlichen Kunden-, Rechnungs-, Leistungs- und Zahlungsdaten. Dazu geh&ouml;ren insbesondere Name, Firma, Anschrift, Kontaktdaten, gebuchte Leistungen, Mietartikel, Preise, Kautionen, Zahlungsstatus, Liefer- und R&uuml;ckgabedaten sowie vertragsbezogene Kommunikation.
-      </p>
-      <p>
-        Diese Daten werden zur Vertragsdurchf&uuml;hrung, Rechnungsstellung, Zahlungsabwicklung, Buchhaltung und Erf&uuml;llung gesetzlicher Aufbewahrungspflichten verarbeitet.
+        Anfragen und zugehörige Daten werden gespeichert, solange dies für Bearbeitung, Angebotserstellung,
+        Vertragsabwicklung, Nachweiszwecke oder gesetzliche Aufbewahrungspflichten erforderlich ist.
       </p>
 
-      <h2>6. E-Mail-Versand</h2>
+      <h2>5. Rechte betroffener Personen</h2>
       <p>
-        F&uuml;r den Versand von Anfragebest&auml;tigungen, internen Benachrichtigungen und vertragsbezogener Kommunikation kann ein externer E-Mail-Dienstleister eingesetzt werden. Dabei werden die f&uuml;r den Versand notwendigen Daten verarbeitet, insbesondere E-Mail-Adresse, Name, Anfrageinhalt und technische Versandinformationen.
+        Du hast im Rahmen der gesetzlichen Voraussetzungen das Recht auf Auskunft, Berichtigung, Löschung,
+        Einschränkung der Verarbeitung, Datenübertragbarkeit sowie Widerspruch gegen bestimmte Verarbeitungen.
+        Anfragen hierzu können an info@feiermiete.de gesendet werden.
       </p>
 
-      <h2>7. Cookies und technisch notwendige Funktionen</h2>
-      <p>
-        Diese Website kann technisch notwendige Cookies oder vergleichbare Technologien verwenden, soweit diese f&uuml;r den Betrieb der Website erforderlich sind. Dazu k&ouml;nnen zum Beispiel Funktionen f&uuml;r Anfragen, Warenkorb/Sammelanfrage, Sicherheit oder Sitzungsverwaltung geh&ouml;ren.
-      </p>
-      <p>
-        Technisch nicht notwendige Tracking- oder Marketing-Cookies werden nach aktuellem Stand nicht eingesetzt. Sollten k&uuml;nftig Analyse-, Marketing- oder Trackingdienste verwendet werden, wird diese Datenschutzerkl&auml;rung entsprechend erg&auml;nzt und, soweit erforderlich, eine Einwilligung eingeholt.
-      </p>
-
-      <h2>8. Datenbank und Speicherung</h2>
-      <p>
-        Anfrage-, Kunden- und Vertragsdaten k&ouml;nnen in einer Datenbank gespeichert werden. Die Speicherung erfolgt nur so lange, wie dies zur Bearbeitung der Anfrage, Durchf&uuml;hrung des Vertrags, Erf&uuml;llung gesetzlicher Pflichten oder Wahrung berechtigter Interessen erforderlich ist.
-      </p>
-
-      <h2>9. Zahlungsdaten</h2>
-      <p>
-        Feiermiete arbeitet grunds&auml;tzlich mit Vorkasse. Zahlungsinformationen werden verarbeitet, soweit dies zur Zuordnung von Zahlungen, Erstellung von Rechnungen, Verwaltung von Kautionen und Durchf&uuml;hrung des Vertrags erforderlich ist.
-      </p>
-
-      <h2>10. Empf&auml;nger von Daten</h2>
-      <p>
-        Eine Weitergabe personenbezogener Daten erfolgt nur, wenn dies zur Bearbeitung der Anfrage oder Durchf&uuml;hrung des Vertrags erforderlich ist, zum Beispiel an Hosting-Anbieter, E-Mail-Dienstleister, Steuerberatung, Zahlungsdienstleister, Transport- oder Servicepartner, soweit diese f&uuml;r die Leistungserbringung notwendig sind.
-      </p>
-      <p>
-        Eine Weitergabe zu Werbezwecken an Dritte erfolgt nicht.
-      </p>
-
-      <h2>11. Speicherdauer</h2>
-      <p>
-        Wir speichern personenbezogene Daten nur so lange, wie dies f&uuml;r die jeweiligen Zwecke erforderlich ist. Vertrags- und Rechnungsdaten werden entsprechend gesetzlicher Aufbewahrungsfristen gespeichert. Anfragedaten k&ouml;nnen gespeichert werden, solange dies zur Bearbeitung, Nachverfolgung oder Angebotsdokumentation erforderlich ist.
-      </p>
-
-      <h2>12. Rechte betroffener Personen</h2>
-      <p>
-        Du hast nach Ma&szlig;gabe der gesetzlichen Voraussetzungen das Recht auf Auskunft, Berichtigung, L&ouml;schung, Einschr&auml;nkung der Verarbeitung, Daten&uuml;bertragbarkeit sowie Widerspruch gegen bestimmte Verarbeitungen.
-      </p>
-      <p>
-        Du hast au&szlig;erdem das Recht, dich bei einer zust&auml;ndigen Datenschutzaufsichtsbeh&ouml;rde zu beschweren.
-      </p>
-
-      <h2>13. Aktualit&auml;t dieser Datenschutzerkl&auml;rung</h2>
-      <p>
-        Diese Datenschutzerkl&auml;rung wird angepasst, wenn neue Dienste, Tracking-Tools, Zahlungsanbieter, Kartenfunktionen, Social-Media-Einbindungen oder sonstige externe Dienste eingesetzt werden.
+      <p class="muted">
+        Hinweis: Diese Datenschutzerklärung ist eine Arbeitsfassung und sollte vor Veröffentlichung rechtlich geprüft
+        und an die tatsächlich eingesetzten Dienste, Cookies, Tracking-Tools und Hosting-Strukturen angepasst werden.
       </p>
     `
   }));
@@ -2864,129 +2763,59 @@ publicRoutes.get("/datenschutz", (req, res) => {
 
 publicRoutes.get("/agb", (req, res) => {
   res.send(renderLegalPage({
-    title: "AGB / Mietbedingungen",
+    title: "Allgemeine Geschäftsbedingungen",
     content: `
-<h1>AGB / Mietbedingungen</h1>
-
-      <h2>1. Geltungsbereich</h2>
       <p>
-        Diese Allgemeinen Gesch&auml;ftsbedingungen gelten f&uuml;r alle Anfragen, Angebote, Buchungen und Vertr&auml;ge &uuml;ber Mietartikel, Event-Equipment, Lieferung, Aufbau, Abholung, Produktionsk&uuml;che, Catering-Koordination und erg&auml;nzende Eventservices von Feiermiete.
-      </p>
-      <p>
-        Feiermiete richtet sich sowohl an Unternehmer als auch an Verbraucher.
+        Diese Allgemeinen Geschäftsbedingungen gelten für Mietartikel, Event-Equipment, Küchenvermietung,
+        Lieferung, Aufbau, Abholung, Catering-Koordination und erg?nzende Serviceleistungen von Feiermiete,
+        soweit keine abweichende individuelle Vereinbarung getroffen wurde.
       </p>
 
-      <h2>2. Anfrage und Vertragsschluss</h2>
+      <h2>1. Anfrage und Angebot</h2>
       <p>
-        Die Darstellung von Mietartikeln und Leistungen auf der Website stellt kein verbindliches Angebot dar. Kunden k&ouml;nnen &uuml;ber die Website, per E-Mail, telefonisch oder auf anderem Weg eine unverbindliche Anfrage stellen.
-      </p>
-      <p>
-        Ein Vertrag kommt erst zustande, wenn Feiermiete ein individuelles Angebot erstellt und der Kunde dieses Angebot schriftlich best&auml;tigt. Als schriftliche Best&auml;tigung gilt auch eine Best&auml;tigung per E-Mail oder in sonstiger Textform.
+        Die Darstellung von Artikeln und Leistungen auf der Website stellt kein verbindliches Angebot dar.
+        Eine Buchung kommt erst zustande, wenn eine Anfrage geprüft und durch Feiermiete schriftlich bestätigt wurde.
       </p>
 
-      <h2>3. Preise, Kaution und Zahlung</h2>
+      <h2>2. Mietpreise, Kaution und Zahlung</h2>
       <p>
-        Alle Preise, Mietpreise, Kautionen, Lieferkosten, Aufbaukosten, Servicekosten und sonstigen Kosten ergeben sich aus dem jeweiligen Angebot.
-      </p>
-      <p>
-        Die Zahlung erfolgt grunds&auml;tzlich per Vorkasse. Feiermiete ist berechtigt, die Herausgabe von Mietartikeln, die Durchf&uuml;hrung von Lieferungen, den Aufbau oder die Bereitstellung von Leistungen von der vollst&auml;ndigen Zahlung des vereinbarten Betrags und der vereinbarten Kaution abh&auml;ngig zu machen.
-      </p>
-      <p>
-        Die Kaution dient als Sicherheit f&uuml;r Sch&auml;den, Verlust, fehlende Teile, starke Verschmutzung, versp&auml;tete R&uuml;ckgabe oder sonstige Forderungen aus dem Mietverh&auml;ltnis.
+        Mietpreise, Kautionen, Lieferkosten, Aufbauleistungen und Rückgabebedingungen werden im jeweiligen Angebot
+        oder Vertrag ausgewiesen. Die Kaution dient als Sicherheit für beschädigte, fehlende oder stark verschmutzte Artikel.
       </p>
 
-      <h2>4. Mietdauer, &Uuml;bergabe und R&uuml;ckgabe</h2>
+      <h2>3. Mietdauer, übergabe und Rückgabe</h2>
       <p>
-        Die Mietdauer, der &Uuml;bergabezeitpunkt, der Lieferzeitraum, der Abholzeitraum und der R&uuml;ckgabezeitpunkt werden individuell vereinbart.
+        Die konkrete Mietdauer, übergabe, Lieferung, Abholung und Rückgabe werden individuell abgestimmt.
+        Mietartikel sind vollständig, pünktlich und im vereinbarten Zustand zurückzugeben.
       </p>
+
+      <h2>4. Beschädigung, Verlust und Reinigung</h2>
       <p>
-        Mietartikel sind vollst&auml;ndig, p&uuml;nktlich und in ordnungsgem&auml;&szlig;em Zustand zur&uuml;ckzugeben. Normale Gebrauchsspuren sind zul&auml;ssig. Starke Verschmutzungen, Besch&auml;digungen, fehlende Teile oder Verlust werden gesondert berechnet.
+        Beschädigte, fehlende oder stark verschmutzte Mietartikel können mit Reparaturkosten, Reinigungskosten,
+        Wiederbeschaffungswert oder Zeitwert berechnet werden. Offene Beträge können mit der Kaution verrechnet werden.
       </p>
 
       <h2>5. Lieferung, Aufbau und Abholung</h2>
       <p>
-        Lieferung, Aufbau und Abholung erfolgen nur, wenn sie im Angebot ausdr&uuml;cklich vereinbart sind.
-      </p>
-      <p>
-        Der Kunde hat sicherzustellen, dass am vereinbarten Ort und im vereinbarten Zeitraum eine empfangsberechtigte Person erreichbar ist. Der Kunde muss au&szlig;erdem daf&uuml;r sorgen, dass der Zugang zum Veranstaltungsort m&ouml;glich ist und ausreichende Halte-, Lade- oder Parkm&ouml;glichkeiten bestehen.
-      </p>
-      <p>
-        Wartezeiten, erschwerte Zug&auml;nge, fehlende Parkm&ouml;glichkeiten, nicht erreichbare Ansprechpartner, kurzfristige &Auml;nderungen oder zus&auml;tzlicher Aufwand k&ouml;nnen gesondert berechnet werden.
+        Lieferung, Aufbau und Abholung erfolgen nur, wenn sie ausdrücklich vereinbart wurden.
+        Wartezeiten, erschwerte Zugänge, fehlende Parkmöglichkeiten oder nachträgliche Änderungen können zusätzliche Kosten verursachen.
       </p>
 
-      <h2>6. Reinigung, Sch&auml;den und Verlust</h2>
+      <h2>6. Stornierung und Änderungen</h2>
       <p>
-        Mietartikel sind pfleglich zu behandeln. Der Kunde haftet f&uuml;r Besch&auml;digung, Verlust, fehlende Teile, unsachgem&auml;&szlig;e Nutzung und starke Verschmutzung w&auml;hrend des vereinbarten Mietzeitraums.
-      </p>
-      <p>
-        Bei Besch&auml;digung oder Verlust kann Feiermiete Reparaturkosten, Reinigungskosten, Wiederbeschaffungswert, Minderwert oder sonstige erforderliche Kosten berechnen. Offene Forderungen k&ouml;nnen mit der Kaution verrechnet werden.
+        Änderungen oder Stornierungen sind so früh wie möglich mitzuteilen. Bereits entstandene Kosten,
+        reservierte Artikel, Personal-, Logistik- oder Vorbereitungskosten können je nach Zeitpunkt und Aufwand berechnet werden.
       </p>
 
-      <h2>7. Stornierung durch den Kunden</h2>
+      <h2>7. Produktionsküche, Catering und Services</h2>
       <p>
-        Stornierungen m&uuml;ssen in Textform erfolgen.
-      </p>
-      <p>
-        Es gelten folgende Stornobedingungen, sofern im Angebot nichts anderes vereinbart ist:
-      </p>
-      <ul>
-        <li>bis 14 Tage vor dem vereinbarten Termin: kostenfrei</li>
-        <li>13 bis 7 Tage vor dem vereinbarten Termin: 30 % des vereinbarten Gesamtbetrags</li>
-        <li>6 bis 2 Tage vor dem vereinbarten Termin: 50 % des vereinbarten Gesamtbetrags</li>
-        <li>weniger als 48 Stunden vor dem vereinbarten Termin: 80 % des vereinbarten Gesamtbetrags</li>
-        <li>am Veranstaltungstag oder bei Nichterscheinen / Nichtabnahme: 100 % des vereinbarten Gesamtbetrags</li>
-      </ul>
-      <p>
-        Bereits entstandene Fremdkosten, Sonderbeschaffungen, Personal-, Logistik- oder Vorbereitungskosten k&ouml;nnen unabh&auml;ngig vom Stornierungszeitpunkt zus&auml;tzlich berechnet werden, soweit sie nicht mehr vermieden werden k&ouml;nnen.
+        Für Produktionsküche, Catering-Koordination und Eventservice gelten individuelle Absprachen,
+        insbesondere zu Nutzungszeit, Reinigung, übergabe, Haftung, Ausstattung, Personal und Zusatzleistungen.
       </p>
 
-      <h2>8. Produktionsk&uuml;che</h2>
-      <p>
-        Die Nutzung einer Produktionsk&uuml;che erfolgt nur nach vorheriger Vereinbarung und Einweisung. Der Kunde ist f&uuml;r die Einhaltung der geltenden Hygiene-, Lebensmittel-, Arbeitsschutz- und Nutzungsvorgaben verantwortlich, soweit diese in seinem Einflussbereich liegen.
-      </p>
-      <p>
-        Die K&uuml;che darf nur im vereinbarten Umfang, zur vereinbarten Zeit und durch berechtigte Personen genutzt werden. Eine Weitergabe an Dritte ist ohne vorherige Zustimmung von Feiermiete nicht gestattet.
-      </p>
-      <p>
-        Der Kunde ist verpflichtet, die K&uuml;che, Ger&auml;te, Fl&auml;chen und Ausstattung ordnungsgem&auml;&szlig;, sauber und vollst&auml;ndig zur&uuml;ckzugeben. Sch&auml;den, starke Verschmutzungen, fehlende Gegenst&auml;nde oder zus&auml;tzlicher Reinigungsaufwand werden berechnet.
-      </p>
-
-      <h2>9. Catering-Koordination und Eventservice</h2>
-      <p>
-        Soweit Feiermiete Catering-Koordination, Personal, Aufbau, Buffetservice, Logistik oder Eventservice anbietet, richten sich Umfang, Zeiten, Preise und Verantwortlichkeiten nach dem jeweiligen Angebot.
-      </p>
-      <p>
-        Kurzfristige &Auml;nderungen, zus&auml;tzliche Leistungen oder Mehraufwand k&ouml;nnen gesondert berechnet werden.
-      </p>
-
-      <h2>10. R&uuml;ckzahlung der Kaution</h2>
-      <p>
-        Die Kaution wird nach vollst&auml;ndiger und mangelfreier R&uuml;ckgabe der Mietartikel beziehungsweise nach ordnungsgem&auml;&szlig;er Beendigung der Leistung zur&uuml;ckgezahlt.
-      </p>
-      <p>
-        Die R&uuml;ckzahlung erfolgt in der Regel innerhalb von 7 Werktagen nach Pr&uuml;fung der zur&uuml;ckgegebenen Artikel. Offene Forderungen wegen Sch&auml;den, Verlust, Reinigung, versp&auml;teter R&uuml;ckgabe oder sonstiger Kosten k&ouml;nnen mit der Kaution verrechnet werden.
-      </p>
-
-      <h2>11. Haftung</h2>
-      <p>
-        Feiermiete haftet nach den gesetzlichen Vorschriften f&uuml;r Vorsatz und grobe Fahrl&auml;ssigkeit sowie bei Verletzung von Leben, K&ouml;rper oder Gesundheit.
-      </p>
-      <p>
-        F&uuml;r einfache Fahrl&auml;ssigkeit haftet Feiermiete nur bei Verletzung wesentlicher Vertragspflichten. In diesem Fall ist die Haftung auf den vertragstypischen, vorhersehbaren Schaden begrenzt.
-      </p>
-      <p>
-        Die Haftung des Kunden f&uuml;r Sch&auml;den, Verlust, fehlende Mietartikel, starke Verschmutzung oder unsachgem&auml;&szlig;e Nutzung bleibt unber&uuml;hrt.
-      </p>
-
-      <h2>12. Schlussbestimmungen</h2>
-      <p>
-        Es gilt deutsches Recht.
-      </p>
-      <p>
-        Sollten einzelne Bestimmungen dieser Bedingungen unwirksam sein oder werden, bleibt die Wirksamkeit der &uuml;brigen Bestimmungen unber&uuml;hrt.
-      </p>
-      <p>
-        Bei Unternehmern ist Gerichtsstand, soweit zul&auml;ssig, der Sitz von Feiermiete.
+      <p class="muted">
+        Hinweis: Diese AGB sind eine Arbeitsfassung und sollten vor Veröffentlichung rechtlich geprüft und an den
+        tatsächlichen Miet-, Liefer-, Kautions- und Stornoablauf angepasst werden.
       </p>
     `
   }));
@@ -2996,72 +2825,3 @@ publicRoutes.get("/agb", (req, res) => {
 
 
 
-
-
-publicRoutes.get("/widerruf", (req, res) => {
-  res.send(renderLegalPage({
-    title: "Widerrufsbelehrung",
-    content: `
-<h1>Widerrufsbelehrung f&uuml;r Verbraucher</h1>
-
-      <h2>1. Verbraucherhinweis</h2>
-      <p>
-        Verbrauchern kann bei Fernabsatzvertr&auml;gen grunds&auml;tzlich ein gesetzliches Widerrufsrecht zustehen.
-      </p>
-      <p>
-        Ein Widerrufsrecht kann nach gesetzlichen Vorschriften ausgeschlossen sein oder nicht bestehen, insbesondere wenn es sich um Dienstleistungen im Zusammenhang mit Freizeitbet&auml;tigungen handelt und f&uuml;r die Vertragserf&uuml;llung ein spezifischer Termin oder Zeitraum vorgesehen ist.
-      </p>
-      <p>
-        Da Feiermiete h&auml;ufig terminbezogene Leistungen f&uuml;r Veranstaltungen, Feiern, Lieferungen, Aufbauten, Abholungen, Mietzeitr&auml;ume oder K&uuml;chennutzungen erbringt, wird im jeweiligen Angebot gesondert darauf hingewiesen, ob ein Widerrufsrecht besteht oder ausgeschlossen ist.
-      </p>
-
-      <h2>2. Widerrufsrecht, soweit es besteht</h2>
-      <p>
-        Soweit ein gesetzliches Widerrufsrecht besteht und nicht ausgeschlossen ist, haben Verbraucher das Recht, binnen vierzehn Tagen ohne Angabe von Gr&uuml;nden einen Vertrag zu widerrufen.
-      </p>
-      <p>
-        Die Widerrufsfrist betr&auml;gt vierzehn Tage ab dem Tag des Vertragsschlusses.
-      </p>
-
-      <h2>3. Aus&uuml;bung des Widerrufs</h2>
-      <p>
-        Um das Widerrufsrecht auszu&uuml;ben, muss der Verbraucher Feiermiete mittels einer eindeutigen Erkl&auml;rung, zum Beispiel per E-Mail oder Brief, &uuml;ber den Entschluss informieren, den Vertrag zu widerrufen.
-      </p>
-      <p>
-        Der Widerruf kann gerichtet werden an:
-      </p>
-      <p>
-        Edis Gastrobetriebe GmbH &amp; Co. KG<br>
-        Goerzallee 299<br>
-        14167 Berlin<br>
-        E-Mail: <a href="mailto:info@feiermiete.de">info@feiermiete.de</a>
-      </p>
-      <p>
-        Zur Wahrung der Widerrufsfrist reicht es aus, dass die Mitteilung &uuml;ber die Aus&uuml;bung des Widerrufsrechts vor Ablauf der Widerrufsfrist abgesendet wird.
-      </p>
-
-      <h2>4. Folgen des Widerrufs</h2>
-      <p>
-        Wenn der Vertrag wirksam widerrufen wird, erstatten wir alle Zahlungen, die wir vom Verbraucher erhalten haben, sp&auml;testens binnen vierzehn Tagen ab dem Tag, an dem die Mitteilung &uuml;ber den Widerruf bei uns eingegangen ist. F&uuml;r die R&uuml;ckzahlung verwenden wir dasselbe Zahlungsmittel, das bei der urspr&uuml;nglichen Zahlung eingesetzt wurde, sofern nichts anderes vereinbart wurde.
-      </p>
-      <p>
-        Hat der Verbraucher verlangt, dass die Dienstleistung w&auml;hrend der Widerrufsfrist beginnen soll, so hat er einen angemessenen Betrag zu zahlen, der dem Anteil der bis zum Zeitpunkt des Widerrufs bereits erbrachten Leistungen entspricht.
-      </p>
-
-      <h2>5. Muster-Widerrufsformular</h2>
-      <p>
-        Wenn du den Vertrag widerrufen willst, kannst du den folgenden Text verwenden:
-      </p>
-      <p>
-        An Edis Gastrobetriebe GmbH &amp; Co. KG, Goerzallee 299, 14167 Berlin, E-Mail: info@feiermiete.de
-      </p>
-      <p>
-        Hiermit widerrufe ich den von mir abgeschlossenen Vertrag &uuml;ber folgende Leistung / Mietartikel:<br>
-        Bestellt / angefragt am:<br>
-        Name des Verbrauchers:<br>
-        Anschrift des Verbrauchers:<br>
-        Datum:
-      </p>
-    `
-  }));
-});

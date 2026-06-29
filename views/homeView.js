@@ -1,4 +1,4 @@
-﻿function getProductImage(product) {
+function getProductImage(product) {
   const name = (product.name || "").toLowerCase();
 
   if (name.includes("stehtisch")) return "/public/images/stehtisch.jpg";
@@ -42,7 +42,7 @@ function renderHeader() {
           <a href="/event-equipment-mieten-berlin">Event-Equipment Berlin</a>
           <a href="/stehtisch-mieten-berlin">Stehtisch mieten</a>
           <a href="/chafing-dish-mieten-berlin">Chafing Dish mieten</a>
-          <a href="/produktionskueche-mieten-berlin">Produktionsk?che mieten</a>
+          <a href="/produktionskueche-mieten-berlin">Produktionsküche mieten</a>
           <a class="nav-button" href="/anfrage">Anfrage</a>
         </nav>
       </div>
@@ -116,28 +116,28 @@ export function renderHomePage({ products = [] }) {
     {
       name: "Chafing Dish",
       category: { name: "Buffet & Warmhalten" },
-      description: "Warmhaltebeh?lter f?r Buffets, Caterings und Veranstaltungen. Geeignet f?r warme Speisen, Business-Lunches und Eventbuffets.",
+      description: "Warmhaltebehälter für Buffets, Caterings und Veranstaltungen. Geeignet für warme Speisen, Business-Lunches und Eventbuffets.",
       priceCents: 950,
       imageUrl: "/public/images/chafing-dish.jpg"
     },
     {
       name: "Stehtisch",
-      category: { name: "Tische & Sitzm?bel" },
-      description: "Stabiler Stehtisch f?r Empfang, Gartenfeier, Firmenfeier oder Buffetbereich. Ideal f?r Getr?nke, Snacks und lockere Gespr?che.",
+      category: { name: "Tische & Sitzmöbel" },
+      description: "Stabiler Stehtisch für Empfang, Gartenfeier, Firmenfeier oder Buffetbereich. Ideal für Getränke, Snacks und lockere Gespräche.",
       priceCents: 1200,
       imageUrl: "/public/images/stehtisch.jpg"
     },
     {
       name: "Geschirr-Set",
       category: { name: "Geschirr & Besteck" },
-      description: "Teller, Besteck, Gl?ser und Serviermaterial f?r Feiern, Buffets und Caterings. Praktisch kombinierbar mit Lieferung und R?ckgabe.",
+      description: "Teller, Besteck, Gläser und Serviermaterial für Feiern, Buffets und Caterings. Praktisch kombinierbar mit Lieferung und Rückgabe.",
       priceCents: 250,
       imageUrl: "/public/images/cutlery-set.jpg"
     },
     {
-      name: "Getr?nkespender",
-      category: { name: "Getr?nke-Equipment" },
-      description: "Praktischer Getr?nkespender f?r Wasser, Limonade, Eistee oder Infused Water. Ideal f?r Buffets, Sommerfeste und Selbstbedienung.",
+      name: "Getränkespender",
+      category: { name: "Getränke-Equipment" },
+      description: "Praktischer Getränkespender für Wasser, Limonade, Eistee oder Infused Water. Ideal für Buffets, Sommerfeste und Selbstbedienung.",
       priceCents: 1000,
       imageUrl: "/public/images/getraenkespender.jpg"
     }

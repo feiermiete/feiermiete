@@ -541,8 +541,8 @@ export function renderInquiryContract(inquiry) {
 
           <h2>Zahlungs- und Kautionshinweis</h2>
           <p class="note">
-            Mietpreis, Lieferkosten und Kaution sind sp?testens zu dem individuell vereinbarten Zeitpunkt f?llig.
-            Die Herausgabe der Mietartikel kann von der vorherigen Zahlung des Mietpreises und/oder der Kaution abh?ngig gemacht werden.
+            Mietpreis, Lieferkosten und Kaution sind spätestens zu dem individuell vereinbarten Zeitpunkt fällig.
+            Die Herausgabe der Mietartikel kann von der vorherigen Zahlung des Mietpreises und/oder der Kaution abhängig gemacht werden.
           </p>
 
           <h2>5. Nachricht / Zusatzangaben</h2>
@@ -561,7 +561,7 @@ export function renderInquiryContract(inquiry) {
           <h2>7. Besondere Vereinbarungen</h2>
           <p class="note">
             Besondere Vereinbarungen wie abweichende Mietdauer, Sonderpreise, Lieferung, Aufbau,
-            Abholung oder Zahlungsbedingungen werden nur wirksam, wenn sie schriftlich best?tigt wurden.
+            Abholung oder Zahlungsbedingungen werden nur wirksam, wenn sie schriftlich bestätigt wurden.
           </p>
 
           <div class="signatures">

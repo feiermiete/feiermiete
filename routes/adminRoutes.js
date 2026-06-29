@@ -140,7 +140,7 @@ adminRoutes.post("/products", upload.single("imageFile"), async (req, res) => {
       depositCents: euroToCents(req.body.depositEuro),
       stockQuantity: Number(req.body.stockQuantity || 0),
       imageUrl: uploadedImageUrl(req),
-      categoryId: Number(req.body.categoryId),
+      categoryId: normalizeCategoryId(req.body.categoryId),
       isActive: req.body.isActive === "on"
     }
   });
@@ -180,7 +180,7 @@ adminRoutes.post("/products/:id/update", upload.single("imageFile"), async (req,
       depositCents: euroToCents(req.body.depositEuro),
       stockQuantity: Number(req.body.stockQuantity || 0),
       imageUrl: uploadedImageUrl(req),
-      categoryId: Number(req.body.categoryId),
+      categoryId: normalizeCategoryId(req.body.categoryId),
       isActive: req.body.isActive === "on"
     }
   });
@@ -319,7 +319,7 @@ adminRoutes.get("/test-mailjet", async (req, res) => {
           <h1>Mailjet Test</h1>
           <p class="${result.ok ? "ok" : "bad"}">Status: ${result.ok ? "OK / gesendet" : "FEHLER / nicht gesendet"}</p>
           <pre>${JSON.stringify(result, null, 2)}</pre>
-          <p><a href="/admin">Zur?ck zum Admin</a></p>
+          <p><a href="/admin">Zurück zum Admin</a></p>
         </body>
       </html>
     `);
@@ -327,7 +327,7 @@ adminRoutes.get("/test-mailjet", async (req, res) => {
     res.status(500).type("html").send(`
       <h1>Mailjet Test Fehler</h1>
       <pre>${String(error.stack || error.message || error)}</pre>
-      <p><a href="/admin">Zur?ck zum Admin</a></p>
+      <p><a href="/admin">Zurück zum Admin</a></p>
     `);
   }
 });

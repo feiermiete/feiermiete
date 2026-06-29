@@ -39,16 +39,28 @@ function renderImageLibraryOptions(selectedValue = "") {
 }
 
 
+
 function renderImagePickerScript() {
   return `
     <script>
       function updateAdminImagePreview(form) {
         const input = form ? form.querySelector('input[name="imageUrl"]') : null;
+        const fileInput = form ? form.querySelector('input[name="imageFile"]') : null;
         const preview = form ? form.querySelector('[data-image-preview]') : null;
 
-        if (!input || !preview) return;
+        if (!preview) return;
 
-        if (input.value) {
+        if (fileInput && fileInput.files && fileInput.files[0]) {
+          const file = fileInput.files[0];
+          const reader = new FileReader();
+          reader.onload = function(e) {
+            preview.innerHTML = '<img src="' + e.target.result + '" alt="Bildvorschau" />';
+          };
+          reader.readAsDataURL(file);
+          return;
+        }
+
+        if (input && input.value) {
           preview.innerHTML = '<img src="' + input.value + '" alt="Bildvorschau" />';
         } else {
           preview.innerHTML = '<span>Keine Bildvorschau</span>';
@@ -56,20 +68,15 @@ function renderImagePickerScript() {
       }
 
       document.addEventListener("change", function(event) {
-        if (!event.target.matches("[data-image-library-select]")) return;
-
-        const form = event.target.closest("form");
-        const input = form ? form.querySelector('input[name="imageUrl"]') : null;
-
-        if (input && event.target.value) {
-          input.value = event.target.value;
-          updateAdminImagePreview(form);
+        if (event.target.matches('input[name="imageFile"]')) {
+          updateAdminImagePreview(event.target.closest("form"));
         }
       });
 
       document.addEventListener("input", function(event) {
-        if (!event.target.matches('input[name="imageUrl"]')) return;
-        updateAdminImagePreview(event.target.closest("form"));
+        if (event.target.matches('input[name="imageUrl"]')) {
+          updateAdminImagePreview(event.target.closest("form"));
+        }
       });
 
       document.addEventListener("DOMContentLoaded", function() {
@@ -205,11 +212,11 @@ export function renderAdminProducts({ products = [] }) {
         <td>${product.category?.name || "-"}</td>
         <td>
           <strong>${price}</strong><br>
-          <span class="muted">Kaution: ${deposit || "0,00 ?"}</span>
+          <span class="muted">Kaution: ${deposit || "0,00 €"}</span>
         </td>
         <td>
           <strong>${product.stockQuantity || 0}</strong><br>
-          <span class="muted">verf?gbar</span>
+          <span class="muted">verfügbar</span>
         </td>
         <td>
           <span class="status ${product.isActive ? "active" : "inactive"}">
@@ -225,8 +232,8 @@ export function renderAdminProducts({ products = [] }) {
             </button>
           </form>
 
-          <form method="POST" action="/admin/products/${product.id}/delete" onsubmit="return confirm('Diesen Artikel wirklich l?schen?');">
-            <button class="small-button danger" type="submit">L?schen</button>
+          <form method="POST" action="/admin/products/${product.id}/delete" onsubmit="return confirm('Diesen Artikel wirklich löschen?');">
+            <button class="small-button danger" type="submit">Löschen</button>
           </form>
         </td>
       </tr>
@@ -241,7 +248,7 @@ export function renderAdminProducts({ products = [] }) {
           <h1>Equipment</h1>
           <p class="muted">Alle Mietartikel, Preise, Bilder, Bestand und Status verwalten.</p>
         </div>
-        <a class="button" href="/admin/products/new">Neu hinzuf?gen</a>
+        <a class="button" href="/admin/products/new">Neu hinzufügen</a>
       </div>
 
       <div class="card">
@@ -270,11 +277,11 @@ export function renderNewProductForm({ categories = [] }) {
   const categoryOptions = renderCategoryOptions(categories);
 
   return renderAdminLayout({
-    title: "Equipment hinzuf?gen",
+    title: "Equipment hinzufügen",
     content: `
       <div class="topbar">
         <div>
-          <h1>Equipment hinzuf?gen</h1>
+          <h1>Equipment hinzufügen</h1>
           <p class="muted">Neuen Mietartikel anlegen.</p>
         </div>
         <a class="button secondary" href="/admin/products">Zur Liste</a>
@@ -310,27 +317,19 @@ export function renderNewProductForm({ categories = [] }) {
             <div class="form-row">
               <label>Kaution in Euro</label>
               <input name="depositEuro" type="number" step="0.01" placeholder="z. B. 30.00" />
-              <small class="muted">Optional. Wird sp?ter im Angebot/Mietvertrag ber?cksichtigt.</small>
+              <small class="muted">Optional. Wird später im Angebot/Mietvertrag berücksichtigt.</small>
             </div>
 
             <div class="form-row">
-              <label>Menge verf?gbar</label>
+              <label>Menge verfügbar</label>
               <input name="stockQuantity" type="number" step="1" min="0" value="0" />
-              <small class="muted">Interner Bestand f?r Planung und Verf?gbarkeit.</small>
+              <small class="muted">Interner Bestand für Planung und Verfügbarkeit.</small>
             </div>
 
             <div class="form-row">
               <label>Bild-URL</label>
               <input name="imageUrl" placeholder="z. B. /public/images/stehtisch.jpg" />
-              <small class="muted">Du kannst ein Bild aus der Mediathek ausw?hlen oder die Bild-URL manuell eintragen.</small>
-            </div>
-
-            <div class="form-row">
-              <label>Bild aus Mediathek ausw?hlen</label>
-              <select data-image-library-select>
-                <option value="">Bitte ausw?hlen</option>
-                ${renderImageLibraryOptions()}
-              </select>
+              <small class="muted">Du kannst eine Bild-URL manuell eintragen oder ein Bild vom Computer hochladen.</small>
             </div>
 
             <div class="form-row">
@@ -348,8 +347,8 @@ export function renderNewProductForm({ categories = [] }) {
 
             <div class="form-row full">
               <label>Beschreibung</label>
-              <textarea name="description" rows="6" placeholder="Kurze Beschreibung f?r Kunden, z. B. Einsatzbereich, Vorteile und passende Kombinationen."></textarea>
-              <small class="muted">Diese Beschreibung erscheint auf der Website und sollte kundenverst?ndlich formuliert sein.</small>
+              <textarea name="description" rows="6" placeholder="Kurze Beschreibung für Kunden, z. B. Einsatzbereich, Vorteile und passende Kombinationen."></textarea>
+              <small class="muted">Diese Beschreibung erscheint auf der Website und sollte kundenverständlich formuliert sein.</small>
             </div>
 
             <div class="form-row full checkbox-row">
@@ -424,14 +423,6 @@ export function renderEditProductForm({ product, categories = [] }) {
               <input name="imageUrl" value="${product.imageUrl || ""}" />
             </div>
 
-            <div class="form-row">
-              <label>Bild aus Mediathek ausw?hlen</label>
-              <select data-image-library-select onchange="this.closest('form').querySelector('input[name=imageUrl]').value=this.value">
-                <option value="">Bitte ausw?hlen</option>
-                ${renderImageLibraryOptions(product.imageUrl || "")}
-              </select>
-            </div>
-
             ${product.imageUrl ? `
               <div class="form-row full">
                 <label>Aktuelle Bildvorschau</label>
@@ -478,7 +469,7 @@ export function renderAdminInquiries({ inquiries = [] }) {
         <td class="message-box">${display(inquiry.message)}</td>
         <td>${date}</td>
         <td class="actions-cell">
-          <a class="small-button" href="/admin/inquiries/${inquiry.id}">?ffnen</a>
+          <a class="small-button" href="/admin/inquiries/${inquiry.id}">Öffnen</a>
           <a class="small-button secondary" href="/admin/inquiries/${inquiry.id}/contract" target="_blank">Vertrag</a>
         </td>
       </tr>
