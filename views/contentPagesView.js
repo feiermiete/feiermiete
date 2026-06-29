@@ -533,6 +533,7 @@ export function renderSeoLandingPage({
     active: "equipment",
     description: intro.replace(/<[^>]*>/g, "").replace(/&uuml;/g, "?").replace(/&auml;/g, "?").replace(/&ouml;/g, "?").replace(/&szlig;/g, "?").slice(0, 155),
     canonicalPath,
+    ogImage: image,
     content: `
       <main class="seo-page">
         <section class="seo-hero">
