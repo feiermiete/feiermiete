@@ -459,6 +459,8 @@ export function renderServicesPage() {
 
 
 
+
+
 export function renderSeoLandingPage({
   title,
   kicker,
@@ -467,7 +469,9 @@ export function renderSeoLandingPage({
   image,
   bullets = [],
   sections = [],
-  ctaLabel = "Anfrage senden"
+  ctaLabel = "Anfrage senden",
+  faq = [],
+  relatedLinks = []
 }) {
   const bulletCards = bullets.map((item) => {
     return `<div><strong>${item.title}</strong><span>${item.text}</span></div>`;
@@ -483,6 +487,44 @@ export function renderSeoLandingPage({
         </div>
       </section>
     `;
+  }).join("");
+
+  const faqItems = (faq.length ? faq : [
+    {
+      question: "Wie funktioniert die Anfrage?",
+      answer: "Du sendest uns Datum, Ort, Personenanzahl, Mietdauer und die gew&uuml;nschten Artikel. Danach pr&uuml;fen wir Verf&uuml;gbarkeit, Lieferung, Abholung, Kaution und erstellen ein passendes Angebot."
+    },
+    {
+      question: "Ist Lieferung und Abholung m&ouml;glich?",
+      answer: "Ja, Lieferung und Abholung sind je nach Ort, Umfang und Zeitfenster m&ouml;glich. Die Kosten werden individuell im Angebot ausgewiesen."
+    },
+    {
+      question: "Gibt es eine Kaution?",
+      answer: "Je nach Mietartikel kann eine Kaution anfallen. Die genaue Kaution wird im Angebot oder Mietvertrag transparent aufgef&uuml;hrt."
+    },
+    {
+      question: "Kann ich mehrere Artikel kombinieren?",
+      answer: "Ja, einzelne Mietartikel k&ouml;nnen zu passenden Paketen kombiniert werden, zum Beispiel mit Tischen, Pavillon, Geschirr, Chafing Dishes oder Getr&auml;nkespendern."
+    }
+  ]).map((item) => {
+    return `
+      <details>
+        <summary>${item.question}</summary>
+        <p>${item.answer}</p>
+      </details>
+    `;
+  }).join("");
+
+  const links = (relatedLinks.length ? relatedLinks : [
+    { href: "/event-equipment-mieten-berlin", label: "Event-Equipment mieten Berlin" },
+    { href: "/stehtisch-mieten-berlin", label: "Stehtisch mieten Berlin" },
+    { href: "/chafing-dish-mieten-berlin", label: "Chafing Dish mieten Berlin" },
+    { href: "/pavillon-6x3-mieten-berlin", label: "Pavillon mieten Berlin" },
+    { href: "/getraenkespender-mieten-berlin", label: "Getr&auml;nkespender mieten Berlin" },
+    { href: "/produktionskueche-mieten-berlin", label: "Produktionsk&uuml;che mieten Berlin" },
+    { href: "/equipment", label: "Gesamtes Equipment ansehen" }
+  ]).map((link) => {
+    return `<a href="${link.href}">${link.label}</a>`;
   }).join("");
 
   return renderPage({
@@ -510,20 +552,66 @@ export function renderSeoLandingPage({
 
         <section class="subpage-section cream">
           <div class="wide-inner">
+            <div class="section-kicker">Vorteile</div>
+            <h2>Was du bei Feiermiete anfragen kannst</h2>
             <div class="category-grid premium-categories">
               ${bulletCards}
             </div>
           </div>
         </section>
 
+        <section class="subpage-section">
+          <div class="wide-inner text-block">
+            <div class="section-kicker">Ablauf</div>
+            <h2>So l&auml;uft die Anfrage ab</h2>
+            <p>
+              Du beschreibst kurz dein Event: Datum, Uhrzeit, Ort, Personenanzahl, Mietdauer und gew&uuml;nschte Artikel.
+              Danach pr&uuml;fen wir, welche Ausstattung verf&uuml;gbar ist, ob Lieferung und Abholung sinnvoll sind und welche Kaution anf&auml;llt.
+              Anschlie&szlig;end erh&auml;ltst du ein individuelles Angebot. Die Buchung wird erst verbindlich, wenn sie schriftlich best&auml;tigt wurde.
+            </p>
+          </div>
+        </section>
+
+        <section class="subpage-section cream">
+          <div class="wide-inner text-block">
+            <div class="section-kicker">Berlin & Brandenburg</div>
+            <h2>Liefergebiet und Einsatzbereiche</h2>
+            <p>
+              Feiermiete richtet sich an private Feiern, Firmenveranstaltungen, Caterings, Pop-ups, Sommerfeste, Weihnachtsfeiern,
+              Gartenfeiern und Buffets in Berlin und Brandenburg. Je nach Umfang k&ouml;nnen einzelne Mietartikel, komplette Pakete,
+              Lieferung, Aufbau, Abholung oder erg&auml;nzende Serviceleistungen angefragt werden.
+            </p>
+          </div>
+        </section>
+
         ${detailSections}
+
+        <section class="subpage-section">
+          <div class="wide-inner">
+            <div class="section-kicker">H&auml;ufige Fragen</div>
+            <h2>Fragen zur Miete</h2>
+            <div class="faq-list">
+              ${faqItems}
+            </div>
+          </div>
+        </section>
+
+        <section class="fm-seo-links">
+          <div class="wide-inner">
+            <div class="section-kicker">Weitere Seiten</div>
+            <h2>Passende Mietartikel und Leistungen</h2>
+            <div class="fm-seo-link-grid">
+              ${links}
+            </div>
+          </div>
+        </section>
 
         <section class="final-cta">
           <div class="wide-inner final-cta-inner">
             <div>
               <div class="section-kicker">Unverbindlich anfragen</div>
               <h2>Du planst ein Event in Berlin oder Brandenburg?</h2>
-              <p>Schick uns Datum, Ort, Personenanzahl und gew?nschte Leistung. Wir pr?fen Verf?gbarkeit, Lieferung, Aufbau und Kaution.</p>
+              <p>Schick uns Datum, Ort, Personenanzahl und gew&uuml;nschte Leistung. Wir pr&uuml;fen Verf&uuml;gbarkeit, Lieferung, Aufbau und Kaution.</p>
             </div>
             <a class="button primary light" href="/anfrage">Jetzt Anfrage senden</a>
           </div>
