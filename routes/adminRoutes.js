@@ -1,4 +1,7 @@
 import express from "express";
+import multer from "multer";
+import path from "path";
+import fs from "fs";
 import { prisma } from "../lib/prisma.js";
 import { sendMailjetTestEmail } from "../utils/mailjet.js";
 import { requireAdmin } from "../middleware/requireAdmin.js";
@@ -15,6 +18,55 @@ import {
 } from "../views/adminInquiryViews.js";
 
 export const adminRoutes = express.Router();
+
+const uploadDir = path.join(process.cwd(), "public", "images", "uploads");
+
+if (!fs.existsSync(uploadDir)) {
+  fs.mkdirSync(uploadDir, { recursive: true });
+}
+
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, uploadDir);
+  },
+  filename: (req, file, cb) => {
+    const ext = path.extname(file.originalname || "").toLowerCase();
+    const ae = String.fromCharCode(228);
+    const oe = String.fromCharCode(246);
+    const ue = String.fromCharCode(252);
+    const ss = String.fromCharCode(223);
+
+    const base = path.basename(file.originalname || "bild", ext)
+      .toLowerCase()
+      .split(ae).join("ae")
+      .split(oe).join("oe")
+      .split(ue).join("ue")
+      .split(ss).join("ss")
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-+|-+$/g, "");
+
+    cb(null, Date.now() + "-" + (base || "bild") + ext);
+  }
+});
+
+const upload = multer({
+  storage,
+  limits: {
+    fileSize: 5 * 1024 * 1024
+  },
+  fileFilter: (req, file, cb) => {
+    const allowed = ["image/jpeg", "image/png", "image/webp", "image/svg+xml"];
+    if (!allowed.includes(file.mimetype)) {
+      return cb(new Error("Nur JPG, PNG, WEBP oder SVG erlaubt."));
+    }
+    cb(null, true);
+  }
+});
+
+function uploadedImageUrl(req) {
+  if (!req.file) return req.body.imageUrl || "";
+  return "/public/images/uploads/" + req.file.filename;
+}
 
 function euroToCents(value) {
   const number = Number(String(value || "0").replace(",", "."));
@@ -79,7 +131,7 @@ adminRoutes.get("/products/new", async (req, res) => {
   res.send(renderNewProductForm({ categories }));
 });
 
-adminRoutes.post("/products", async (req, res) => {
+adminRoutes.post("/products", upload.single("imageFile"), async (req, res) => {
   await prisma.product.create({
     data: {
       name: req.body.name || "",
@@ -87,7 +139,7 @@ adminRoutes.post("/products", async (req, res) => {
       priceCents: euroToCents(req.body.priceEuro),
       depositCents: euroToCents(req.body.depositEuro),
       stockQuantity: Number(req.body.stockQuantity || 0),
-      imageUrl: req.body.imageUrl || "",
+      imageUrl: uploadedImageUrl(req),
       categoryId: Number(req.body.categoryId),
       isActive: req.body.isActive === "on"
     }
@@ -116,7 +168,7 @@ adminRoutes.get("/products/:id/edit", async (req, res) => {
   res.send(renderEditProductForm({ product, categories }));
 });
 
-adminRoutes.post("/products/:id/update", async (req, res) => {
+adminRoutes.post("/products/:id/update", upload.single("imageFile"), async (req, res) => {
   const id = Number(req.params.id);
 
   await prisma.product.update({
@@ -127,7 +179,7 @@ adminRoutes.post("/products/:id/update", async (req, res) => {
       priceCents: euroToCents(req.body.priceEuro),
       depositCents: euroToCents(req.body.depositEuro),
       stockQuantity: Number(req.body.stockQuantity || 0),
-      imageUrl: req.body.imageUrl || "",
+      imageUrl: uploadedImageUrl(req),
       categoryId: Number(req.body.categoryId),
       isActive: req.body.isActive === "on"
     }

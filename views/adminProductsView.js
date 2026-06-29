@@ -281,7 +281,7 @@ export function renderNewProductForm({ categories = [] }) {
       </div>
 
       <div class="card">
-        <form method="POST" action="/admin/products">
+        <form method="POST" action="/admin/products" enctype="multipart/form-data">
           <div class="form-grid">
             <div class="form-row">
               <label>Name</label>
@@ -333,6 +333,12 @@ export function renderNewProductForm({ categories = [] }) {
               </select>
             </div>
 
+            <div class="form-row">
+              <label>Bild vom Computer hochladen</label>
+              <input name="imageFile" type="file" accept="image/png,image/jpeg,image/webp,image/svg+xml" />
+              <small class="muted">JPG, PNG, WEBP oder SVG bis 5 MB.</small>
+            </div>
+
             <div class="form-row full">
               <label>Bildvorschau</label>
               <div class="admin-image-preview" data-image-preview>
@@ -378,7 +384,7 @@ export function renderEditProductForm({ product, categories = [] }) {
       </div>
 
       <div class="card">
-        <form method="POST" action="/admin/products/${product.id}/update">
+        <form method="POST" action="/admin/products/${product.id}/update" enctype="multipart/form-data">
           <div class="form-grid">
             <div class="form-row">
               <label>Name</label>
