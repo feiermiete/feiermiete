@@ -5396,3 +5396,124 @@ body.fm-cart-open .fm-cart-panel {
     border-radius: 26px;
   }
 }
+
+
+/* SEO Landing Feinschliff */
+.seo-hero {
+  padding: 72px 0 64px;
+}
+
+.seo-hero-grid {
+  grid-template-columns: minmax(0, 0.92fr) minmax(380px, 1.08fr);
+  gap: 52px;
+}
+
+.seo-hero-copy h1 {
+  font-size: clamp(42px, 5vw, 72px);
+  line-height: 0.96;
+  letter-spacing: -0.055em;
+  max-width: 760px;
+}
+
+.seo-hero-copy p {
+  max-width: 680px;
+  font-size: 18px;
+}
+
+.seo-hero-media img {
+  height: 500px;
+  border-radius: 32px;
+}
+
+.seo-split-section {
+  padding: 62px 0;
+}
+
+.seo-split-card {
+  padding: 44px 48px;
+  gap: 44px;
+}
+
+.seo-split-card h2,
+.seo-section-head h2 {
+  font-size: clamp(34px, 4vw, 56px);
+  line-height: 1.02;
+}
+
+.seo-split-card p,
+.seo-section-head p {
+  font-size: 17px;
+}
+
+.seo-card-section,
+.seo-process-section,
+.seo-faq-section,
+.fm-seo-links {
+  padding: 66px 0;
+}
+
+.category-grid.premium-categories div {
+  min-height: 0;
+}
+
+.category-grid.premium-categories img,
+.premium-categories img {
+  height: 150px;
+  object-fit: cover;
+}
+
+.seo-process-grid div {
+  min-height: 210px;
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.seo-process-grid span {
+  flex: 0 0 auto;
+}
+
+.seo-process-grid p {
+  margin: 0;
+}
+
+.faq-list details {
+  padding: 22px 26px;
+}
+
+.final-cta {
+  padding: 72px 0;
+}
+
+.final-cta-inner h2 {
+  font-size: clamp(36px, 4.4vw, 60px);
+}
+
+@media (max-width: 1050px) {
+  .seo-hero-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .seo-hero-copy h1 {
+    max-width: 100%;
+  }
+
+  .seo-hero-media img {
+    height: 380px;
+  }
+}
+
+@media (max-width: 620px) {
+  .seo-hero {
+    padding: 46px 0;
+  }
+
+  .seo-hero-copy h1 {
+    font-size: clamp(38px, 12vw, 54px);
+  }
+
+  .seo-split-card {
+    padding: 26px;
+  }
+}
