@@ -5517,3 +5517,33 @@ body.fm-cart-open .fm-cart-panel {
     padding: 26px;
   }
 }
+
+
+/* Admin Produktliste */
+.admin-product-cell {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 320px;
+}
+
+.admin-product-thumb {
+  width: 74px;
+  height: 58px;
+  object-fit: cover;
+  border-radius: 14px;
+  border: 1px solid rgba(40, 30, 20, 0.12);
+  background: #f5f0ea;
+  flex: 0 0 auto;
+}
+
+.admin-product-cell small {
+  display: block;
+  max-width: 420px;
+  margin-top: 4px;
+  line-height: 1.35;
+}
+
+td .muted {
+  font-size: 13px;
+}

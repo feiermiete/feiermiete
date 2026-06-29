@@ -156,21 +156,40 @@ export function renderAdminDashboard({ productCount = 0, activeProductCount = 0,
   });
 }
 
+
 export function renderAdminProducts({ products = [] }) {
   const rows = products.map((product) => {
     const price = formatEuroDisplay(product.priceCents);
+    const deposit = formatEuroDisplay(product.depositCents);
+    const image = product.imageUrl || "/public/images/photo-coming-soon.jpg";
+    const description = product.description
+      ? product.description.slice(0, 120) + (product.description.length > 120 ? "..." : "")
+      : "Keine Beschreibung hinterlegt.";
 
     return `
       <tr>
         <td>
-          <strong>${product.name}</strong><br>
-          <span class="muted">${product.slug}</span>
+          <div class="admin-product-cell">
+            <img class="admin-product-thumb" src="${image}" alt="${product.name || "Produkt"}" />
+            <div>
+              <strong>${product.name}</strong><br>
+              <span class="muted">${product.slug}</span><br>
+              <small class="muted">${description}</small>
+            </div>
+          </div>
         </td>
         <td>${product.category?.name || "-"}</td>
-        <td>${price}</td>
+        <td>
+          <strong>${price}</strong><br>
+          <span class="muted">Kaution: ${deposit || "0,00 ?"}</span>
+        </td>
+        <td>
+          <strong>${product.stockQuantity || 0}</strong><br>
+          <span class="muted">verf?gbar</span>
+        </td>
         <td>
           <span class="status ${product.isActive ? "active" : "inactive"}">
-            ${product.isActive ? "Aktiv" : "Inaktiv"}
+            ${product.isActive ? "Online" : "Offline"}
           </span>
         </td>
         <td class="actions-cell">
@@ -178,12 +197,12 @@ export function renderAdminProducts({ products = [] }) {
 
           <form method="POST" action="/admin/products/${product.id}/toggle">
             <button class="small-button secondary" type="submit">
-              ${product.isActive ? "Deaktivieren" : "Aktivieren"}
+              ${product.isActive ? "Offline setzen" : "Online setzen"}
             </button>
           </form>
 
-          <form method="POST" action="/admin/products/${product.id}/delete" onsubmit="return confirm('Diesen Artikel wirklich löschen?');">
-            <button class="small-button danger" type="submit">Löschen</button>
+          <form method="POST" action="/admin/products/${product.id}/delete" onsubmit="return confirm('Diesen Artikel wirklich l?schen?');">
+            <button class="small-button danger" type="submit">L?schen</button>
           </form>
         </td>
       </tr>
@@ -196,24 +215,25 @@ export function renderAdminProducts({ products = [] }) {
       <div class="topbar">
         <div>
           <h1>Equipment</h1>
-          <p class="muted">Alle Mietartikel verwalten.</p>
+          <p class="muted">Alle Mietartikel, Preise, Bilder, Bestand und Status verwalten.</p>
         </div>
-        <a class="button" href="/admin/products/new">Neu hinzufügen</a>
+        <a class="button" href="/admin/products/new">Neu hinzuf?gen</a>
       </div>
 
       <div class="card">
         <table>
           <thead>
             <tr>
-              <th>Produkt</th>
+              <th>Artikel</th>
               <th>Kategorie</th>
               <th>Preis</th>
+              <th>Bestand</th>
               <th>Status</th>
               <th>Aktionen</th>
             </tr>
           </thead>
           <tbody>
-            ${Array.isArray(rows) ? rows.join("") : (rows || `<tr><td colspan="5">Noch keine Produkte vorhanden.</td></tr>`)}
+            ${rows || '<tr><td colspan="6">Noch keine Artikel vorhanden.</td></tr>'}
           </tbody>
         </table>
       </div>
