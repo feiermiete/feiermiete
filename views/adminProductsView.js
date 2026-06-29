@@ -38,9 +38,23 @@ function renderImageLibraryOptions(selectedValue = "") {
   }).join("");
 }
 
+
 function renderImagePickerScript() {
   return `
     <script>
+      function updateAdminImagePreview(form) {
+        const input = form ? form.querySelector('input[name="imageUrl"]') : null;
+        const preview = form ? form.querySelector('[data-image-preview]') : null;
+
+        if (!input || !preview) return;
+
+        if (input.value) {
+          preview.innerHTML = '<img src="' + input.value + '" alt="Bildvorschau" />';
+        } else {
+          preview.innerHTML = '<span>Keine Bildvorschau</span>';
+        }
+      }
+
       document.addEventListener("change", function(event) {
         if (!event.target.matches("[data-image-library-select]")) return;
 
@@ -49,7 +63,17 @@ function renderImagePickerScript() {
 
         if (input && event.target.value) {
           input.value = event.target.value;
+          updateAdminImagePreview(form);
         }
+      });
+
+      document.addEventListener("input", function(event) {
+        if (!event.target.matches('input[name="imageUrl"]')) return;
+        updateAdminImagePreview(event.target.closest("form"));
+      });
+
+      document.addEventListener("DOMContentLoaded", function() {
+        document.querySelectorAll("form").forEach(updateAdminImagePreview);
       });
     </script>
   `;
@@ -266,6 +290,7 @@ export function renderNewProductForm({ categories = [] }) {
             <div class="form-row">
               <label>Slug / URL-Name</label>
               <input name="slug" placeholder="z. B. stehtisch" required />
+              <small class="muted">Wird f?r die interne URL und saubere Verwaltung genutzt. Kleinbuchstaben ohne Leerzeichen.</small>
             </div>
 
             <div class="form-row">
@@ -288,7 +313,8 @@ export function renderNewProductForm({ categories = [] }) {
 
             <div class="form-row">
               <label>Bild-URL</label>
-              <input name="imageUrl" placeholder="z. B. /public/images/equipment/stehtisch.jpg" />
+              <input name="imageUrl" placeholder="z. B. /public/images/stehtisch.jpg" />
+              <small class="muted">Du kannst ein Bild aus der Mediathek ausw?hlen oder die Bild-URL manuell eintragen.</small>
             </div>
 
             <div class="form-row">
