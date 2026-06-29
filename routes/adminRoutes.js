@@ -282,14 +282,20 @@ adminRoutes.get("/test-mailjet", async (req, res) => {
 
 
 
+
 function makeSlug(value, fallback = "artikel") {
+  const ae = String.fromCharCode(228);
+  const oe = String.fromCharCode(246);
+  const ue = String.fromCharCode(252);
+  const ss = String.fromCharCode(223);
+
   const base = String(value || fallback)
     .toLowerCase()
     .trim()
-    .replace(/?/g, "ae")
-    .replace(/?/g, "oe")
-    .replace(/?/g, "ue")
-    .replace(/?/g, "ss")
+    .split(ae).join("ae")
+    .split(oe).join("oe")
+    .split(ue).join("ue")
+    .split(ss).join("ss")
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-+|-+$/g, "");
 
