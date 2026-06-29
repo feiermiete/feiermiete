@@ -2671,7 +2671,7 @@ publicRoutes.get("/impressum", (req, res) => {
   res.send(renderLegalPage({
     title: "Impressum",
     content: `
-<h1>Impressum</h1>
+
 
       <h2>Angaben gem&auml;&szlig; &sect; 5 DDG</h2>
 
@@ -2747,7 +2747,7 @@ publicRoutes.get("/datenschutz", (req, res) => {
   res.send(renderLegalPage({
     title: "Datenschutzerkl&auml;rung",
     content: `
-<h1>Datenschutzerkl&auml;rung</h1>
+
 
       <h2>1. Verantwortlicher</h2>
       <p>
@@ -2867,7 +2867,7 @@ publicRoutes.get("/agb", (req, res) => {
   res.send(renderLegalPage({
     title: "AGB / Mietbedingungen",
     content: `
-<h1>AGB / Mietbedingungen</h1>
+
 
       <h2>1. Geltungsbereich</h2>
       <p>
@@ -3003,7 +3003,7 @@ publicRoutes.get("/widerruf", (req, res) => {
   res.send(renderLegalPage({
     title: "Widerrufsbelehrung",
     content: `
-<h1>Widerrufsbelehrung f&uuml;r Verbraucher</h1>
+
 
       <h2>1. Verbraucherhinweis</h2>
       <p>

@@ -5573,3 +5573,70 @@ td .muted {
   color: rgba(30, 30, 30, 0.45);
   font-weight: 700;
 }
+
+
+/* Rechtliche Seiten */
+.legal-page,
+.legal-content,
+.legal-container,
+.legal-wrapper {
+  max-width: 980px;
+  margin: 0 auto;
+}
+
+.legal-page h1,
+.legal-content h1,
+.legal-container h1,
+.legal-wrapper h1 {
+  font-size: clamp(34px, 5vw, 58px) !important;
+  line-height: 1.02 !important;
+  letter-spacing: -0.04em;
+  margin: 0 0 28px !important;
+}
+
+.legal-page h2,
+.legal-content h2,
+.legal-container h2,
+.legal-wrapper h2 {
+  font-size: clamp(22px, 3vw, 34px) !important;
+  line-height: 1.12 !important;
+  letter-spacing: -0.03em;
+  margin: 34px 0 12px !important;
+}
+
+.legal-page p,
+.legal-content p,
+.legal-container p,
+.legal-wrapper p,
+.legal-page li,
+.legal-content li,
+.legal-container li,
+.legal-wrapper li {
+  font-size: 16px !important;
+  line-height: 1.7 !important;
+  max-width: 850px;
+}
+
+.legal-page ul,
+.legal-content ul,
+.legal-container ul,
+.legal-wrapper ul {
+  margin: 12px 0 24px 22px;
+  padding: 0;
+}
+
+@media (max-width: 700px) {
+  .legal-page h1,
+  .legal-content h1,
+  .legal-container h1,
+  .legal-wrapper h1 {
+    font-size: 34px !important;
+  }
+
+  .legal-page h2,
+  .legal-content h2,
+  .legal-container h2,
+  .legal-wrapper h2 {
+    font-size: 24px !important;
+  }
+}
