@@ -4828,3 +4828,48 @@ body.fm-cart-open .fm-cart-panel {
     font-size: 16px;
   }
 }
+
+
+/* SEO Trust Strip */
+.seo-trust-strip {
+  padding: 24px 0;
+  background: #111111;
+  color: #ffffff;
+}
+
+.seo-trust-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.seo-trust-grid div {
+  padding: 18px 20px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.seo-trust-grid strong {
+  display: block;
+  font-size: 16px;
+  margin-bottom: 6px;
+}
+
+.seo-trust-grid span {
+  display: block;
+  font-size: 14px;
+  line-height: 1.45;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+@media (max-width: 900px) {
+  .seo-trust-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 560px) {
+  .seo-trust-grid {
+    grid-template-columns: 1fr;
+  }
+}

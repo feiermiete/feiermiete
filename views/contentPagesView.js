@@ -550,6 +550,15 @@ export function renderSeoLandingPage({
           </div>
         </section>
 
+        <section class="seo-trust-strip">
+          <div class="wide-inner seo-trust-grid">
+            <div><strong>Mietdauer flexibel</strong><span>stundenweise, tageweise oder nach Absprache</span></div>
+            <div><strong>Lieferung m&ouml;glich</strong><span>je nach Umfang, Ort und Zeitfenster</span></div>
+            <div><strong>Kaution transparent</strong><span>klar im Angebot oder Mietvertrag ausgewiesen</span></div>
+            <div><strong>Berlin & Brandenburg</strong><span>f&uuml;r private und gewerbliche Events</span></div>
+          </div>
+        </section>
+
         <section class="subpage-section cream">
           <div class="wide-inner">
             <div class="section-kicker">Vorteile</div>
@@ -557,6 +566,22 @@ export function renderSeoLandingPage({
             <div class="category-grid premium-categories">
               ${bulletCards}
             </div>
+          </div>
+        </section>
+
+        <section class="subpage-section">
+          <div class="wide-inner text-block">
+            <div class="section-kicker">Warum Feiermiete?</div>
+            <h2>Praktisch geplant statt einzeln zusammengesucht</h2>
+            <p>
+              Bei Feiermiete geht es nicht nur um einzelne Mietartikel. Wichtig ist, dass Ausstattung, Personenanzahl,
+              Ort, Mietdauer, Lieferung, Aufbau und R&uuml;ckgabe zusammenpassen. Deshalb kannst du nicht nur einen Artikel,
+              sondern auch eine sinnvolle Kombination aus Equipment, Service und Logistik anfragen.
+            </p>
+            <p>
+              Das ist besonders hilfreich, wenn du ein Buffet, eine Gartenfeier, eine Firmenveranstaltung, ein Winterevent,
+              eine Hochzeit oder ein Catering planst und nicht sicher bist, welche Artikel wirklich gebraucht werden.
+            </p>
           </div>
         </section>
 
