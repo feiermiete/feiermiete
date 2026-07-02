@@ -1,11 +1,23 @@
-ï»¿(function () {
+(function () {
   const CART_KEY = "feiermiete_request_cart";
+  const CART_SAVED_AT_KEY = "feiermiete_request_cart_saved_at";
+  const CART_MAX_AGE_MS = 90 * 60 * 1000; // 1,5 Stunden
+
+  function clearExpiredCart() {
+    const savedAt = Number(localStorage.getItem(CART_SAVED_AT_KEY) || "0");
+
+    if (savedAt && Date.now() - savedAt > CART_MAX_AGE_MS) {
+      localStorage.removeItem(CART_KEY);
+      localStorage.removeItem(CART_SAVED_AT_KEY);
+    }
+  }
 
   function moneyText(text) {
     return String(text || "").replace(/\s+/g, " ").trim();
   }
 
   function getCart() {
+    clearExpiredCart();
     try {
       return JSON.parse(localStorage.getItem(CART_KEY) || "[]");
     } catch {
@@ -15,6 +27,7 @@
 
   function saveCart(cart) {
     localStorage.setItem(CART_KEY, JSON.stringify(cart));
+    localStorage.setItem(CART_SAVED_AT_KEY, String(Date.now()));
     updateFloatingCart();
   }
 
@@ -61,7 +74,7 @@
 
       if (label.includes("mietpreis")) price = value;
       if (label.includes("kaution")) deposit = value;
-      if (label.includes("verfÃ¼gbar")) stock = value;
+      if (label.includes("verfügbar")) stock = value;
     });
 
     return {
@@ -86,7 +99,7 @@
         qtyBox.innerHTML = `
           <label>Menge</label>
           <div>
-            <button type="button" class="qty-minus">âˆ’</button>
+            <button type="button" class="qty-minus">-</button>
             <input class="cart-qty-input" type="number" min="1" value="1" />
             <button type="button" class="qty-plus">+</button>
           </div>
@@ -142,7 +155,7 @@
 
       saveCart(cart);
 
-      button.textContent = "HinzugefÃ¼gt âœ“";
+      button.textContent = "Hinzugefügt ?";
       setTimeout(() => {
         button.textContent = "Zum Anfragekorb";
       }, 1000);
@@ -172,7 +185,7 @@
 
       if (item.price) text += `Mietpreis: ${item.price}\n`;
       if (item.deposit) text += `Kaution: ${item.deposit}\n`;
-      if (item.stock) text += `VerfÃ¼gbar laut Website: ${item.stock}\n`;
+      if (item.stock) text += `Verfügbar laut Website: ${item.stock}\n`;
 
       text += "\n";
     });
@@ -202,12 +215,12 @@
 
     box.innerHTML = `
       <h3>Dein Anfragekorb</h3>
-      <p>Diese Artikel werden mit deiner Anfrage Ã¼bermittelt.</p>
+      <p>Diese Artikel werden mit deiner Anfrage übermittelt.</p>
       <div class="inquiry-cart-items">
         ${cart.map((item, index) => `
           <div class="inquiry-cart-item">
             <strong>${item.quantity} x ${item.name}</strong>
-            <span>${item.price || ""}${item.deposit ? " Â· Kaution: " + item.deposit : ""}</span>
+            <span>${item.price || ""}${item.deposit ? " · Kaution: " + item.deposit : ""}</span>
             <button type="button" data-remove-cart-item="${index}">Entfernen</button>
           </div>
         `).join("")}
@@ -246,4 +259,6 @@
     }
   });
 })();
+
+
 
