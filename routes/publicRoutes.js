@@ -1,4 +1,4 @@
-ï»¿import express from "express";
+import express from "express";
 import { prisma } from "../lib/prisma.js";
 import { sendInquiryNotification, sendCustomerInquiryConfirmation } from "../utils/mailjet.js";
 import { renderHomePage } from "../views/homeView.js";
@@ -70,7 +70,7 @@ const publicSeoUrls = [
 ];
 
 publicRoutes.get("/sitemap.xml", (req, res) => {
-  const baseUrl = "https://feiermiete-production.up.railway.app";
+  const baseUrl = "https://www.feiermiete.de";
   const urls = publicSeoUrls.map((url) => {
     const loc = url ? `${baseUrl}/${url}` : baseUrl;
     return `
@@ -92,7 +92,7 @@ publicRoutes.get("/robots.txt", (req, res) => {
   res.send(`User-agent: *
 Allow: /
 
-Sitemap: https://feiermiete-production.up.railway.app/sitemap.xml
+Sitemap: https://www.feiermiete.de/sitemap.xml
 `);
 });
 
@@ -180,7 +180,7 @@ publicRoutes.get("/chafing-dish-mieten-berlin", (req, res) => {
 
 publicRoutes.get("/gluehweinbehaelter-mieten-berlin", (req, res) => {
   res.send(renderSeoLandingPage({
-    title: "GlÃ¼hweinbehÃ¤lter mieten in Berlin",
+    title: "Glühweinbehälter mieten in Berlin",
     kicker: "Winterevent und Ausschank",
     headline: "Gl&uuml;hweinbeh&auml;lter mieten f&uuml;r Weihnachtsfeiern, Winterevents und Ausschank.",
     intro: "Gl&uuml;hweinbeh&auml;lter sind ideal f&uuml;r Weihnachtsfeiern, Firmenhof-Events, Winterm&auml;rkte und Ausschankstationen in Berlin und Brandenburg.",
@@ -205,7 +205,7 @@ publicRoutes.get("/gluehweinbehaelter-mieten-berlin", (req, res) => {
 
 publicRoutes.get("/produktionskueche-mieten-berlin", (req, res) => {
   res.send(renderSeoLandingPage({
-    title: "ProduktionskÃ¼che mieten in Berlin",
+    title: "Produktionsküche mieten in Berlin",
     kicker: "Gastro-K&uuml;che Berlin",
     headline: "Produktionsk&uuml;che mieten f&uuml;r Catering, Pop-ups und Vorproduktion.",
     intro: "Die Gastro-K&uuml;che kann f&uuml;r Vorbereitung, Produktion, Kommissionierung oder Eventabwicklung angefragt werden. Ideal f&uuml;r Caterer, Food-Start-ups und Pop-up-Konzepte.",
@@ -2541,7 +2541,7 @@ publicRoutes.post("/anfrage", async (req, res) => {
     serviceType ? `Art der Anfrage: ${serviceType}` : null,
     guestCount ? `Personenanzahl: ${guestCount}` : null,
     rentalDuration ? `Mietdauer / Zeitraum: ${rentalDuration}` : null,
-    deliveryNeeded ? `Lieferung gewÃ¼nscht: ${deliveryNeeded}` : null,
+    deliveryNeeded ? `Lieferung gewünscht: ${deliveryNeeded}` : null,
     message ? `Nachricht: ${message}` : null
   ].filter(Boolean).join("\n\n");
 
@@ -2587,7 +2587,7 @@ publicRoutes.post("/anfrage", async (req, res) => {
     });
   }
 
-  console.log(`[INQUIRY] Artikelpositionen fÃ¼r Anfrage #${inquiry.id} gespeichert. Mailjet wird versucht.`);
+  console.log(`[INQUIRY] Artikelpositionen für Anfrage #${inquiry.id} gespeichert. Mailjet wird versucht.`);
 
   let mailStatus = "not_attempted";
 
@@ -2600,7 +2600,7 @@ publicRoutes.post("/anfrage", async (req, res) => {
     const mailResult = await sendInquiryNotification(inquiry, savedItems);
     await sendCustomerInquiryConfirmation(inquiry, savedItems);
     mailStatus = mailResult?.status || "sent";
-    console.log(`[INQUIRY] Mailjet-Mail fÃ¼r Anfrage #${inquiry.id} Status: ${mailStatus}`);
+    console.log(`[INQUIRY] Mailjet-Mail für Anfrage #${inquiry.id} Status: ${mailStatus}`);
   } catch (mailError) {
     mailStatus = "error";
     console.error("Anfrage wurde gespeichert, aber Mailjet-Mail konnte nicht gesendet werden:", mailError);
@@ -2625,12 +2625,12 @@ function renderLegalPage({ title, content }) {
           <div class="header-inner">
             <a class="brand" href="/">
               <div class="brand-main">Feiermiete</div>
-              <div class="brand-sub">Equipment fÃ¼r Feiern & Events</div>
+              <div class="brand-sub">Equipment für Feiern & Events</div>
             </a>
             <nav>
               <a href="/">Home</a>
               <a href="/equipment">Equipment</a>
-              <a href="/kueche-mieten">KÃ¼che mieten</a>
+              <a href="/kueche-mieten">Küche mieten</a>
               <a href="/catering">Catering</a>
               <a href="/services">Services</a>
               <a class="nav-button" href="/anfrage">Anfrage</a>
@@ -2650,7 +2650,7 @@ function renderLegalPage({ title, content }) {
           <div class="wide-inner footer-grid">
             <div>
               <strong>Feiermiete</strong>
-              <p>Equipment Â· KÃ¼che Â· Catering Â· Eventservice Â· Berlin & Brandenburg</p>
+              <p>Equipment · Küche · Catering · Eventservice · Berlin & Brandenburg</p>
             </div>
             <div class="footer-links">
               <a href="/impressum">Impressum</a>
