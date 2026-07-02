@@ -38,11 +38,6 @@ function renderHeader() {
           <a href="/kueche-mieten">Küche mieten</a>
           <a href="/catering">Catering</a>
           <a href="/services">Services</a>
-          <h4>SEO-Seiten</h4>
-          <a href="/event-equipment-mieten-berlin">Event-Equipment Berlin</a>
-          <a href="/stehtisch-mieten-berlin">Stehtisch mieten</a>
-          <a href="/chafing-dish-mieten-berlin">Chafing Dish mieten</a>
-          <a href="/produktionskueche-mieten-berlin">Produktionsküche mieten</a>
           <a class="nav-button" href="/anfrage">Anfrage</a>
         </nav>
       </div>
@@ -465,6 +460,7 @@ export function renderHomePage({ products = [] }) {
     </html>
   `;
 }
+
 
 
 
