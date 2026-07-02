@@ -1,4 +1,4 @@
-ï»¿function formatMoney(cents) {
+function formatMoney(cents) {
   const value = Number(cents || 0) / 100;
   return value.toLocaleString("de-DE", {
     style: "currency",
@@ -71,7 +71,7 @@ function getEventDate(inquiry) {
 }
 
 function getAdminLink(inquiry) {
-  const baseUrl = process.env.APP_URL || process.env.PUBLIC_URL || "https://feiermiete-production.up.railway.app";
+  const baseUrl = "https://www.feiermiete.de";
   return `${baseUrl}/admin/inquiries/${inquiry.id}`;
 }
 
@@ -114,7 +114,7 @@ export async function sendInquiryNotification(inquiry, items = []) {
   const { apiKey, secretKey, fromEmail, fromName, toEmail } = getMailjetConfig();
 
   if (!apiKey || !secretKey || !fromEmail || !toEmail) {
-    console.warn("Mailjet nicht vollstÃ¤ndig konfiguriert. Interne Anfrage-Mail wird Ã¼bersprungen.");
+    console.warn("Mailjet nicht vollständig konfiguriert. Interne Anfrage-Mail wird übersprungen.");
     return { ok: false, status: "skipped", reason: "missing_config" };
   }
 
@@ -122,9 +122,9 @@ export async function sendInquiryNotification(inquiry, items = []) {
   const adminLink = getAdminLink(inquiry);
 
   const textPart = `
-Neue Anfrage Ã¼ber Feiermiete
+Neue Anfrage über Feiermiete
 
-Es ist eine neue Anfrage Ã¼ber die Website eingegangen.
+Es ist eine neue Anfrage über die Website eingegangen.
 
 Anfrage-Nr.: ${inquiry.id}
 
@@ -143,17 +143,17 @@ Nachricht / Zusatzangaben
 ${inquiry.message || "-"}
 
 Interne Bearbeitung
-Die Anfrage wurde im Admin-Bereich gespeichert und kann dort geprÃ¼ft, ergÃ¤nzt und fÃ¼r die Vertragserstellung vorbereitet werden.
+Die Anfrage wurde im Admin-Bereich gespeichert und kann dort geprüft, ergänzt und für die Vertragserstellung vorbereitet werden.
 
-Anfrage Ã¶ffnen:
+Anfrage öffnen:
 ${adminLink}
 `.trim();
 
   const htmlPart = `
     <div style="font-family:Arial,sans-serif;background:#f7f3ee;padding:28px;color:#111;">
       <div style="max-width:760px;margin:0 auto;background:#fff;padding:30px;border-radius:18px;">
-        <h2 style="margin:0 0 8px;color:#d40016;">Neue Anfrage Ã¼ber Feiermiete</h2>
-        <p style="margin:0 0 24px;color:#555;">Es ist eine neue Anfrage Ã¼ber die Website eingegangen.</p>
+        <h2 style="margin:0 0 8px;color:#d40016;">Neue Anfrage über Feiermiete</h2>
+        <p style="margin:0 0 24px;color:#555;">Es ist eine neue Anfrage über die Website eingegangen.</p>
 
         <p style="background:#111;color:#fff;padding:12px 16px;border-radius:10px;">
           <strong>Anfrage-Nr.:</strong> ${inquiry.id}
@@ -177,7 +177,7 @@ ${adminLink}
 
         <p style="margin-top:24px;">
           <a href="${escapeHtml(adminLink)}" style="display:inline-block;background:#d40016;color:#fff;text-decoration:none;padding:12px 18px;border-radius:999px;font-weight:bold;">
-            Anfrage im Admin Ã¶ffnen
+            Anfrage im Admin öffnen
           </a>
         </p>
       </div>
@@ -195,12 +195,12 @@ ${adminLink}
         Name: "Feiermiete"
       }
     ],
-    Subject: `Neue Anfrage Ã¼ber Feiermiete #${inquiry.id}`,
+    Subject: `Neue Anfrage über Feiermiete #${inquiry.id}`,
     TextPart: textPart,
     HTMLPart: htmlPart
   });
 
-  console.log(`Mailjet interne Anfrage-Mail gesendet fÃ¼r Anfrage #${inquiry.id}`);
+  console.log(`Mailjet interne Anfrage-Mail gesendet für Anfrage #${inquiry.id}`);
   return { ok: true, status: "sent" };
 }
 
@@ -208,7 +208,7 @@ export async function sendCustomerInquiryConfirmation(inquiry, items = []) {
   const { apiKey, secretKey, fromEmail, fromName } = getMailjetConfig();
 
   if (!apiKey || !secretKey || !fromEmail || !inquiry.email) {
-    console.warn("Kunden-BestÃ¤tigung kann nicht gesendet werden: Mailjet oder Kunden-E-Mail fehlt.");
+    console.warn("Kunden-Bestätigung kann nicht gesendet werden: Mailjet oder Kunden-E-Mail fehlt.");
     return { ok: false, status: "skipped", reason: "missing_config_or_email" };
   }
 
@@ -217,9 +217,9 @@ export async function sendCustomerInquiryConfirmation(inquiry, items = []) {
   const textPart = `
 Hallo ${inquiry.customerName || ""},
 
-vielen Dank fÃ¼r deine Anfrage bei Feiermiete.
+vielen Dank für deine Anfrage bei Feiermiete.
 
-Wir haben deine Anfrage erhalten und prÃ¼fen nun VerfÃ¼gbarkeit, Mietdauer, Lieferung, Aufbau, Kaution und passende Zusatzleistungen. AnschlieÃŸend melden wir uns mit einem passenden Angebot bei dir.
+Wir haben deine Anfrage erhalten und prüfen nun Verfügbarkeit, Mietdauer, Lieferung, Aufbau, Kaution und passende Zusatzleistungen. Anschließend melden wir uns mit einem passenden Angebot bei dir.
 
 Anfrage-Nr.: ${inquiry.id}
 Eventdatum: ${eventDate}
@@ -232,24 +232,24 @@ Deine Nachricht:
 ${inquiry.message || "-"}
 
 Wichtig:
-Diese Nachricht ist noch keine verbindliche BuchungsbestÃ¤tigung. Die Buchung wird erst verbindlich, wenn wir die Anfrage geprÃ¼ft und schriftlich bestÃ¤tigt haben.
+Diese Nachricht ist noch keine verbindliche Buchungsbestätigung. Die Buchung wird erst verbindlich, wenn wir die Anfrage geprüft und schriftlich bestätigt haben.
 
-Viele GrÃ¼ÃŸe
+Viele Grüße
 Dein Feiermiete-Team
 `.trim();
 
   const htmlPart = `
     <div style="font-family:Arial,sans-serif;background:#f7f3ee;padding:28px;color:#111;">
       <div style="max-width:760px;margin:0 auto;background:#fff;padding:30px;border-radius:18px;">
-        <h2 style="margin:0 0 8px;color:#d40016;">Danke fÃ¼r deine Anfrage bei Feiermiete</h2>
+        <h2 style="margin:0 0 8px;color:#d40016;">Danke für deine Anfrage bei Feiermiete</h2>
         <p style="margin:0 0 24px;color:#555;">Wir haben deine Anfrage erhalten.</p>
 
         <p>Hallo ${escapeHtml(inquiry.customerName || "")},</p>
 
         <p style="line-height:1.7;">
-          vielen Dank fÃ¼r deine Anfrage. Wir prÃ¼fen nun VerfÃ¼gbarkeit, Mietdauer,
+          vielen Dank für deine Anfrage. Wir prüfen nun Verfügbarkeit, Mietdauer,
           Lieferung, Aufbau, Kaution und passende Zusatzleistungen.
-          AnschlieÃŸend melden wir uns mit einem passenden Angebot bei dir.
+          Anschließend melden wir uns mit einem passenden Angebot bei dir.
         </p>
 
         <p style="background:#f7f3ee;padding:16px;border-radius:10px;line-height:1.8;">
@@ -265,12 +265,12 @@ Dein Feiermiete-Team
         <pre style="font-family:Arial,sans-serif;white-space:pre-wrap;background:#f7f3ee;padding:16px;border-radius:10px;">${escapeHtml(inquiry.message || "-")}</pre>
 
         <p style="background:#fff4d8;border-left:4px solid #d40016;padding:14px 16px;line-height:1.6;">
-          <strong>Wichtig:</strong> Diese Nachricht ist noch keine verbindliche BuchungsbestÃ¤tigung.
-          Die Buchung wird erst verbindlich, wenn wir die Anfrage geprÃ¼ft und schriftlich bestÃ¤tigt haben.
+          <strong>Wichtig:</strong> Diese Nachricht ist noch keine verbindliche Buchungsbestätigung.
+          Die Buchung wird erst verbindlich, wenn wir die Anfrage geprüft und schriftlich bestätigt haben.
         </p>
 
         <p style="margin-top:24px;">
-          Viele GrÃ¼ÃŸe<br>
+          Viele Grüße<br>
           <strong>Dein Feiermiete-Team</strong>
         </p>
       </div>
@@ -288,12 +288,12 @@ Dein Feiermiete-Team
         Name: inquiry.customerName || "Kunde"
       }
     ],
-    Subject: `Wir haben deine Anfrage erhalten â€“ Feiermiete #${inquiry.id}`,
+    Subject: `Wir haben deine Anfrage erhalten – Feiermiete #${inquiry.id}`,
     TextPart: textPart,
     HTMLPart: htmlPart
   });
 
-  console.log(`Mailjet Kunden-BestÃ¤tigung gesendet fÃ¼r Anfrage #${inquiry.id}`);
+  console.log(`Mailjet Kunden-Bestätigung gesendet für Anfrage #${inquiry.id}`);
   return { ok: true, status: "sent" };
 }
 
@@ -328,7 +328,7 @@ export async function sendMailjetTestEmail() {
       }
     ],
     Subject: "Feiermiete Mailjet Test",
-    TextPart: "Das ist eine Test-Mail von Feiermiete Ã¼ber Mailjet.",
+    TextPart: "Das ist eine Test-Mail von Feiermiete über Mailjet.",
     HTMLPart: "<h2>Feiermiete Mailjet Test</h2><p>Wenn du diese Mail siehst, funktioniert Mailjet.</p>"
   });
 
