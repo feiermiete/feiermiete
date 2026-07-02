@@ -615,7 +615,7 @@ export function renderSeoLandingPage({
               <img src="${image}" alt="${title}" />
               <div class="seo-floating-card">
                 <strong>Feiermiete</strong>
-                <span>Equipment ? Lieferung ? Aufbau ? Anfrage</span>
+                <span>Equipment · Lieferung · Aufbau · Anfrage</span>
               </div>
             </div>
           </div>
